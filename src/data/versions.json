@@ -1,0 +1,377 @@
+[
+    {
+        "mcVersion": "1.21.11",
+        "dhVersion": "2.3.0-a",
+        "releaseDate": "2026-02",
+        "stability": "alpha",
+        "loaders": {
+            "fabric": {
+                "dependencies": [
+                    {
+                        "name": "Fabric API",
+                        "url": "https://modrinth.com/mod/fabric-api",
+                        "required": true
+                    },
+                    {
+                        "name": "Sodium",
+                        "url": "https://modrinth.com/mod/sodium",
+                        "required": false,
+                        "note": "Highly recommended for performance"
+                    },
+                    {
+                        "name": "Iris Shaders",
+                        "url": "https://modrinth.com/mod/iris",
+                        "required": false,
+                        "note": "Required for shader support"
+                    }
+                ],
+                "downloadUrl": "https://modrinth.com/mod/distanthorizons/versions?g=1.21.11&l=fabric"
+            },
+            "neoforge": {
+                "dependencies": [
+                    {
+                        "name": "Embeddium",
+                        "url": "https://modrinth.com/mod/embeddium",
+                        "required": false,
+                        "note": "Sodium alternative for NeoForge"
+                    },
+                    {
+                        "name": "Oculus",
+                        "url": "https://modrinth.com/mod/oculus",
+                        "required": false,
+                        "note": "Iris alternative for NeoForge shader support"
+                    }
+                ],
+                "downloadUrl": "https://modrinth.com/mod/distanthorizons/versions?g=1.21.11&l=neoforge"
+            }
+        }
+    },
+    {
+        "mcVersion": "1.21.5",
+        "dhVersion": "2.3.0-a",
+        "releaseDate": "2026-01",
+        "stability": "alpha",
+        "loaders": {
+            "fabric": {
+                "dependencies": [
+                    {
+                        "name": "Fabric API",
+                        "url": "https://modrinth.com/mod/fabric-api",
+                        "required": true
+                    },
+                    {
+                        "name": "Sodium",
+                        "url": "https://modrinth.com/mod/sodium",
+                        "required": false,
+                        "note": "Highly recommended for performance"
+                    },
+                    {
+                        "name": "Iris Shaders",
+                        "url": "https://modrinth.com/mod/iris",
+                        "required": false,
+                        "note": "Required for shader support"
+                    }
+                ],
+                "downloadUrl": "https://modrinth.com/mod/distanthorizons/versions?g=1.21.5&l=fabric"
+            },
+            "neoforge": {
+                "dependencies": [
+                    {
+                        "name": "Embeddium",
+                        "url": "https://modrinth.com/mod/embeddium",
+                        "required": false,
+                        "note": "Sodium alternative for NeoForge"
+                    },
+                    {
+                        "name": "Oculus",
+                        "url": "https://modrinth.com/mod/oculus",
+                        "required": false,
+                        "note": "Iris alternative for NeoForge shader support"
+                    }
+                ],
+                "downloadUrl": "https://modrinth.com/mod/distanthorizons/versions?g=1.21.5&l=neoforge"
+            }
+        }
+    },
+    {
+        "mcVersion": "1.21.1",
+        "dhVersion": "2.3.0-a",
+        "releaseDate": "2025-10",
+        "stability": "alpha",
+        "loaders": {
+            "fabric": {
+                "dependencies": [
+                    {
+                        "name": "Fabric API",
+                        "url": "https://modrinth.com/mod/fabric-api",
+                        "required": true
+                    },
+                    {
+                        "name": "Sodium",
+                        "url": "https://modrinth.com/mod/sodium",
+                        "required": false,
+                        "note": "Highly recommended for performance"
+                    },
+                    {
+                        "name": "Iris Shaders",
+                        "url": "https://modrinth.com/mod/iris",
+                        "required": false,
+                        "note": "Required for shader support"
+                    },
+                    {
+                        "name": "Indium",
+                        "url": "https://modrinth.com/mod/indium",
+                        "required": false,
+                        "note": "Required if using Sodium + Fabric Rendering API mods"
+                    }
+                ],
+                "downloadUrl": "https://modrinth.com/mod/distanthorizons/versions?g=1.21.1&l=fabric"
+            },
+            "neoforge": {
+                "dependencies": [
+                    {
+                        "name": "Embeddium",
+                        "url": "https://modrinth.com/mod/embeddium",
+                        "required": false,
+                        "note": "Sodium alternative for NeoForge"
+                    },
+                    {
+                        "name": "Oculus",
+                        "url": "https://modrinth.com/mod/oculus",
+                        "required": false,
+                        "note": "Iris alternative for NeoForge shader support"
+                    }
+                ],
+                "downloadUrl": "https://modrinth.com/mod/distanthorizons/versions?g=1.21.1&l=neoforge"
+            }
+        }
+    },
+    {
+        "mcVersion": "1.21.4",
+        "dhVersion": "2.3.0-a",
+        "releaseDate": "2025-12",
+        "stability": "alpha",
+        "loaders": {
+            "fabric": {
+                "dependencies": [
+                    {
+                        "name": "Fabric API",
+                        "url": "https://modrinth.com/mod/fabric-api",
+                        "required": true
+                    },
+                    {
+                        "name": "Sodium",
+                        "url": "https://modrinth.com/mod/sodium",
+                        "required": false,
+                        "note": "Highly recommended for performance"
+                    },
+                    {
+                        "name": "Iris Shaders",
+                        "url": "https://modrinth.com/mod/iris",
+                        "required": false,
+                        "note": "Required for shader support"
+                    }
+                ],
+                "downloadUrl": "https://modrinth.com/mod/distanthorizons/versions?g=1.21.4&l=fabric"
+            },
+            "neoforge": {
+                "dependencies": [
+                    {
+                        "name": "Embeddium",
+                        "url": "https://modrinth.com/mod/embeddium",
+                        "required": false,
+                        "note": "Sodium alternative for NeoForge"
+                    },
+                    {
+                        "name": "Oculus",
+                        "url": "https://modrinth.com/mod/oculus",
+                        "required": false,
+                        "note": "Iris alternative for NeoForge shader support"
+                    }
+                ],
+                "downloadUrl": "https://modrinth.com/mod/distanthorizons/versions?g=1.21.4&l=neoforge"
+            }
+        }
+    },
+    {
+        "mcVersion": "1.20.1",
+        "dhVersion": "2.2.1-a",
+        "releaseDate": "2025-06",
+        "stability": "alpha",
+        "loaders": {
+            "fabric": {
+                "dependencies": [
+                    {
+                        "name": "Fabric API",
+                        "url": "https://modrinth.com/mod/fabric-api",
+                        "required": true
+                    },
+                    {
+                        "name": "Sodium",
+                        "url": "https://modrinth.com/mod/sodium",
+                        "required": false,
+                        "note": "Highly recommended for performance"
+                    },
+                    {
+                        "name": "Iris Shaders",
+                        "url": "https://modrinth.com/mod/iris",
+                        "required": false,
+                        "note": "Required for shader support"
+                    },
+                    {
+                        "name": "Indium",
+                        "url": "https://modrinth.com/mod/indium",
+                        "required": false,
+                        "note": "Required if using Sodium + Fabric Rendering API mods"
+                    }
+                ],
+                "downloadUrl": "https://modrinth.com/mod/distanthorizons/versions?g=1.20.1&l=fabric"
+            },
+            "neoforge": {
+                "dependencies": [
+                    {
+                        "name": "Embeddium",
+                        "url": "https://modrinth.com/mod/embeddium",
+                        "required": false,
+                        "note": "Sodium alternative for NeoForge"
+                    },
+                    {
+                        "name": "Oculus",
+                        "url": "https://modrinth.com/mod/oculus",
+                        "required": false,
+                        "note": "Iris alternative for NeoForge shader support"
+                    }
+                ],
+                "downloadUrl": "https://modrinth.com/mod/distanthorizons/versions?g=1.20.1&l=neoforge"
+            }
+        }
+    },
+    {
+        "mcVersion": "1.20.4",
+        "dhVersion": "2.2.0-a",
+        "releaseDate": "2025-03",
+        "stability": "alpha",
+        "loaders": {
+            "fabric": {
+                "dependencies": [
+                    {
+                        "name": "Fabric API",
+                        "url": "https://modrinth.com/mod/fabric-api",
+                        "required": true
+                    },
+                    {
+                        "name": "Sodium",
+                        "url": "https://modrinth.com/mod/sodium",
+                        "required": false,
+                        "note": "Highly recommended for performance"
+                    },
+                    {
+                        "name": "Iris Shaders",
+                        "url": "https://modrinth.com/mod/iris",
+                        "required": false,
+                        "note": "Required for shader support"
+                    }
+                ],
+                "downloadUrl": "https://modrinth.com/mod/distanthorizons/versions?g=1.20.4&l=fabric"
+            },
+            "neoforge": {
+                "dependencies": [
+                    {
+                        "name": "Embeddium",
+                        "url": "https://modrinth.com/mod/embeddium",
+                        "required": false,
+                        "note": "Sodium alternative for NeoForge"
+                    },
+                    {
+                        "name": "Oculus",
+                        "url": "https://modrinth.com/mod/oculus",
+                        "required": false,
+                        "note": "Iris alternative for NeoForge shader support"
+                    }
+                ],
+                "downloadUrl": "https://modrinth.com/mod/distanthorizons/versions?g=1.20.4&l=neoforge"
+            }
+        }
+    },
+    {
+        "mcVersion": "1.20.6",
+        "dhVersion": "2.2.0-a",
+        "releaseDate": "2025-04",
+        "stability": "alpha",
+        "loaders": {
+            "fabric": {
+                "dependencies": [
+                    {
+                        "name": "Fabric API",
+                        "url": "https://modrinth.com/mod/fabric-api",
+                        "required": true
+                    },
+                    {
+                        "name": "Sodium",
+                        "url": "https://modrinth.com/mod/sodium",
+                        "required": false,
+                        "note": "Highly recommended"
+                    },
+                    {
+                        "name": "Iris Shaders",
+                        "url": "https://modrinth.com/mod/iris",
+                        "required": false,
+                        "note": "Required for shader support"
+                    }
+                ],
+                "downloadUrl": "https://modrinth.com/mod/distanthorizons/versions?g=1.20.6&l=fabric"
+            },
+            "neoforge": {
+                "dependencies": [
+                    {
+                        "name": "Embeddium",
+                        "url": "https://modrinth.com/mod/embeddium",
+                        "required": false,
+                        "note": "Sodium alternative for NeoForge"
+                    },
+                    {
+                        "name": "Oculus",
+                        "url": "https://modrinth.com/mod/oculus",
+                        "required": false,
+                        "note": "Iris alternative for NeoForge shader support"
+                    }
+                ],
+                "downloadUrl": "https://modrinth.com/mod/distanthorizons/versions?g=1.20.6&l=neoforge"
+            }
+        }
+    },
+    {
+        "mcVersion": "1.18.2",
+        "dhVersion": "2.0.4-a",
+        "releaseDate": "2024-06",
+        "stability": "alpha",
+        "loaders": {
+            "fabric": {
+                "dependencies": [
+                    {
+                        "name": "Fabric API",
+                        "url": "https://modrinth.com/mod/fabric-api",
+                        "required": true
+                    },
+                    {
+                        "name": "Sodium",
+                        "url": "https://modrinth.com/mod/sodium",
+                        "required": false,
+                        "note": "Highly recommended"
+                    },
+                    {
+                        "name": "Iris Shaders",
+                        "url": "https://modrinth.com/mod/iris",
+                        "required": false,
+                        "note": "Required for shader support"
+                    }
+                ],
+                "downloadUrl": "https://modrinth.com/mod/distanthorizons/versions?g=1.18.2&l=fabric"
+            },
+            "neoforge": {
+                "dependencies": [],
+                "downloadUrl": ""
+            }
+        }
+    }
+]

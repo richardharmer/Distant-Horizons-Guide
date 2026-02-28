@@ -1,0 +1,128 @@
+[
+    {
+        "category": "General",
+        "icon": "info",
+        "questions": [
+            {
+                "q": "What is Distant Horizons?",
+                "a": "Distant Horizons is a Minecraft mod that adds a Level of Detail (LOD) system to the game. It renders simplified terrain (LODs) beyond the normal render distance, allowing you to see terrain up to 512+ chunks away without destroying your FPS. Think of it as extending your view distance dramatically while keeping performance manageable. The mod is developed primarily on GitLab (gitlab.com/jeseibel/minecraft-lod-mod)."
+            },
+            {
+                "q": "Is Distant Horizons client-side only?",
+                "a": "Yes, Distant Horizons is primarily a client-side mod. You can install it on your client and join any vanilla or modded server without the server needing the mod. However, there is an optional server-side component that can pre-generate LOD data, speeding up LOD generation for players joining the server. This is especially useful for large servers where you want all players to see consistent distant terrain immediately."
+            },
+            {
+                "q": "Is Distant Horizons free?",
+                "a": "Yes, Distant Horizons is completely free and open-source. You can download it from Modrinth or CurseForge. The source code is available on GitLab under the LGPL-3.0 license."
+            },
+            {
+                "q": "What is the difference between Distant Horizons and Voxy?",
+                "a": "Both mods extend your view distance using LOD systems, but they take different approaches. Distant Horizons renders simplified terrain as flat-colored blocks, focusing on stability and broad shader compatibility. Voxy aims for more detailed LOD rendering with actual block textures, offering a more seamless visual experience. As of 2025, Distant Horizons is more mature with wider shader support and community resources, while Voxy is newer and still in active development. Many users watch both projects closely as they evolve."
+            },
+            {
+                "q": "What are the best Distant Horizons alternatives?",
+                "a": "The main alternative to Distant Horizons is Voxy, which takes a different approach to LOD rendering with textured blocks. Bobby is another mod that caches already-loaded chunks for extended view distance but doesn't generate new LOD data beyond explored areas. For server-side chunk pre-generation, Chunky is commonly used (though avoid using Chunky's pre-gen alongside DH's own pre-gen — they can conflict). Distant Horizons remains the most feature-complete and widely-supported LOD solution for Minecraft."
+            },
+            {
+                "q": "Does Distant Horizons work in multiplayer / on servers?",
+                "a": "Yes! Since DH is client-side, you can use it on any server — vanilla, modded, or even Realms. The LOD data is generated locally on your machine as you explore. However, LOD generation will be slower on servers compared to singleplayer because the server controls chunk loading speed. Some servers install the optional DH server-side plugin to pre-generate and distribute LOD data to connected clients, which dramatically speeds up the experience."
+            }
+        ]
+    },
+    {
+        "category": "Installation & Setup",
+        "icon": "download",
+        "questions": [
+            {
+                "q": "How do I install Distant Horizons on Fabric?",
+                "a": "1. Install Fabric Loader for your Minecraft version.\n2. Download Fabric API and place it in your mods folder.\n3. Download Distant Horizons from Modrinth for your MC version.\n4. Place the DH .jar file in your .minecraft/mods folder.\n5. (Highly recommended) Install Sodium for dramatically better rendering performance.\n6. (Optional) Install Iris for shader support, plus Indium if you use mods that rely on the Fabric Rendering API.\n7. Launch Minecraft with the Fabric profile."
+            },
+            {
+                "q": "How do I install Distant Horizons on NeoForge / Forge?",
+                "a": "1. Install NeoForge (or Forge) for your Minecraft version.\n2. Download Distant Horizons for NeoForge from Modrinth.\n3. Place the DH .jar file in your mods folder.\n4. (Highly recommended) Install Embeddium (Sodium port for Forge/NeoForge).\n5. (Optional) Install Oculus (Iris port) for shader support — make sure Oculus is version 1.7.0 or higher for proper LOD rendering with shaders.\n6. Launch Minecraft with the NeoForge profile.\n\nNote: Some users on Reddit report that Fabric generally provides slightly better performance and fewer compatibility issues than Forge/NeoForge for DH."
+            },
+            {
+                "q": "Does Distant Horizons work with OptiFine?",
+                "a": "No, Distant Horizons is NOT compatible with OptiFine. OptiFine modifies the rendering pipeline in ways that conflict with DH's LOD system. Instead, use the Iris + Sodium combo on Fabric, or Oculus + Embeddium on NeoForge. These provide equivalent shader and optimization features while maintaining full DH compatibility."
+            },
+            {
+                "q": "What Minecraft versions does Distant Horizons support?",
+                "a": "Distant Horizons supports Minecraft 1.16.5 through 1.21.x. The most actively maintained and recommended versions are:\n- 1.21.1 (latest stable with DH 2.3.0)\n- 1.20.1 (most popular modding version, excellent DH support)\n- 1.20.4 (solid alternative)\n\nShader compatibility with DH is generally better on Minecraft 1.20+ compared to older versions. Check the Modrinth page for the latest available builds."
+            }
+        ]
+    },
+    {
+        "category": "Performance & Optimization",
+        "icon": "gauge",
+        "questions": [
+            {
+                "q": "How much RAM does Distant Horizons need?",
+                "a": "Distant Horizons stores LOD data in memory, so you'll need more RAM than vanilla:\n\n- 128 chunks: 4GB minimum (6GB recommended)\n- 256 chunks: 6GB minimum (8GB recommended)\n- 512 chunks: 8GB minimum (10GB recommended)\n- 1024+ chunks: 12-16GB\n\nSet your RAM allocation in your launcher's JVM arguments with -Xmx (e.g., -Xmx8G). Community tip: when pre-generating LOD chunks, keep the Minecraft chat window open — there's a known memory leak bug that occurs when the game is paused."
+            },
+            {
+                "q": "Why is my FPS low with Distant Horizons?",
+                "a": "Based on common reports from r/DistantHorizons, the most frequent causes are:\n\n1. **Too many CPU threads assigned**: DH's LOD building is CPU-intensive. If you assign too many threads, it starves the game's main thread. Set DH threads to roughly half your CPU core count.\n2. **Initial LOD generation**: FPS drops are normal when DH is first generating LOD chunks. After the initial generation phase (10-30 minutes depending on your distance setting), performance stabilizes.\n3. **Missing Sodium/Embeddium**: These mods alone can double or triple your FPS. Never run DH without them.\n4. **Vanilla render distance too high**: Reduce vanilla render distance to 8-12 chunks and let DH handle everything beyond that.\n5. **Shader overhead**: Running shaders + DH is demanding. On mid-range hardware, consider running DH without shaders for best FPS.\n6. **Other mod conflicts**: 'Better Chunk Loading' by someaddons is known to conflict with DH. Remove it if present."
+            },
+            {
+                "q": "What are the best Distant Horizons settings for low-end PCs?",
+                "a": "Community-tested recommendations for low-end systems:\n\n- LOD render distance: 128 chunks\n- Quality: LOW\n- CPU threads: 2 (no more than half your cores)\n- Vanilla render distance: 6-8 chunks\n- Disable cave rendering\n- Do NOT use shaders — DH alone gives a massive visual upgrade\n- Allocate 4GB RAM (-Xmx4G)\n- Install Sodium (Fabric) or Embeddium (NeoForge) — this is critical\n\nAdditional performance mods recommended by the community: ModernFix, ImmediatelyFast, Entity Culling, Noisium, C2ME (Fabric), and Radium."
+            },
+            {
+                "q": "How do I fix chunk flickering with Distant Horizons?",
+                "a": "Chunk flickering at the LOD boundary is one of the most common complaints. Community-proven fixes:\n\n1. **Update DH**: Many flickering bugs have been patched in recent versions. Always use the latest build.\n2. **Shader compatibility mode**: If using supported shaders (BSL, Complementary, etc.), enable their DH compatibility/integration setting.\n3. **Resize window trick**: Some users on Reddit report that simply resizing the Minecraft window or pressing F3+T (reload resources) fixes persistent flickering.\n4. **Adjust LOD overlap**: Slightly increase vanilla render distance to create a smoother transition zone.\n5. **Disable cave culling**: Underground LOD flickering often goes away when you disable cave rendering in DH settings."
+            },
+            {
+                "q": "How do I speed up LOD chunk pre-generation?",
+                "a": "Tips from the community:\n\n1. In DH settings, crank up the 'CPU Load' setting to maximum while pre-generating. Lower it back down when you're done and want to play.\n2. Use DH's built-in pre-generation — do NOT use Chunky alongside DH, as they conflict and can create holes in distant terrain.\n3. Keep the Minecraft chat window open during pre-gen to avoid a known memory leak bug that triggers when the game is paused.\n4. Fly around your world at a reasonable speed to trigger LOD generation across a wide area.\n5. Be patient — the initial generation for 512+ chunks can take 15-30 minutes depending on world complexity and your CPU."
+            }
+        ]
+    },
+    {
+        "category": "Shader Compatibility",
+        "icon": "palette",
+        "questions": [
+            {
+                "q": "Which shaders work with Distant Horizons?",
+                "a": "Based on extensive community testing on r/DistantHorizons and GitHub:\n\n✅ Fully Compatible:\n- Complementary Reimagined & Unbound (best DH support, proper LOD-to-chunk fading)\n- BSL Shaders\n- Bliss Shaders (v2.1.0+ required)\n- Nostalgia Shader\n- Photon Shader\n- Sora Shaders\n- Super Duper Vanilla\n\n⚠️ Partially Compatible:\n- SEUS Renewed (shadows don't render on LOD chunks)\n- Chocapic13 (some visual artifacts)\n- Kappa Shader (PBR not supported on LODs)\n\n❌ Incompatible:\n- Sildur's Vibrant Shaders (no DH integration planned)\n- OptiFine-exclusive shaders\n- FLAVOR\n\nNote: Shader compatibility with DH is considered 'early testing' and unstable. Always check for the latest development builds."
+            },
+            {
+                "q": "Why do LOD chunks look different from loaded chunks with shaders?",
+                "a": "This is the most common visual complaint. LOD chunks are simplified geometry without full block detail, so:\n\n- Shadows, ambient occlusion, and PBR textures don't apply to LOD blocks\n- Lighting on LOD chunks may not match the shader's custom lighting model\n- Vanilla lighting 'leaks through' on LOD terrain, clashing with shader lighting\n\nShaders with native DH support (like Complementary Reimagined) handle this best by applying color matching and fog blending at LOD boundaries. The Complementary developer has specifically optimized proper fading between MC chunks and DH's LODs.\n\nTips: Try enabling 'Old Lighting' in shader settings or adjusting fog settings to reduce the visual mismatch."
+            },
+            {
+                "q": "How do I enable shader support in Distant Horizons?",
+                "a": "Step-by-step:\n\n1. Install Iris (Fabric) or Oculus (NeoForge). For Oculus, version 1.7.0 or higher is REQUIRED for LODs to render correctly with shaders.\n2. Install a DH-compatible shader pack (see our compatibility database above).\n3. In DH settings: enable 'LOD Shading' or 'Shader Support' (setting name varies by version).\n4. In your shader's settings: look for 'Distant Horizons Support', 'DH Integration', or similar toggle — enable it.\n5. If it doesn't work immediately, try pressing F3+T to reload resources.\n6. If LOD chunks disappear when shaders are enabled, ensure Oculus/Iris is up to date.\n\nFor troubleshooting, check the Iris Discord's #dh-shader-testing channel for the latest compatibility reports."
+            },
+            {
+                "q": "My LOD chunks disappear when I enable shaders — how do I fix this?",
+                "a": "This is a commonly reported issue on Reddit. Common fixes:\n\n1. **Update Oculus to 1.7.0+** (NeoForge) — older versions don't render LOD chunks with shaders properly.\n2. **Update Iris** (Fabric) to the latest version.\n3. **Check shader compatibility** — not all shaders support DH LODs. Use a known-compatible shader like Complementary Reimagined.\n4. **Reload resources** — Press F3+T in-game to force a reload.\n5. **Resize window** — Some users found that simply resizing the game window triggers LODs to reappear.\n6. **Check for mod conflicts** — Remove other rendering mods one by one to isolate the issue."
+            }
+        ]
+    },
+    {
+        "category": "Troubleshooting",
+        "icon": "wrench",
+        "questions": [
+            {
+                "q": "Distant Horizons crashes on startup — what do I do?",
+                "a": "Common causes and fixes based on community reports:\n\n1. **Version mismatch**: Ensure DH version, mod loader version, and MC version ALL match. This is the #1 cause.\n2. **Mod conflicts**: Known problematic mods include OptiFine (completely incompatible), 'Better Chunk Loading' by someaddons, and outdated versions of Oculus. Remove them.\n3. **Outdated Java**: DH requires Java 17+ for MC 1.18+ and Java 21 for MC 1.21+.\n4. **Corrupted LOD data**: Delete the 'Distant_Horizons_server_data' folder in your world save and let DH regenerate.\n5. **Oculus crashes on Forge**: Some Oculus versions crash with DH on Forge. Try downgrading or upgrading Oculus.\n\nWhen asking for help on Reddit, always include: your DH version, MC version, mod loader + version, a full list of other mods, and the crash log from .minecraft/crash-reports."
+            },
+            {
+                "q": "Why are LOD chunks not generating?",
+                "a": "If LOD data isn't appearing:\n\n1. Verify DH is loaded — check the mod list in-game or look for DH settings in the options menu.\n2. Walk/fly around — LOD data only generates as you explore new terrain.\n3. Check DH settings: ensure LOD generation is enabled and the render distance is set above 0.\n4. Ensure you have enough RAM allocated — insufficient memory silently prevents generation.\n5. On servers, LOD generation is slower because the server controls chunk loading speed. Be patient or ask if the server has the DH server-side component.\n6. Check the 'CPU Load' setting — if it's set very low, generation will be extremely slow."
+            },
+            {
+                "q": "How do I fix the 'Out of Memory' error?",
+                "a": "Out of Memory errors mean Minecraft ran out of allocated RAM:\n\n1. Increase RAM allocation: set -Xmx6G or -Xmx8G in your launcher's JVM arguments.\n2. Reduce LOD render distance in DH settings.\n3. Lower LOD quality level.\n4. Reduce the number of DH worker threads.\n5. Close Chrome and other memory-heavy applications while playing.\n6. If on 32-bit Java, switch to 64-bit Java immediately.\n\nCommunity tip: When doing LOD pre-generation, keep the chat window open to avoid a known memory leak bug."
+            },
+            {
+                "q": "Distant Horizons is using too much CPU — how do I fix it?",
+                "a": "DH is CPU-intensive during LOD generation. Fixes:\n\n1. In DH settings, reduce 'Number of LOD Building Threads' to 2-4 (never more than half your core count).\n2. Lower the LOD render distance — high distances require more CPU for generation.\n3. Disable 'LOD Cave Rendering' — this is one of the biggest CPU saves.\n4. Be patient — CPU usage drops significantly after the initial LOD generation phase. It's normal for CPU to be pinned at 100% for the first 10-30 minutes.\n5. Use the 'CPU Load' setting: set it to LOW for gameplay, only increase for dedicated pre-generation sessions."
+            },
+            {
+                "q": "Distant Horizons terrain has 'holes' or missing chunks in the distance — why?",
+                "a": "This is a frequently reported issue, usually caused by:\n\n1. **Using Chunky alongside DH**: This is the most common cause. Chunky's pre-generation conflicts with DH's own chunk processing. Do NOT use Chunky with DH — use DH's built-in pre-generation instead.\n2. **Incomplete generation**: LODs are generated progressively as you explore. Unexplored areas will have gaps.\n3. **Memory constraints**: If DH runs out of allocated memory, it may skip generating certain chunks.\n4. **Corrupted LOD cache**: Try deleting the DH data folder for your world and regenerating."
+            }
+        ]
+    }
+]
