@@ -83,13 +83,16 @@ export default function Footer() {
                 </div>
 
                 <div className="mt-10 pt-6 border-t border-border/30 flex flex-col sm:flex-row items-center justify-between gap-3">
-                    <p className="text-xs text-text-dim">
+                    <p className="text-xs text-text-dim max-w-md">
                         © {new Date().getFullYear()} DistantHorizonsGuide.com — An unofficial community resource.
                         Not affiliated with the Distant Horizons mod team.
                     </p>
-                    <p className="flex items-center gap-1 text-xs text-text-dim">
-                        Made with <Heart className="w-3 h-3 text-danger" /> for the Minecraft community
-                    </p>
+                    <div className="flex flex-wrap items-center gap-4 sm:gap-6 mt-4 sm:mt-0">
+                        <a href="/about" className="text-xs text-text-dim hover:text-primary transition-colors">About</a>
+                        <a href="/contact" className="text-xs text-text-dim hover:text-primary transition-colors">Contact</a>
+                        <a href="/privacy" className="text-xs text-text-dim hover:text-primary transition-colors">Privacy</a>
+                        <a href="/terms" className="text-xs text-text-dim hover:text-primary transition-colors">Terms</a>
+                    </div>
                 </div>
             </div>
         </footer>

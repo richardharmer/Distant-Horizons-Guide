@@ -13,6 +13,9 @@ const urls = [
     baseUrl + '/faq',
     baseUrl + '/shaders',
     baseUrl + '/calculator',
+    baseUrl + '/contact',
+    baseUrl + '/privacy',
+    baseUrl + '/terms',
 ];
 
 versionsData.forEach(v => {
