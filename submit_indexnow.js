@@ -43,7 +43,7 @@ shadersData.forEach(shader => urls.push(`${baseUrl}/shaders/${shader.slug}`));
 guidesData.forEach(slug => urls.push(`${baseUrl}/guides/${slug}`));
 
 // Generate a random 32-character hex key for IndexNow
-const key = 'a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6'; // You can change this
+const key = 'dfd213edb39e4aae9142823817e8f72c';
 const keyFile = path.join(__dirname, 'public', `${key}.txt`);
 
 // Write the verification file to public directory so it gets deployed
