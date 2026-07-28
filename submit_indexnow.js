@@ -61,7 +61,7 @@ const payload = JSON.stringify({
 });
 
 const options = {
-    hostname: 'www.bing.com',
+    hostname: 'api.indexnow.org',
     port: 443,
     path: '/indexnow',
     method: 'POST',
