@@ -3,14 +3,14 @@ import ShaderTable from '@/components/ShaderTable';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-    title: 'DH Shader Compatibility Database',
+    title: 'Distant Horizons Shaders: Compatibility Database',
     description:
         'Find which shaders work with Distant Horizons. 20+ shader packs tested with compatibility status, recommended settings, and known issues for DH mod.',
     alternates: {
         canonical: 'https://distanthorizonsguide.com/shaders',
     },
     openGraph: {
-        title: 'DH Shader Compatibility Database',
+        title: 'Distant Horizons Shaders: Compatibility Database',
         description:
             'Find which shaders work with Distant Horizons. 20+ shaders tested with compatibility status and settings.',
     },

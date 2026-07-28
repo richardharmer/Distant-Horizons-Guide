@@ -5,7 +5,7 @@ import { guides } from '@/data/guides';
 import { siteConfig } from '@/data/site';
 
 export const metadata: Metadata = {
-  title: 'Distant Horizons Troubleshooting Guides',
+  title: 'Distant Horizons Mod Troubleshooting Guides',
   description: 'Practical, version-aware guides for Distant Horizons performance, shaders, RAM, LOD generation, crashes, and installation problems.',
   alternates: { canonical: `${siteConfig.url}/guides` },
 };

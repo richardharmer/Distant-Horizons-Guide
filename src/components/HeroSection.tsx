@@ -63,11 +63,10 @@ export default function HeroSection() {
 
                 {/* Title */}
                 <h1 className="animate-fade-in-up text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tight leading-[1.1] mb-6" style={{ animationDelay: '0.1s' }}>
-                    Unlock{' '}
-                    <span className="gradient-text-animated">Infinite Horizons</span>
+                    <span className="gradient-text-animated">Distant Horizons Mod</span>{' '}for Minecraft
                     <br />
                     <span className="text-text-muted text-2xl sm:text-3xl md:text-4xl font-medium">
-                        Distant Horizons Guide &amp; Configuration Hub
+                        Guide, Shaders, Settings &amp; Troubleshooting
                     </span>
                 </h1>
 

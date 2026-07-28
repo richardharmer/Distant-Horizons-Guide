@@ -6,11 +6,11 @@ import { siteConfig } from "@/data/site";
 
 export const metadata: Metadata = {
   title: {
-    default: "Distant Horizons Guide — Minecraft LOD Mod Resource",
+    default: "Distant Horizons Mod for Minecraft — Guide, Shaders & Settings",
     template: "%s | Distant Horizons Guide",
   },
   description:
-    "Install, configure, and troubleshoot Distant Horizons with version-aware guides, shader compatibility pages, and hardware-based settings.",
+    "Complete Distant Horizons mod guide for Minecraft: install Fabric or NeoForge, find compatible shaders, generate best settings, and fix LOD problems.",
   authors: [{ name: "DistantHorizonsGuide.com" }],
   creator: "DistantHorizonsGuide.com",
   metadataBase: new URL("https://distanthorizonsguide.com"),
@@ -22,9 +22,9 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://distanthorizonsguide.com",
     siteName: "Distant Horizons Guide",
-    title: "Distant Horizons Guide — Minecraft LOD Mod",
+    title: "Distant Horizons Mod for Minecraft — Guide, Shaders & Settings",
     description:
-      "Shader compatibility database, config generator, install guides, and community FAQ for the Distant Horizons Minecraft mod.",
+      "Install the Distant Horizons Minecraft mod, check Fabric and NeoForge compatibility, find shaders, generate settings, and fix common LOD problems.",
     images: [
       {
         url: "/og-image.png",
@@ -36,9 +36,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Distant Horizons Guide — Minecraft LOD Mod",
+    title: "Distant Horizons Mod for Minecraft — Guide, Shaders & Settings",
     description:
-      "Shader compatibility, config generator, install guides & FAQ for the Distant Horizons mod.",
+      "Distant Horizons mod installation, shaders, best settings, and troubleshooting for Minecraft.",
     images: ["/og-image.png"],
   },
   robots: {

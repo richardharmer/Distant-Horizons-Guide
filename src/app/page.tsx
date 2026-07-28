@@ -132,7 +132,7 @@ export default function Home() {
           </h2>
           <div className="prose prose-invert max-w-none text-text-muted text-sm leading-relaxed space-y-4">
             <p>
-              <strong>Version note:</strong> this site tracks version-specific compatibility separately. The official project currently has a 3.2.x beta release line; always check the official release notes before installing a newer build. <a href={siteConfig.officialReleaseUrl} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">View official releases</a>.
+              <strong>Version note:</strong> this site tracks version-specific compatibility separately. The official Distant Horizons mod currently has a 3.2.x beta release line; always check the official release notes before installing a newer build. <a href={siteConfig.officialReleaseUrl} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">View official releases</a>.
             </p>
             <p>
               <strong>Distant Horizons</strong> is a free, open-source Minecraft mod that revolutionizes
