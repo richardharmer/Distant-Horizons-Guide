@@ -333,6 +333,32 @@ export const guides: Guide[] = [
       { title: 'Add shaders last', body: 'Once the base profile works, choose a shader with documented DH integration and test it separately.' },
     ], related: ['distant-horizons-lod-not-generating', 'distant-horizons-best-settings-laptop'],
   },
+  {
+    slug: 'distant-horizons-garbage-collector', title: 'Distant Horizons Garbage Collector Stutter: Java Memory Fixes',
+    description: 'Reduce Distant Horizons garbage-collection pauses, freezes, and memory pressure by balancing Java heap, LOD distance, and modpack load.', category: 'Performance', updated: '2026-07-29',
+    intro: 'Garbage collection is Java cleaning unused objects from the heap. Distant Horizons generation, shaders, resource packs, and large modpacks can all increase allocation pressure, but assigning an unlimited heap is not a reliable fix.',
+    symptoms: ['the game freezes for a few seconds', 'RAM rises and suddenly drops', 'stutter appears during LOD generation', 'the problem is worse with a large modpack'],
+    steps: [
+      { title: 'Use a measured heap size', body: 'Start with a moderate allocation that fits the modpack, commonly around 4–8 GB for many setups. Increase only when logs and usage show genuine memory pressure.' },
+      { title: 'Reduce the workload before adding RAM', body: 'Lower LOD distance and quality, reduce vanilla render distance, and pause shaders while testing. This reduces allocations at the source.' },
+      { title: 'Leave system headroom', body: 'Do not assign nearly all physical memory to Minecraft. The operating system, launcher, GPU driver, and other applications also need room.' },
+      { title: 'Compare a clean instance', body: 'Run DH without the full modpack and compare the same route. A clean comparison separates Java pressure from a mod conflict or world generator.' },
+      { title: 'Read the Java log', body: 'Look for repeated allocation failures, out-of-memory errors, or long pause times. Record Java version, heap flags, mod list, and the DH profile when reporting.' },
+    ], related: ['distant-horizons-out-of-memory', 'distant-horizons-ram-settings'],
+  },
+  {
+    slug: 'distant-horizons-best-settings', title: 'Distant Horizons Best Settings: A Stable Starting Profile',
+    description: 'Find the best Distant Horizons settings for view distance, vanilla render distance, CPU load, LOD quality, RAM, and shaders.', category: 'Performance', updated: '2026-07-29',
+    intro: 'There is no single best Distant Horizons profile for every PC. The best starting point keeps Minecraft responsive, lets LOD generation catch up, and increases distance only after frame pacing and memory use are stable.',
+    symptoms: ['you want the best DH settings', 'the horizon looks good but FPS stutters', 'you do not know which distance setting to change', 'shaders make the setup unstable'],
+    steps: [
+      { title: 'Start with vanilla render distance at 8–12', body: 'Keep full-detail chunks close to the player and let the LOD system handle the distant horizon.' },
+      { title: 'Start LOD distance at 64–128 chunks', body: 'Use a moderate distance and wait for generation. Increase it in small steps rather than jumping immediately to the maximum.' },
+      { title: 'Use medium or low LOD quality first', body: 'Quality affects memory, generation work, and visual detail. Choose the lowest profile that looks good from your normal play distance.' },
+      { title: 'Leave CPU headroom', body: 'Reduce DH builder load if Minecraft stutters during generation. A faster queue is not useful if it starves the game thread.' },
+      { title: 'Add shaders last', body: 'Verify the no-shader profile first, then choose a shader with documented DH support and tune its shadow and DH integration settings.' },
+    ], related: ['distant-horizons-low-fps', 'distant-horizons-garbage-collector'],
+  },
 ];
 
 export function getGuide(slug: string) {
