@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import InstallHub from '@/components/InstallHub';
-import versionsData from '@/data/versions.json';
+import versionsData from '@/data/versionCatalog';
 import { siteConfig } from '@/data/site';
 
 interface Props { params: Promise<{ version: string; loader: string }> }
@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const mcVersion = version.replace(/-/g, '.');
   const data = versionsData.find((entry) => entry.mcVersion === mcVersion);
   if (!data || !loaders.includes(loader as typeof loaders[number])) return {};
-  const loaderName = loader === 'fabric' ? 'Fabric' : 'NeoForge';
+  const loaderName = loader === 'fabric' ? 'Fabric' : (mcVersion.startsWith('1.20') || mcVersion === '1.18.2' ? 'Forge' : 'NeoForge');
   const title = `Install Distant Horizons ${mcVersion} on ${loaderName}`;
   return {
     title,
@@ -32,7 +32,7 @@ export default async function VersionLoaderPage({ params }: Props) {
   const { version, loader } = await params;
   const mcVersion = version.replace(/-/g, '.');
   if (!versionsData.some((entry) => entry.mcVersion === mcVersion) || !loaders.includes(loader as typeof loaders[number])) notFound();
-  const loaderName = loader === 'fabric' ? 'Fabric' : 'NeoForge';
+  const loaderName = loader === 'fabric' ? 'Fabric' : (mcVersion.startsWith('1.20') || mcVersion === '1.18.2' ? 'Forge' : 'NeoForge');
   const schema = {
     '@context': 'https://schema.org', '@type': 'HowTo',
     name: `How to install Distant Horizons on Minecraft ${mcVersion} with ${loaderName}`,

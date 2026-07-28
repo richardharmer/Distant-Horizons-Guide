@@ -142,7 +142,7 @@ export default function ShaderTable() {
                         <div className="grid grid-cols-12 gap-4 px-6 py-3 border-b border-border/50 text-xs font-semibold text-text-dim uppercase tracking-wider">
                             <div className="col-span-4">Shader</div>
                             <div className="col-span-2">Status</div>
-                            <div className="col-span-2">DH Version</div>
+                            <div className="col-span-2">Minimum DH Version</div>
                             <div className="col-span-2">Performance</div>
                             <div className="col-span-2">Loaders</div>
                         </div>
@@ -304,7 +304,7 @@ export default function ShaderTable() {
                         {/* Details grid */}
                         <div className="space-y-4">
                             <div>
-                                <h4 className="text-xs font-semibold text-text-dim uppercase mb-1">Required DH Version</h4>
+                                <h4 className="text-xs font-semibold text-text-dim uppercase mb-1">Minimum Tested DH Version</h4>
                                 <p className="text-sm text-foreground">{modalShader.dhVersion}</p>
                             </div>
                             <div>

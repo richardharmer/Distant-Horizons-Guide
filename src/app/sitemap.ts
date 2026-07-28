@@ -1,5 +1,5 @@
 import { MetadataRoute } from 'next';
-import versionsData from '@/data/versions.json';
+import versionsData from '@/data/versionCatalog';
 import shadersData from '@/data/shaders.json';
 import { guides } from '@/data/guides';
 import { siteConfig } from '@/data/site';

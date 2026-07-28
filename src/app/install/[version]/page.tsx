@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import InstallHub from '@/components/InstallHub';
-import versionsData from '@/data/versions.json';
+import versionsData from '@/data/versionCatalog';
 import Link from 'next/link';
 
 const validVersions = versionsData.map((v) => v.mcVersion.replace(/\./g, '-'));

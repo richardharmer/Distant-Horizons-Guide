@@ -5,6 +5,7 @@ const https = require('https');
 
 // Read versions data
 const versionsData = JSON.parse(fs.readFileSync(path.join(__dirname, 'src/data/versions.json'), 'utf8'));
+const currentAdditionalVersions = ['1.21.10', '1.21.9', '1.21.8', '1.21.6', '1.21.3'];
 const shadersData = JSON.parse(fs.readFileSync(path.join(__dirname, 'src/data/shaders.json'), 'utf8'));
 const guidesData = fs.readFileSync(path.join(__dirname, 'src/data/guides.ts'), 'utf8')
     .match(/slug: '([^']+)'/g)
@@ -29,6 +30,12 @@ versionsData.forEach(v => {
     urls.push(`${baseUrl}/install/${v.mcVersion.replace(/\./g, '-')}`);
     urls.push(`${baseUrl}/install/${v.mcVersion.replace(/\./g, '-')}/fabric`);
     urls.push(`${baseUrl}/install/${v.mcVersion.replace(/\./g, '-')}/neoforge`);
+});
+
+currentAdditionalVersions.forEach((mcVersion) => {
+    urls.push(`${baseUrl}/install/${mcVersion.replace(/\./g, '-')}`);
+    urls.push(`${baseUrl}/install/${mcVersion.replace(/\./g, '-')}/fabric`);
+    urls.push(`${baseUrl}/install/${mcVersion.replace(/\./g, '-')}/neoforge`);
 });
 
 shadersData.forEach(shader => urls.push(`${baseUrl}/shaders/${shader.slug}`));

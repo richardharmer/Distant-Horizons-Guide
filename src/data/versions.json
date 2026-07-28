@@ -1,9 +1,9 @@
 [
     {
         "mcVersion": "1.21.11",
-        "dhVersion": "2.3.0-a",
-        "releaseDate": "2026-02",
-        "stability": "alpha",
+        "dhVersion": "3.2.0-b",
+        "releaseDate": "2026-07",
+        "stability": "beta",
         "loaders": {
             "fabric": {
                 "dependencies": [
@@ -48,9 +48,9 @@
     },
     {
         "mcVersion": "1.21.5",
-        "dhVersion": "2.3.0-a",
-        "releaseDate": "2026-01",
-        "stability": "alpha",
+        "dhVersion": "3.2.0-b",
+        "releaseDate": "2026-07",
+        "stability": "beta",
         "loaders": {
             "fabric": {
                 "dependencies": [
@@ -95,9 +95,9 @@
     },
     {
         "mcVersion": "1.21.1",
-        "dhVersion": "2.3.0-a",
-        "releaseDate": "2025-10",
-        "stability": "alpha",
+        "dhVersion": "3.2.0-b",
+        "releaseDate": "2026-07",
+        "stability": "beta",
         "loaders": {
             "fabric": {
                 "dependencies": [
@@ -148,9 +148,9 @@
     },
     {
         "mcVersion": "1.21.4",
-        "dhVersion": "2.3.0-a",
-        "releaseDate": "2025-12",
-        "stability": "alpha",
+        "dhVersion": "3.2.0-b",
+        "releaseDate": "2026-07",
+        "stability": "beta",
         "loaders": {
             "fabric": {
                 "dependencies": [
@@ -195,9 +195,9 @@
     },
     {
         "mcVersion": "1.20.1",
-        "dhVersion": "2.2.1-a",
-        "releaseDate": "2025-06",
-        "stability": "alpha",
+        "dhVersion": "3.2.0-b",
+        "releaseDate": "2026-07",
+        "stability": "beta",
         "loaders": {
             "fabric": {
                 "dependencies": [
@@ -242,15 +242,15 @@
                         "note": "Iris alternative for NeoForge shader support"
                     }
                 ],
-                "downloadUrl": "https://modrinth.com/mod/distanthorizons/versions?g=1.20.1&l=neoforge"
+                "downloadUrl": "https://modrinth.com/mod/distanthorizons/versions?g=1.20.1&l=forge"
             }
         }
     },
     {
         "mcVersion": "1.20.4",
-        "dhVersion": "2.2.0-a",
-        "releaseDate": "2025-03",
-        "stability": "alpha",
+        "dhVersion": "3.2.0-b",
+        "releaseDate": "2026-07",
+        "stability": "beta",
         "loaders": {
             "fabric": {
                 "dependencies": [
@@ -289,15 +289,15 @@
                         "note": "Iris alternative for NeoForge shader support"
                     }
                 ],
-                "downloadUrl": "https://modrinth.com/mod/distanthorizons/versions?g=1.20.4&l=neoforge"
+                "downloadUrl": "https://modrinth.com/mod/distanthorizons/versions?g=1.20.4&l=forge"
             }
         }
     },
     {
         "mcVersion": "1.20.6",
-        "dhVersion": "2.2.0-a",
-        "releaseDate": "2025-04",
-        "stability": "alpha",
+        "dhVersion": "3.2.0-b",
+        "releaseDate": "2026-07",
+        "stability": "beta",
         "loaders": {
             "fabric": {
                 "dependencies": [
@@ -336,15 +336,15 @@
                         "note": "Iris alternative for NeoForge shader support"
                     }
                 ],
-                "downloadUrl": "https://modrinth.com/mod/distanthorizons/versions?g=1.20.6&l=neoforge"
+                "downloadUrl": "https://modrinth.com/mod/distanthorizons/versions?g=1.20.6&l=forge"
             }
         }
     },
     {
         "mcVersion": "1.18.2",
-        "dhVersion": "2.0.4-a",
-        "releaseDate": "2024-06",
-        "stability": "alpha",
+        "dhVersion": "3.2.0-b",
+        "releaseDate": "2026-07",
+        "stability": "beta",
         "loaders": {
             "fabric": {
                 "dependencies": [

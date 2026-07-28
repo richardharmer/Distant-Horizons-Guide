@@ -3,8 +3,8 @@ export const siteConfig = {
   shortName: 'DHGuide',
   url: 'https://distanthorizonsguide.com',
   lastVerified: '2026-07-29',
-  currentRelease: '3.1.2b',
-  currentReleaseLabel: '3.1.x beta',
+  currentRelease: '3.2.0-b',
+  currentReleaseLabel: '3.2.x beta',
   officialReleaseUrl: 'https://gitlab.com/distant-horizons-team/distant-horizons/-/releases',
   officialModrinthUrl: 'https://modrinth.com/mod/distanthorizons',
 };
