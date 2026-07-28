@@ -14,6 +14,18 @@ const guidesData = fs.readFileSync(path.join(__dirname, 'src/data/guides.ts'), '
 
 // Generate all URLs
 const baseUrl = 'https://distanthorizonsguide.com';
+const recentOnly = process.argv.includes('--recent');
+const recentUrls = [
+    '/', '/shaders', '/guides', '/minecraft-render-distance-mod', '/wiki',
+    '/guides/distant-horizons-dependencies',
+    '/guides/distant-horizons-c2me',
+    '/guides/distant-horizons-vulkan-opengl',
+    '/guides/distant-horizons-server-commands',
+    '/guides/distant-horizons-bedrock',
+    '/guides/distant-horizons-how-to-use',
+    '/guides/distant-horizons-garbage-collector',
+    '/guides/distant-horizons-best-settings',
+].map((url) => baseUrl + url);
 const urls = [
     baseUrl + '/',
     baseUrl + '/about',
@@ -43,6 +55,8 @@ currentAdditionalVersions.forEach((mcVersion) => {
 
 shadersData.forEach(shader => urls.push(`${baseUrl}/shaders/${shader.slug}`));
 guidesData.forEach(slug => urls.push(`${baseUrl}/guides/${slug}`));
+
+if (recentOnly) urls.splice(0, urls.length, ...recentUrls);
 
 // Generate a random 32-character hex key for IndexNow
 const key = 'dfd213edb39e4aae9142823817e8f72c';
