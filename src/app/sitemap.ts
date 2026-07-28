@@ -41,6 +41,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
             priority: 0.9,
         },
         {
+            url: `${baseUrl}/hardware`,
+            lastModified: siteConfig.lastVerified,
+            changeFrequency: 'monthly',
+            priority: 0.8,
+        },
+        {
             url: `${baseUrl}/about`,
             lastModified: siteConfig.lastVerified,
             changeFrequency: 'monthly',

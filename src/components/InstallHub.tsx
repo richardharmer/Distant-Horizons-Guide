@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from 'react';
 import { Download, ExternalLink, Check, AlertCircle, ChevronRight, Server, Box } from 'lucide-react';
-import versionsData from '@/data/versionCatalog';
+import versionsData, { getLoaderLabel } from '@/data/versionCatalog';
 import { analyticsEvent } from '@/data/site';
 
 interface Dependency {
@@ -46,7 +46,8 @@ export default function InstallHub({ initialVersion, initialLoader = 'fabric' }:
         [versions, selectedVersion]
     );
 
-    const alternativeLoaderLabel = version.mcVersion.startsWith('1.20') || version.mcVersion === '1.18.2' ? 'Forge' : 'NeoForge';
+    const alternativeLoaderLabel = getLoaderLabel(version.mcVersion, 'neoforge');
+    const selectedLoaderLabel = getLoaderLabel(version.mcVersion, selectedLoader);
     const loaderInfo = version.loaders[selectedLoader];
     const hasLoader = loaderInfo.downloadUrl !== '';
 
@@ -132,7 +133,7 @@ export default function InstallHub({ initialVersion, initialLoader = 'fabric' }:
                                     Distant Horizons {version.dhVersion}
                                 </h3>
                                 <p className="text-sm text-text-muted">
-                                    For Minecraft {version.mcVersion} • {selectedLoader === 'fabric' ? 'Fabric' : alternativeLoaderLabel} • {version.stability}
+                                    For Minecraft {version.mcVersion} • {selectedLoaderLabel} • {version.stability}
                                 </p>
                             </div>
                             {hasLoader && (
@@ -203,12 +204,12 @@ export default function InstallHub({ initialVersion, initialLoader = 'fabric' }:
                         </h3>
                         <div className="space-y-4">
                             {[
-                                `Install ${selectedLoader === 'fabric' ? 'Fabric Loader' : 'NeoForge'} for Minecraft ${version.mcVersion}`,
-                                            selectedLoader === 'fabric' ? 'Download and place Fabric API in your mods folder' : `${alternativeLoaderLabel} includes its API — no extra download needed`,
+                                `Install ${selectedLoaderLabel} for Minecraft ${version.mcVersion}`,
+                                            selectedLoader === 'fabric' ? 'Download and place Fabric API in your mods folder' : `${selectedLoaderLabel} includes its API — no extra download needed`,
                                 `Download Distant Horizons ${version.dhVersion} from the link above`,
                                 'Place the DH .jar file in your .minecraft/mods folder',
                                 'Install recommended dependencies (Sodium/Iris for Fabric, Embeddium/Oculus for NeoForge)',
-                                `Launch Minecraft with the ${selectedLoader === 'fabric' ? 'Fabric' : alternativeLoaderLabel} profile — enjoy infinite horizons!`,
+                                `Launch Minecraft with the ${selectedLoaderLabel} profile and verify that distant terrain appears.`,
                             ].map((step, i) => (
                                 <div key={i} className="flex items-start gap-4">
                                     <div className="w-8 h-8 rounded-full bg-primary/15 border border-primary/30 flex items-center justify-center shrink-0 text-sm font-bold text-primary">
@@ -224,7 +225,7 @@ export default function InstallHub({ initialVersion, initialLoader = 'fabric' }:
                 {/* SEO text */}
                 <div className="mt-12 max-w-3xl mx-auto text-center">
                     <p className="text-sm text-text-dim leading-relaxed">
-                        Download Distant Horizons for Minecraft {version.mcVersion} on {selectedLoader === 'fabric' ? 'Fabric' : alternativeLoaderLabel}.
+                        Download Distant Horizons for Minecraft {version.mcVersion} on {selectedLoaderLabel}.
                         This guide covers the complete installation process including all required dependencies like
                         {selectedLoader === 'fabric' ? ' Fabric API, Sodium, Iris, and Indium' : ' Embeddium and Oculus'}.
                         Distant Horizons is a free, open-source Minecraft LOD mod that extends your view distance up to 512+ chunks.

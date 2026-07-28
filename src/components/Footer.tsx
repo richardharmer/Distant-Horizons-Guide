@@ -36,6 +36,7 @@ export default function Footer() {
                             <li><Link href="/install/1-21-1" className="text-sm text-text-muted hover:text-primary transition-colors">Installation Guide</Link></li>
                             <li><Link href="/faq" className="text-sm text-text-muted hover:text-primary transition-colors">FAQ</Link></li>
                             <li><Link href="/guides" className="text-sm text-text-muted hover:text-primary transition-colors">Troubleshooting Guides</Link></li>
+                            <li><Link href="/hardware" className="text-sm text-text-muted hover:text-primary transition-colors">Hardware Settings</Link></li>
                         </ul>
                     </div>
 
