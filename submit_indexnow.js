@@ -25,6 +25,7 @@ const urls = [
     baseUrl + '/terms',
     baseUrl + '/guides',
     baseUrl + '/hardware',
+    baseUrl + '/minecraft-render-distance-mod',
 ];
 
 versionsData.forEach(v => {
