@@ -38,6 +38,7 @@ export default function Footer() {
                             <li><Link href="/guides" className="text-sm text-text-muted hover:text-primary transition-colors">Troubleshooting Guides</Link></li>
                             <li><Link href="/hardware" className="text-sm text-text-muted hover:text-primary transition-colors">Hardware Settings</Link></li>
                             <li><Link href="/minecraft-render-distance-mod" className="text-sm text-text-muted hover:text-primary transition-colors">Render Distance Guide</Link></li>
+                            <li><Link href="/wiki" className="text-sm text-text-muted hover:text-primary transition-colors">Distant Horizons Wiki</Link></li>
                         </ul>
                     </div>
 

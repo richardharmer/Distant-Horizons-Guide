@@ -53,6 +53,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
             priority: 0.85,
         },
         {
+            url: `${baseUrl}/wiki`,
+            lastModified: siteConfig.lastVerified,
+            changeFrequency: 'monthly',
+            priority: 0.85,
+        },
+        {
             url: `${baseUrl}/about`,
             lastModified: siteConfig.lastVerified,
             changeFrequency: 'monthly',

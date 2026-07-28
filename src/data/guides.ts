@@ -256,6 +256,83 @@ export const guides: Guide[] = [
       { title: 'Compare the same world', body: 'Use the same seed, camera route, render distance, loader, shader state, and performance target for a meaningful comparison.' },
     ], related: ['distant-horizons-fabric-vs-neoforge', 'distant-horizons-shader-not-working'],
   },
+  {
+    slug: 'distant-horizons-dependencies', title: 'Distant Horizons Dependencies: Fabric, Forge, Iris, and Sodium',
+    description: 'Understand which Distant Horizons dependencies are required, recommended, or optional for Fabric, Forge, and NeoForge installations.', category: 'Installation', updated: '2026-07-29',
+    intro: 'Distant Horizons dependencies change with Minecraft version and loader. The safest approach is to choose the exact game version first, install the matching loader, and then add only dependencies that target that same version.',
+    symptoms: ['the mod does not appear in the Mods menu', 'Minecraft reports a missing dependency', 'Iris or Sodium fails to load', 'a shader works without DH but not with it'],
+    steps: [
+      { title: 'Match Minecraft and the loader', body: 'Choose Fabric, Forge, or NeoForge for the exact Minecraft version. A nearby patch version is not a safe substitute for a matching dependency.' },
+      { title: 'Install the loader API', body: 'Fabric profiles commonly need Fabric API. Forge and NeoForge profiles use their own loader environment and compatible performance libraries.' },
+      { title: 'Add performance mods after the base test', body: 'Use Sodium on Fabric or the matching NeoForge performance stack. Launch once before adding shaders or a large modpack.' },
+      { title: 'Add shader support separately', body: 'Iris and a shader pack are optional. A shader loader being installed does not guarantee that the shader implements Distant Horizons integration.' },
+      { title: 'Use the exact version page', body: 'Check the installation page for your Minecraft version and loader instead of copying dependencies from another version.' },
+    ], related: ['distant-horizons-crash-on-startup', 'distant-horizons-optifine-alternative'],
+  },
+  {
+    slug: 'distant-horizons-c2me', title: 'Distant Horizons and C2ME: Compatibility Settings',
+    description: 'Troubleshoot Distant Horizons with C2ME by isolating multithreaded world generation, optimized IO, and garbage-collection settings.', category: 'Compatibility', updated: '2026-07-29',
+    intro: 'C2ME can change chunk-generation and IO behavior, which makes it important to test the combination carefully. The official compatibility guidance recommends disabling specific C2ME features when diagnosing DH world-generation problems.',
+    symptoms: ['world generation crashes with C2ME installed', 'LOD generation stops near newly generated terrain', 'the game freezes during exploration', 'the problem disappears when C2ME is removed'],
+    steps: [
+      { title: 'Reproduce with a clean profile', body: 'Test Distant Horizons without C2ME first. This confirms whether the base loader, DH build, and world are working.' },
+      { title: 'Disable multithreaded world generation', body: 'Use the official Mod Support guidance and disable C2ME world-generation features when testing generation conflicts.' },
+      { title: 'Check optimized IO and serializer options', body: 'If the issue remains, compare C2ME settings for optimized IO and garbage-free chunk serialization rather than changing DH settings at random.' },
+      { title: 'Test a new world', body: 'A world-generation conflict may only appear with a particular generator or mod combination. Compare a clean vanilla world before reporting the issue.' },
+      { title: 'Include the full mod list', body: 'Record Minecraft, loader, DH, C2ME, world-generation mods, Java, GPU, and the first meaningful crash-report error.' },
+    ], related: ['distant-horizons-iris-sodium-crash', 'distant-horizons-crash-on-startup'],
+  },
+  {
+    slug: 'distant-horizons-vulkan-opengl', title: 'Distant Horizons Vulkan and Raw OpenGL Errors',
+    description: 'Diagnose Vulkan Mod conflicts, raw OpenGL errors, renderer crashes, and graphics-driver problems in Distant Horizons.', category: 'Compatibility', updated: '2026-07-29',
+    intro: 'Distant Horizons depends on the Minecraft rendering environment. Vulkan wrappers, shader loaders, GPU drivers, and loader versions can all change the failure mode, so identify the renderer before tuning LOD distance.',
+    symptoms: ['Minecraft reports a raw OpenGL error', 'the game crashes when entering a world', 'Vulkan Mod is installed', 'the issue only appears with shaders or a specific GPU'],
+    steps: [
+      { title: 'Remove Vulkan Mod for the test', body: 'The official compatibility list identifies Vulkan Mod as a known incompatibility direction. Test with the standard Minecraft OpenGL path first.' },
+      { title: 'Update the GPU driver', body: 'Install a stable driver for your GPU and restart the computer before comparing results. Avoid changing the driver and every mod at the same time.' },
+      { title: 'Test without shaders', body: 'Disable shader packs and test DH alone. If the crash disappears, add a documented DH-aware shader one at a time.' },
+      { title: 'Check the first renderer error', body: 'Open the latest log or crash report and record the first OpenGL, Iris, Sodium, DH, or loader error rather than only the final exit code.' },
+      { title: 'Keep one rendering stack', body: 'Do not combine OptiFine, Iris, duplicate Sodium ports, Vulkan wrappers, and other render replacements while diagnosing a crash.' },
+    ], related: ['distant-horizons-iris-sodium-crash', 'distant-horizons-crash-on-startup'],
+  },
+  {
+    slug: 'distant-horizons-server-commands', title: 'Distant Horizons Server Commands and Distant Generation',
+    description: 'Learn what Distant Horizons server owners need to know about /dh commands, Distant Generation, pre-generation, and client-server versions.', category: 'Multiplayer', updated: '2026-07-29',
+    intro: 'Server-side Distant Horizons behavior is different from a client-only installation. Server owners need a compatible server setup, matching client expectations, and the correct generation settings before players can receive distant LOD data.',
+    symptoms: ['players see no server LODs', 'the /dh command is unavailable', 'generation causes timeouts', 'server and client show different terrain'],
+    steps: [
+      { title: 'Use a matching build', body: 'The official server guidance strongly prefers the same Distant Horizons version and build on the server and client.' },
+      { title: 'Enable Distant Generation where required', body: 'Distant Generation must be enabled on both sides when the server is responsible for generating or sending LOD data.' },
+      { title: 'Use /dh only on a supported server setup', body: 'Distant Horizons commands are server-side. Use /help dh or tab completion to inspect the commands available in your exact plugin or mod environment.' },
+      { title: 'Pre-generate carefully', body: 'Pre-generation can improve the experience for players, but it also consumes CPU, storage, and bandwidth. Start with a bounded area and monitor the server.' },
+      { title: 'Lower bandwidth or request distance if needed', body: 'Timeouts and connection lag can require lower server or client request settings. Change one limit at a time and test with a second player.' },
+    ], related: ['distant-horizons-server-realms', 'distant-horizons-chunks-not-loading'],
+  },
+  {
+    slug: 'distant-horizons-bedrock', title: 'Does Distant Horizons Work on Minecraft Bedrock?',
+    description: 'Clarify Distant Horizons Java Edition support, Bedrock limitations, and what to check before downloading a Minecraft render-distance mod.', category: 'Installation', updated: '2026-07-29',
+    intro: 'Distant Horizons is a Java Edition mod. If you play Minecraft Bedrock Edition, Java mod installation instructions and Fabric or NeoForge files will not work in the Bedrock client.',
+    symptoms: ['you play Minecraft for Windows or console', 'a Java .jar file does not install', 'you are searching for a Bedrock render-distance mod', 'Fabric or NeoForge is unavailable in your launcher'],
+    steps: [
+      { title: 'Identify your edition', body: 'Java Edition uses mod loaders such as Fabric, Forge, and NeoForge. Bedrock Edition uses a different add-on and rendering system.' },
+      { title: 'Do not install Java jars into Bedrock', body: 'A Distant Horizons .jar file is not a Bedrock add-on. Use the official launcher and project requirements before downloading anything.' },
+      { title: 'Use Java Edition for this guide', body: 'The installation, shader, calculator, and troubleshooting pages on this site are for the Java Edition mod ecosystem.' },
+      { title: 'Avoid misleading downloads', body: 'Be cautious of pages claiming to provide an official Bedrock Distant Horizons port unless the project and compatibility are clearly documented.' },
+    ], related: ['distant-horizons-dependencies', 'distant-horizons-fabric-vs-neoforge'],
+  },
+  {
+    slug: 'distant-horizons-how-to-use', title: 'How to Use Distant Horizons: First Setup and LOD Generation',
+    description: 'Learn how to use Distant Horizons after installation, choose render distance, generate LODs, and verify that the mod is working.', category: 'Getting Started', updated: '2026-07-29',
+    intro: 'Distant Horizons does not instantly turn every unexplored area into full-detail terrain. It renders simplified LOD data and needs time, chunks, CPU, storage, and suitable settings to build the distant world.',
+    symptoms: ['you installed DH but see no distant terrain', 'the horizon is empty in a new world', 'you are unsure which distance setting matters', 'generation causes temporary stutter'],
+    steps: [
+      { title: 'Launch a clean profile first', body: 'Confirm that Minecraft starts with the loader, required API, and Distant Horizons before adding shaders or a large modpack.' },
+      { title: 'Set a moderate vanilla distance', body: 'Start around 8–12 full-detail chunks and let DH handle the simplified terrain beyond that range.' },
+      { title: 'Choose a conservative LOD distance', body: 'Begin around 64–128 chunks, wait for generation, and increase distance gradually as the profile proves stable.' },
+      { title: 'Explore steadily', body: 'Walk or fly through an area and allow the generator to catch up. Constantly moving into new terrain creates a large queue.' },
+      { title: 'Add shaders last', body: 'Once the base profile works, choose a shader with documented DH integration and test it separately.' },
+    ], related: ['distant-horizons-lod-not-generating', 'distant-horizons-best-settings-laptop'],
+  },
 ];
 
 export function getGuide(slug: string) {
