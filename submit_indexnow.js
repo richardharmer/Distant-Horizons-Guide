@@ -5,7 +5,7 @@ const https = require('https');
 
 // Read versions data
 const versionsData = JSON.parse(fs.readFileSync(path.join(__dirname, 'src/data/versions.json'), 'utf8'));
-const currentAdditionalVersions = ['1.21.10', '1.21.9', '1.21.8', '1.21.6', '1.21.3'];
+const currentAdditionalVersions = ['26.2', '26.1.2', '1.21.10', '1.21.9', '1.21.8', '1.21.6', '1.21.3'];
 const shadersData = JSON.parse(fs.readFileSync(path.join(__dirname, 'src/data/shaders.json'), 'utf8'));
 const guidesData = fs.readFileSync(path.join(__dirname, 'src/data/guides.ts'), 'utf8')
     .match(/slug: '([^']+)'/g)
@@ -24,6 +24,7 @@ const urls = [
     baseUrl + '/privacy',
     baseUrl + '/terms',
     baseUrl + '/guides',
+    baseUrl + '/hardware',
 ];
 
 versionsData.forEach(v => {
