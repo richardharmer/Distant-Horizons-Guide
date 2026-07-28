@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { Mountain, Download, Eye, Layers, Cpu, Zap, HelpCircle, ArrowRight, CheckCircle, ExternalLink } from 'lucide-react';
+import { Mountain, Download, Eye, Layers, Cpu, Zap, HelpCircle, CheckCircle, ExternalLink } from 'lucide-react';
 
 export const metadata: Metadata = {
     title: 'What Is Distant Horizons Mod?',

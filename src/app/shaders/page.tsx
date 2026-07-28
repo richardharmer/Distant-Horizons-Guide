@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import ShaderTable from '@/components/ShaderTable';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
     title: 'DH Shader Compatibility Database',
@@ -48,9 +49,9 @@ export default function ShadersPage() {
                             Found a compatible shader? Set up Distant Horizons with our step-by-step guide.
                         </p>
                         <div className="flex flex-wrap gap-3 justify-center">
-                            <a href="/install/1-21-1" className="btn-primary !py-2 !px-5 text-sm">Install for 1.21.1</a>
-                            <a href="/install/1-20-1" className="btn-primary !py-2 !px-5 text-sm">Install for 1.20.1</a>
-                            <a href="/calculator" className="btn-secondary !py-2 !px-5 text-sm">Optimize Settings</a>
+                            <Link href="/install/1-21-1" className="btn-primary !py-2 !px-5 text-sm">Install for 1.21.1</Link>
+                            <Link href="/install/1-20-1" className="btn-primary !py-2 !px-5 text-sm">Install for 1.20.1</Link>
+                            <Link href="/calculator" className="btn-secondary !py-2 !px-5 text-sm">Optimize Settings</Link>
                         </div>
                     </div>
                 </div>

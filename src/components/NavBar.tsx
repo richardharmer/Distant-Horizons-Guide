@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Menu, X, Layers, Calculator, Download, HelpCircle, Info } from 'lucide-react';
+import { Menu, X, Layers, Calculator, Download, HelpCircle, Info, BookOpen } from 'lucide-react';
 
 const navLinks = [
     { href: '/about', label: 'About DH', icon: Info },
@@ -11,6 +11,7 @@ const navLinks = [
     { href: '/calculator', label: 'Calculator', icon: Calculator },
     { href: '/install/1-21-11', label: 'Install', icon: Download },
     { href: '/faq', label: 'FAQ', icon: HelpCircle },
+    { href: '/guides', label: 'Guides', icon: BookOpen },
 ];
 
 export default function NavBar() {

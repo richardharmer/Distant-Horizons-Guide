@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import FaqSection from '@/components/FaqSection';
+import Link from 'next/link';
 import faqData from '@/data/faq.json';
 
 export const metadata: Metadata = {
@@ -49,9 +50,9 @@ export default function FaqPage() {
                     <div className="glass rounded-2xl p-6 text-center">
                         <h3 className="font-semibold text-foreground mb-2">Looking for specific help?</h3>
                         <div className="flex flex-wrap gap-3 justify-center">
-                            <a href="/shaders" className="btn-secondary !py-2 !px-5 text-sm">Shader Compatibility</a>
-                            <a href="/calculator" className="btn-secondary !py-2 !px-5 text-sm">Optimize Settings</a>
-                            <a href="/install/1-21-1" className="btn-secondary !py-2 !px-5 text-sm">Install Guide</a>
+                            <Link href="/shaders" className="btn-secondary !py-2 !px-5 text-sm">Shader Compatibility</Link>
+                            <Link href="/calculator" className="btn-secondary !py-2 !px-5 text-sm">Optimize Settings</Link>
+                            <Link href="/install/1-21-1" className="btn-secondary !py-2 !px-5 text-sm">Install Guide</Link>
                         </div>
                     </div>
                 </div>

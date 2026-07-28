@@ -3,6 +3,7 @@
 import { useState, useMemo } from 'react';
 import { Download, ExternalLink, Check, AlertCircle, ChevronRight, Server, Box } from 'lucide-react';
 import versionsData from '@/data/versions.json';
+import { analyticsEvent } from '@/data/site';
 
 interface Dependency {
     name: string;
@@ -29,15 +30,16 @@ interface VersionEntry {
 
 interface InstallHubProps {
     initialVersion?: string;
+    initialLoader?: 'fabric' | 'neoforge';
 }
 
-export default function InstallHub({ initialVersion }: InstallHubProps) {
+export default function InstallHub({ initialVersion, initialLoader = 'fabric' }: InstallHubProps) {
     const versions = versionsData as VersionEntry[];
     const defaultVersion = initialVersion
         ? (versions.find(v => v.mcVersion === initialVersion)?.mcVersion || versions[0].mcVersion)
         : versions[0].mcVersion;
     const [selectedVersion, setSelectedVersion] = useState(defaultVersion);
-    const [selectedLoader, setSelectedLoader] = useState<'fabric' | 'neoforge'>('fabric');
+    const [selectedLoader, setSelectedLoader] = useState<'fabric' | 'neoforge'>(initialLoader);
 
     const version = useMemo(
         () => versions.find((v) => v.mcVersion === selectedVersion) || versions[0],
@@ -76,7 +78,7 @@ export default function InstallHub({ initialVersion }: InstallHubProps) {
                                 {versions.map((v) => (
                                     <button
                                         key={v.mcVersion}
-                                        onClick={() => setSelectedVersion(v.mcVersion)}
+                                        onClick={() => { setSelectedVersion(v.mcVersion); analyticsEvent('select_minecraft_version', { version: v.mcVersion }); }}
                                         className={`px-3 py-2.5 rounded-lg text-sm font-medium transition-all ${selectedVersion === v.mcVersion
                                             ? 'bg-primary/15 text-primary border border-primary/30'
                                             : 'bg-surface border border-border text-text-muted hover:border-border-light'
@@ -95,7 +97,7 @@ export default function InstallHub({ initialVersion }: InstallHubProps) {
                             </label>
                             <div className="grid grid-cols-2 gap-2">
                                 <button
-                                    onClick={() => setSelectedLoader('fabric')}
+                                    onClick={() => { setSelectedLoader('fabric'); analyticsEvent('select_loader', { loader: 'fabric' }); }}
                                     className={`px-4 py-4 rounded-xl text-center transition-all ${selectedLoader === 'fabric'
                                         ? 'bg-primary/15 text-primary border border-primary/30'
                                         : 'bg-surface border border-border text-text-muted hover:border-border-light'
@@ -105,7 +107,7 @@ export default function InstallHub({ initialVersion }: InstallHubProps) {
                                     <div className="text-xs opacity-60">Recommended</div>
                                 </button>
                                 <button
-                                    onClick={() => setSelectedLoader('neoforge')}
+                                    onClick={() => { setSelectedLoader('neoforge'); analyticsEvent('select_loader', { loader: 'neoforge' }); }}
                                     className={`px-4 py-4 rounded-xl text-center transition-all ${selectedLoader === 'neoforge'
                                         ? 'bg-primary/15 text-primary border border-primary/30'
                                         : 'bg-surface border border-border text-text-muted hover:border-border-light'
@@ -135,6 +137,7 @@ export default function InstallHub({ initialVersion }: InstallHubProps) {
                             {hasLoader && (
                                 <a
                                     href={loaderInfo.downloadUrl}
+                                    onClick={() => analyticsEvent('click_download_dh', { version: version.mcVersion, loader: selectedLoader })}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="ml-auto btn-primary !py-2.5 !px-5 text-sm"
@@ -178,6 +181,7 @@ export default function InstallHub({ initialVersion }: InstallHubProps) {
                                         </div>
                                         <a
                                             href={dep.url}
+                                            onClick={() => analyticsEvent('click_dependency', { dependency: dep.name, version: version.mcVersion, loader: selectedLoader })}
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             className="flex items-center gap-1 text-sm text-primary hover:text-primary-dark transition-colors"

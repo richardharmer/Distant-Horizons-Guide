@@ -2,6 +2,7 @@
 
 import { ChevronDown, Layers, Calculator, Download, HelpCircle } from 'lucide-react';
 import ImageSlider from '@/components/ImageSlider';
+import Link from 'next/link';
 
 const features = [
     {
@@ -78,14 +79,14 @@ export default function HeroSection() {
 
                 {/* CTA buttons */}
                 <div className="animate-fade-in-up flex flex-col sm:flex-row gap-4 justify-center mb-12" style={{ animationDelay: '0.3s' }}>
-                    <a href="/shaders" className="btn-primary text-base !py-3.5 !px-8">
+                    <Link href="/shaders" className="btn-primary text-base !py-3.5 !px-8">
                         <Layers className="w-5 h-5" />
                         Check Shader Compatibility
-                    </a>
-                    <a href="/calculator" className="btn-secondary text-base !py-3.5 !px-8">
+                    </Link>
+                    <Link href="/calculator" className="btn-secondary text-base !py-3.5 !px-8">
                         <Calculator className="w-5 h-5" />
                         Generate Optimal Config
-                    </a>
+                    </Link>
                 </div>
 
                 {/* Before / After comparison slider */}
@@ -118,10 +119,10 @@ export default function HeroSection() {
 
             {/* Scroll indicator */}
             <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-float">
-                <a href="/shaders" className="flex flex-col items-center gap-2 text-text-dim hover:text-primary transition-colors">
+                <Link href="/shaders" className="flex flex-col items-center gap-2 text-text-dim hover:text-primary transition-colors">
                     <span className="text-xs font-medium">Scroll to explore</span>
                     <ChevronDown className="w-5 h-5" />
-                </a>
+                </Link>
             </div>
         </section>
     );

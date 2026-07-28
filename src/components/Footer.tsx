@@ -1,11 +1,12 @@
-import { Github, ExternalLink, Heart } from 'lucide-react';
+import { Github, ExternalLink } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Footer() {
     return (
         <footer className="border-t border-border/50 bg-surface/20">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-8">
                     {/* Brand */}
                     <div className="md:col-span-1">
                         <div className="flex items-center gap-2 mb-3">
@@ -30,10 +31,11 @@ export default function Footer() {
                     <div>
                         <h4 className="font-semibold text-foreground mb-3 text-sm uppercase tracking-wider">Resources</h4>
                         <ul className="space-y-2.5">
-                            <li><a href="/shaders" className="text-sm text-text-muted hover:text-primary transition-colors">Shader Database</a></li>
-                            <li><a href="/calculator" className="text-sm text-text-muted hover:text-primary transition-colors">Config Generator</a></li>
-                            <li><a href="/install/1-21-1" className="text-sm text-text-muted hover:text-primary transition-colors">Installation Guide</a></li>
-                            <li><a href="/faq" className="text-sm text-text-muted hover:text-primary transition-colors">FAQ</a></li>
+                            <li><Link href="/shaders" className="text-sm text-text-muted hover:text-primary transition-colors">Shader Database</Link></li>
+                            <li><Link href="/calculator" className="text-sm text-text-muted hover:text-primary transition-colors">Config Generator</Link></li>
+                            <li><Link href="/install/1-21-1" className="text-sm text-text-muted hover:text-primary transition-colors">Installation Guide</Link></li>
+                            <li><Link href="/faq" className="text-sm text-text-muted hover:text-primary transition-colors">FAQ</Link></li>
+                            <li><Link href="/guides" className="text-sm text-text-muted hover:text-primary transition-colors">Troubleshooting Guides</Link></li>
                         </ul>
                     </div>
 
@@ -78,6 +80,18 @@ export default function Footer() {
                                     <ExternalLink className="w-3 h-3" /> YouTube
                                 </a>
                             </li>
+                        </ul>
+                    </div>
+
+                    {/* Friends & Tools */}
+                    <div>
+                        <h4 className="font-semibold text-foreground mb-3 text-sm uppercase tracking-wider">Friends &amp; Tools</h4>
+                        <ul className="space-y-2.5">
+                            <li><a href="https://jjsbuilder.com/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-sm text-text-muted hover:text-primary transition-colors"><ExternalLink className="w-3 h-3" /> Jjs Skill Builder</a></li>
+                            <li><a href="https://vblwiki.com/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-sm text-text-muted hover:text-primary transition-colors"><ExternalLink className="w-3 h-3" /> Volleyball Legends Wiki</a></li>
+                            <li><a href="https://animepfp.app/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-sm text-text-muted hover:text-primary transition-colors"><ExternalLink className="w-3 h-3" /> Anime PFP</a></li>
+                            <li><a href="https://tbctalentcalculator.net/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-sm text-text-muted hover:text-primary transition-colors"><ExternalLink className="w-3 h-3" /> TBC Talent Calculator</a></li>
+                            <li><a href="https://normalmapgenerator.io/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-sm text-text-muted hover:text-primary transition-colors"><ExternalLink className="w-3 h-3" /> Normal Map Generator</a></li>
                         </ul>
                     </div>
                 </div>

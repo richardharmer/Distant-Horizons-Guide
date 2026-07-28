@@ -1,20 +1,8 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
-
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  variable: "--font-jetbrains",
-  subsets: ["latin"],
-  display: "swap",
-});
+import { siteConfig } from "@/data/site";
 
 export const metadata: Metadata = {
   title: {
@@ -22,12 +10,12 @@ export const metadata: Metadata = {
     template: "%s | Distant Horizons Guide",
   },
   description:
-    "The ultimate Distant Horizons guide. Shader compatibility database, config generator, installation walkthrough for Fabric & NeoForge, and community FAQ.",
+    "Install, configure, and troubleshoot Distant Horizons with version-aware guides, shader compatibility pages, and hardware-based settings.",
   authors: [{ name: "DistantHorizonsGuide.com" }],
   creator: "DistantHorizonsGuide.com",
   metadataBase: new URL("https://distanthorizonsguide.com"),
   alternates: {
-    canonical: "https://distanthorizonsguide.com",
+    canonical: siteConfig.url,
   },
   openGraph: {
     type: "website",
@@ -94,7 +82,7 @@ const softwareJsonLd = {
     priceCurrency: "USD",
   },
   downloadUrl: "https://modrinth.com/mod/distanthorizons",
-  softwareVersion: "2.3.0",
+  softwareVersion: siteConfig.currentRelease,
   description:
     "A Minecraft mod that adds a Level of Detail (LOD) system, rendering simplified terrain beyond the normal render distance for up to 512+ chunks.",
 };
@@ -143,7 +131,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareJsonLd) }}
         />
       </head>
-      <body className={`${inter.variable} ${jetbrainsMono.variable} antialiased`}>
+      <body className="antialiased">
         <NavBar />
         <main>{children}</main>
         <Footer />

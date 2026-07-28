@@ -1,7 +1,8 @@
 import Link from 'next/link';
 import HeroSection from '@/components/HeroSection';
-import { Layers, Calculator, Download, HelpCircle, ArrowRight, CheckCircle, AlertTriangle, XCircle } from 'lucide-react';
+import { Calculator, Download, HelpCircle, ArrowRight, CheckCircle, AlertTriangle, XCircle } from 'lucide-react';
 import shadersData from '@/data/shaders.json';
+import { siteConfig } from '@/data/site';
 
 // Show top 6 shaders on the homepage as a preview
 const topShaders = shadersData.slice(0, 6);
@@ -44,7 +45,7 @@ export default function Home() {
               return (
                 <Link
                   key={shader.slug}
-                  href="/shaders"
+                  href={`/shaders/${shader.slug}`}
                   className="glass rounded-xl p-5 card-hover group"
                 >
                   <div className="flex items-center justify-between mb-3">
@@ -98,7 +99,7 @@ export default function Home() {
               </span>
             </Link>
 
-            <Link href="/install/1-21-1" className="glass rounded-2xl p-8 card-hover group text-center">
+            <Link href="/install/1-21-1/fabric" className="glass rounded-2xl p-8 card-hover group text-center">
               <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-purple-500 to-violet-400 flex items-center justify-center mx-auto mb-4 transition-transform group-hover:scale-110">
                 <Download className="w-7 h-7 text-white" />
               </div>
@@ -123,16 +124,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Advertisement Slot */}
-      <section className="py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="border-2 border-dashed border-border/50 rounded-2xl p-8 text-center">
-            <p className="text-xs text-text-dim uppercase tracking-wider mb-1">Advertisement</p>
-            <p className="text-sm text-text-dim">Recommended Server Hosting</p>
-          </div>
-        </div>
-      </section>
-
       {/* SEO content block */}
       <section className="py-16 border-t border-border/30">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -140,6 +131,9 @@ export default function Home() {
             What is Distant Horizons? The Ultimate Minecraft LOD Mod Guide
           </h2>
           <div className="prose prose-invert max-w-none text-text-muted text-sm leading-relaxed space-y-4">
+            <p>
+              <strong>Version note:</strong> this site tracks version-specific compatibility separately. The official project currently has a 3.1.x beta release line; always check the official release notes before installing a newer build. <a href={siteConfig.officialReleaseUrl} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">View official releases</a>.
+            </p>
             <p>
               <strong>Distant Horizons</strong> is a free, open-source Minecraft mod that revolutionizes
               how far you can see in the game. Using a Level of Detail (LOD) system, it renders simplified

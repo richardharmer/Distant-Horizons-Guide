@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useRef, useCallback, useEffect } from 'react';
+import Image from 'next/image';
 
 interface ImageSliderProps {
     beforeSrc: string;
@@ -77,10 +78,12 @@ export default function ImageSlider({
             onTouchStart={handleTouchStart}
         >
             {/* After image (full width, behind) */}
-            <img
+            <Image
                 src={afterSrc}
                 alt="Minecraft with Distant Horizons - extended view distance"
-                className="absolute inset-0 w-full h-full object-cover"
+                fill
+                sizes="(max-width: 768px) 100vw, 896px"
+                className="object-cover"
                 draggable={false}
             />
 
@@ -89,10 +92,12 @@ export default function ImageSlider({
                 className="absolute inset-0"
                 style={{ clipPath: `inset(0 ${100 - sliderPos}% 0 0)` }}
             >
-                <img
+                <Image
                     src={beforeSrc}
                     alt="Vanilla Minecraft - limited view distance"
-                    className="absolute inset-0 w-full h-full object-cover"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 896px"
+                    className="object-cover"
                     draggable={false}
                 />
             </div>

@@ -6,7 +6,6 @@ import {
     Sparkles,
     Copy,
     Check,
-    ChevronDown,
     Cpu,
     Monitor,
     Target,
@@ -16,6 +15,7 @@ import {
     Eye,
 } from 'lucide-react';
 import { generateConfig, type HardwareProfile } from '@/lib/configEngine';
+import { analyticsEvent } from '@/data/site';
 
 const cpuOptions = [
     { value: 4, label: '4 Threads', desc: 'Budget' },
@@ -64,6 +64,8 @@ export default function ConfigCalculator() {
     const [cpu, setCpu] = useState(8);
     const [gpu, setGpu] = useState('mid');
     const [targetVal, setTarget] = useState('balanced');
+    const [ram, setRam] = useState(6);
+    const [shaderSupport, setShaderSupport] = useState(false);
     const [copied, setCopied] = useState(false);
     const [generated, setGenerated] = useState(false);
 
@@ -73,13 +75,16 @@ export default function ConfigCalculator() {
             cpuThreads: cpu as HardwareProfile['cpuThreads'],
             gpuLevel: gpu as HardwareProfile['gpuLevel'],
             target: targetVal as HardwareProfile['target'],
+            ramAllocation: ram as HardwareProfile['ramAllocation'],
+            shaderSupport,
         };
         return generateConfig(profile);
-    }, [cpu, gpu, targetVal, generated]);
+    }, [cpu, gpu, targetVal, ram, shaderSupport, generated]);
 
     const copyToClipboard = () => {
         if (!result) return;
         navigator.clipboard.writeText(result.toml);
+        analyticsEvent('copy_config', { cpu_threads: cpu, gpu_level: gpu, target: targetVal, ram_gb: ram, shader_support: shaderSupport });
         setCopied(true);
         setTimeout(() => setCopied(false), 2000);
     };
@@ -93,6 +98,7 @@ export default function ConfigCalculator() {
         a.download = 'distant_horizons.toml';
         document.body.appendChild(a);
         a.click();
+        analyticsEvent('download_config', { cpu_threads: cpu, gpu_level: gpu, target: targetVal, ram_gb: ram, shader_support: shaderSupport });
         document.body.removeChild(a);
         URL.revokeObjectURL(url);
     };
@@ -100,7 +106,7 @@ export default function ConfigCalculator() {
     // Visual preview data
     const previewData = useMemo(() => {
         if (targetVal === 'performance') {
-            return { label: 'FPS +50%', gradient: 'from-green-500/20 to-emerald-500/10', icon: '⚡', chunks: '128', detail: 'Low' };
+            return { label: 'Performance profile', gradient: 'from-green-500/20 to-emerald-500/10', icon: '⚡', chunks: '128', detail: 'Low' };
         } else if (targetVal === 'visuals') {
             return { label: 'Max Beauty', gradient: 'from-purple-500/20 to-pink-500/10', icon: '✨', chunks: '512+', detail: 'Ultra' };
         }
@@ -116,7 +122,7 @@ export default function ConfigCalculator() {
                     </h2>
                     <p className="section-subtitle">
                         Select your hardware and get an optimized distant_horizons.toml configuration.
-                        Our generator accounts for CPU thread allocation, GPU capabilities, and your priority.
+                        Our generator accounts for CPU thread allocation, GPU capabilities, RAM allocation, shader use, and your priority.
                     </p>
                 </div>
 
@@ -196,6 +202,19 @@ export default function ConfigCalculator() {
                             </div>
                         </div>
 
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+                            <div>
+                                <label htmlFor="ram-allocation" className="flex items-center gap-2 text-sm font-semibold text-foreground mb-2">Minecraft RAM</label>
+                                <select id="ram-allocation" value={ram} onChange={(event) => { setRam(Number(event.target.value)); setGenerated(false); }} className="w-full px-3 py-3 rounded-xl bg-surface border border-border text-text-muted focus:outline-none focus:border-primary">
+                                    {[4, 6, 8, 12, 16].map((value) => <option key={value} value={value}>{value} GB allocated</option>)}
+                                </select>
+                            </div>
+                            <label className="flex items-center gap-3 rounded-xl bg-surface border border-border px-4 py-3 cursor-pointer self-end">
+                                <input type="checkbox" checked={shaderSupport} onChange={(event) => { setShaderSupport(event.target.checked); setGenerated(false); }} className="h-4 w-4 accent-sky-400" />
+                                <span><span className="block text-sm font-semibold text-foreground">Use shaders</span><span className="block text-xs text-text-dim">Adds compatibility guidance</span></span>
+                            </label>
+                        </div>
+
                         {/* Visual Preview Card */}
                         <div className={`rounded-xl p-5 mb-6 bg-gradient-to-br ${previewData.gradient} border border-border/30`}>
                             <div className="flex items-center justify-between">
@@ -207,7 +226,7 @@ export default function ConfigCalculator() {
                                     </div>
                                 </div>
                                 <div className="text-right">
-                                    <div className="text-sm text-text-muted">Estimated View</div>
+                                    <div className="text-sm text-text-muted">Starting LOD Distance</div>
                                     <div className="text-2xl font-black text-foreground">{previewData.chunks}</div>
                                     <div className="text-xs text-text-dim">chunks</div>
                                 </div>
@@ -216,7 +235,7 @@ export default function ConfigCalculator() {
 
                         {/* Generate Button */}
                         <button
-                            onClick={() => setGenerated(true)}
+                            onClick={() => { setGenerated(true); analyticsEvent('generate_config', { cpu_threads: cpu, gpu_level: gpu, target: targetVal, ram_gb: ram, shader_support: shaderSupport }); }}
                             className="btn-primary w-full !py-3.5 text-base"
                         >
                             <Sparkles className="w-5 h-5" />
@@ -266,11 +285,7 @@ export default function ConfigCalculator() {
                                     </div>
                                 )}
 
-                                {/* Ad slot */}
-                                <div className="mt-4 border-2 border-dashed border-border/40 rounded-xl p-4 text-center">
-                                    <p className="text-xs text-text-dim uppercase tracking-wider">Advertisement</p>
-                                    <p className="text-xs text-text-dim mt-1">Recommended Server Hosting</p>
-                                </div>
+                                <p className="mt-4 text-xs text-text-dim">This is a starting profile, not a guaranteed FPS benchmark. Increase distance and quality gradually after generation stabilizes.</p>
                             </>
                         ) : (
                             <div className="flex-1 flex items-center justify-center text-center">

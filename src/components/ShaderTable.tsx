@@ -14,6 +14,8 @@ import {
     X,
 } from 'lucide-react';
 import shadersData from '@/data/shaders.json';
+import Link from 'next/link';
+import { analyticsEvent } from '@/data/site';
 
 type ShaderStatus = 'compatible' | 'partial' | 'incompatible';
 
@@ -154,7 +156,7 @@ export default function ShaderTable() {
                             return (
                                 <div key={shader.slug} className="border-b border-border/30 last:border-0">
                                     <div
-                                        onClick={() => setExpandedSlug(isExpanded ? null : shader.slug)}
+                                        onClick={() => { setExpandedSlug(isExpanded ? null : shader.slug); analyticsEvent('open_shader_details', { shader: shader.slug }); }}
                                         className="grid grid-cols-12 gap-4 px-6 py-4 cursor-pointer hover:bg-primary-glow transition-colors items-center"
                                     >
                                         <div className="col-span-4 font-medium text-foreground text-sm flex items-center gap-2">
@@ -216,6 +218,13 @@ export default function ShaderTable() {
                                                         >
                                                             Full Details
                                                         </button>
+                                                        <Link
+                                                            href={`/shaders/${shader.slug}`}
+                                                            className="btn-secondary !py-1.5 !px-3 text-xs"
+                                                            onClick={(e) => e.stopPropagation()}
+                                                        >
+                                                            SEO page
+                                                        </Link>
                                                         <a
                                                             href={shader.link}
                                                             target="_blank"
@@ -287,10 +296,9 @@ export default function ShaderTable() {
                             );
                         })()}
 
-                        {/* Screenshot placeholder */}
-                        <div className="border-2 border-dashed border-border/40 rounded-xl p-8 mb-6 text-center bg-surface/30">
-                            <p className="text-sm text-text-dim">📸 Settings screenshot placeholder</p>
-                            <p className="text-xs text-text-dim mt-1">Coming soon: community-submitted screenshots</p>
+                        <div className="rounded-xl p-4 mb-6 bg-primary/5 border border-primary/15">
+                            <p className="text-xs text-text-dim uppercase tracking-wider">Verification note</p>
+                            <p className="text-sm text-text-muted mt-1">This compatibility entry was last tested in {modalShader.lastTested}. Test results can change with new DH, Iris, loader, or shader releases.</p>
                         </div>
 
                         {/* Details grid */}

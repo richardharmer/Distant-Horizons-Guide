@@ -1,11 +1,14 @@
 export type CpuThreads = 4 | 8 | 12 | 16;
 export type GpuLevel = 'entry' | 'mid' | 'high' | 'ultra';
 export type Target = 'performance' | 'balanced' | 'visuals';
+export type RamAllocation = 4 | 6 | 8 | 12 | 16;
 
 export interface HardwareProfile {
   cpuThreads: CpuThreads;
   gpuLevel: GpuLevel;
   target: Target;
+  ramAllocation?: RamAllocation;
+  shaderSupport?: boolean;
 }
 
 interface ConfigValues {
@@ -206,7 +209,7 @@ export function generateConfig(profile: HardwareProfile): {
     lodQuality: gpuConfig.lodQuality!,
     enableCaveRendering: gpuConfig.enableCaveRendering!,
     vanillaRenderDistanceSuggestion: gpuConfig.vanillaRenderDistanceSuggestion!,
-    ramSuggestion: gpuConfig.ramSuggestion!,
+    ramSuggestion: profile.ramAllocation ? `${profile.ramAllocation}G` : gpuConfig.ramSuggestion!,
   };
 
   const toml = `# ═══════════════════════════════════════════════════
@@ -260,6 +263,18 @@ gpuUploadPercentage = ${config.gpuUploadPercentage}
     );
     suggestions.push(
       '💡 Avoid using shaders if your GPU is low-end. DH alone provides a massive visual upgrade.'
+    );
+  }
+
+  if (profile.shaderSupport && profile.gpuLevel === 'entry') {
+    suggestions.push(
+      'Shaders are enabled for this profile. Start with a low-impact pack and reduce LOD distance if frame pacing becomes unstable.'
+    );
+  }
+
+  if (profile.shaderSupport && profile.gpuLevel !== 'entry') {
+    suggestions.push(
+      'Use a shader pack with documented Distant Horizons support and verify the exact Minecraft, DH, and shader-loader versions.'
     );
   }
 
