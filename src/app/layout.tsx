@@ -95,6 +95,13 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark scroll-smooth">
       <head>
+        {/* Google AdSense — enables Auto ads across the entire site */}
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6600426197600184"
+          crossOrigin="anonymous"
+        />
+
         {/* Microsoft Clarity */}
         <script
           type="text/javascript"
