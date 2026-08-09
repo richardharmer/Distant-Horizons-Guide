@@ -90,6 +90,7 @@ export default function Footer() {
                     <div>
                         <h4 className="font-semibold text-foreground mb-3 text-sm uppercase tracking-wider">Friends &amp; Tools</h4>
                         <ul className="space-y-2.5">
+                            <li><a href="https://crumbledb.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-sm text-text-muted hover:text-primary transition-colors"><ExternalLink className="w-3 h-3" /> Crumble Database</a></li>
                             <li><a href="https://jjsbuilder.com/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-sm text-text-muted hover:text-primary transition-colors"><ExternalLink className="w-3 h-3" /> Jjs Skill Builder</a></li>
                             <li><a href="https://vblwiki.com/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-sm text-text-muted hover:text-primary transition-colors"><ExternalLink className="w-3 h-3" /> Volleyball Legends Wiki</a></li>
                             <li><a href="https://animepfp.app/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-sm text-text-muted hover:text-primary transition-colors"><ExternalLink className="w-3 h-3" /> Anime PFP</a></li>
