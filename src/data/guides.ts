@@ -8,16 +8,18 @@ export type Guide = {
   symptoms: string[];
   steps: { title: string; body: string }[];
   related: string[];
+  quickAnswer?: string;
 };
 
 export const guides: Guide[] = [
   {
     slug: 'distant-horizons-low-fps',
-    title: 'Distant Horizons Low FPS Fix: Best Settings for Performance',
-    description: 'Fix low FPS and stutter in Distant Horizons. Start with vanilla render distance, CPU load, LOD distance, RAM, and shader settings.',
+    title: 'Distant Horizons Low FPS Fix: Reduce Stutter and CPU Load',
+    description: 'Fix Distant Horizons low FPS and stutter with a safe order for vanilla render distance, LOD distance, builder load, RAM, and shaders.',
     category: 'Performance',
-    updated: '2026-07-29',
+    updated: '2026-08-25',
     intro: 'Distant Horizons can extend the visible world without rendering every distant chunk at full detail, but LOD generation and shader rendering still use CPU, GPU, memory, and disk bandwidth. The fastest fix is to lower vanilla render distance first, then tune DH generation load.',
+    quickAnswer: 'Start with 8–12 vanilla chunks and a conservative 64–128 chunk LOD distance. If stutter happens while new terrain is building, reduce builder load before increasing RAM or render distance.',
     symptoms: ['FPS drops while flying or exploring', 'CPU stays near 100%', 'stutter continues after installing DH', 'shaders make the problem much worse'],
     steps: [
       { title: 'Lower vanilla render distance', body: 'Start at 8–12 chunks. Let DH render the far terrain instead of asking Minecraft to render full-detail chunks at the same distance.' },
@@ -234,7 +236,7 @@ export const guides: Guide[] = [
   },
   {
     slug: 'distant-horizons-best-settings-laptop', title: 'Best Distant Horizons Settings for Laptops and Integrated Graphics',
-    description: 'Use a balanced Distant Horizons profile on laptops and integrated GPUs with lower heat, memory, and battery demand.', category: 'Hardware', updated: '2026-07-29',
+    description: 'Use a balanced Distant Horizons profile on laptops and integrated GPUs with lower heat, memory, and battery demand. Includes a safe starting point for integrated graphics.', category: 'Hardware', updated: '2026-08-25',
     intro: 'Laptop performance depends on cooling, power mode, shared memory, and CPU limits as much as the GPU name. A stable medium-distance profile is usually better than a very high distance that constantly generates terrain.',
     symptoms: ['the laptop overheats while exploring', 'battery drains quickly', 'integrated graphics stutter with shaders', 'the game slows down after several minutes'],
     steps: [
@@ -347,9 +349,10 @@ export const guides: Guide[] = [
     ], related: ['distant-horizons-out-of-memory', 'distant-horizons-ram-settings'],
   },
   {
-    slug: 'distant-horizons-best-settings', title: 'Distant Horizons Best Settings: A Stable Starting Profile',
-    description: 'Find the best Distant Horizons settings for view distance, vanilla render distance, CPU load, LOD quality, RAM, and shaders.', category: 'Performance', updated: '2026-07-29',
+    slug: 'distant-horizons-best-settings', title: 'Distant Horizons Best Settings: Performance, Quality & Laptop Profiles',
+    description: 'Find the best Distant Horizons settings for performance, quality, laptops, shaders, LOD distance, vanilla render distance, CPU load, and RAM.', category: 'Performance', updated: '2026-08-25',
     intro: 'There is no single best Distant Horizons profile for every PC. The best starting point keeps Minecraft responsive, lets LOD generation catch up, and increases distance only after frame pacing and memory use are stable.',
+    quickAnswer: 'For most new setups, start with 8–12 vanilla chunks, 64–128 chunks of LOD distance, low or medium LOD quality, and no shaders. Test one change at a time, then use the profile that stays smooth while new terrain generates.',
     symptoms: ['you want the best DH settings', 'the horizon looks good but FPS stutters', 'you do not know which distance setting to change', 'shaders make the setup unstable'],
     steps: [
       { title: 'Start with vanilla render distance at 8–12', body: 'Keep full-detail chunks close to the player and let the LOD system handle the distant horizon.' },

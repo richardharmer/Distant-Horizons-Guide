@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     if (!vData) return {};
 
     return {
-        title: `Install DH for MC ${mcVersion}`,
+        title: `Distant Horizons ${mcVersion} Install Guide | Fabric & NeoForge`,
         description: `Step-by-step guide to install Distant Horizons ${vData.dhVersion} on Minecraft ${mcVersion}. Download links, dependencies, and setup for Fabric and NeoForge.`,
         alternates: {
             canonical: `https://distanthorizonsguide.com/install/${version}`,
@@ -64,6 +64,16 @@ export default async function InstallVersionPage({ params }: Props) {
         <>
             <HowToSchema mcVersion={mcVersion} dhVersion={vData.dhVersion} />
             <div className="pt-20">
+                <section className="pt-12 pb-2">
+                    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <h1 className="text-4xl sm:text-5xl font-black tracking-tight mb-5">Install Distant Horizons for Minecraft {mcVersion}</h1>
+                        <p className="text-lg text-text-muted leading-relaxed max-w-3xl">Choose Fabric or NeoForge for your existing Minecraft setup, then use the matching Distant Horizons build and dependencies. This overview helps you choose a loader; the loader pages below contain the version-specific path.</p>
+                        <div className="flex flex-wrap gap-3 mt-6">
+                            <Link href={`/install/${version}/fabric`} className="btn-primary !py-2.5">Install with Fabric</Link>
+                            <Link href={`/install/${version}/neoforge`} className="btn-secondary !py-2.5">Install with NeoForge</Link>
+                        </div>
+                    </div>
+                </section>
                 <InstallHub initialVersion={mcVersion} />
 
                 {/* Other versions + internal links */}
@@ -92,6 +102,7 @@ export default async function InstallVersionPage({ params }: Props) {
                                 Optimize Settings →
                             </Link>
                         </div>
+                        <p className="mt-5 text-center text-sm text-text-dim">Use the overview when choosing a loader. Once you know your loader, open its dedicated page for the exact download and dependency path.</p>
                     </div>
                 </div>
             </div>
