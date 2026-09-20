@@ -2,12 +2,17 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowRight, Check, Eye, Gauge, Layers, X } from 'lucide-react';
 import { siteConfig } from '@/data/site';
+import { socialMetadata } from '@/lib/seo';
 
 export const metadata: Metadata = {
   title: 'Minecraft Render Distance Mod: Distant Horizons Explained',
   description: 'Looking for a Minecraft render distance mod? Compare Distant Horizons with Voxy, Bobby, and vanilla settings, then choose the right setup for your world.',
   alternates: { canonical: `${siteConfig.url}/minecraft-render-distance-mod` },
-  openGraph: { title: 'Minecraft Render Distance Mod: Distant Horizons Explained', description: 'Compare Minecraft render distance mods and learn which Distant Horizons setup fits your world.' },
+  ...socialMetadata(
+    'Minecraft Render Distance Mod: Distant Horizons Explained',
+    'Compare Minecraft render distance mods and learn which Distant Horizons setup fits your world.',
+    '/minecraft-render-distance-mod',
+  ),
 };
 
 const comparisons = [

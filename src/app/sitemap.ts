@@ -3,6 +3,7 @@ import versionsData from '@/data/versionCatalog';
 import shadersData from '@/data/shaders.json';
 import { guides } from '@/data/guides';
 import { siteConfig } from '@/data/site';
+import { INDEXABLE_SHADER_SLUGS, REDIRECTED_GUIDE_SLUGS } from '@/data/indexing';
 
 export const dynamic = 'force-static';
 
@@ -71,6 +72,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
             priority: 0.6,
         },
         {
+            url: `${baseUrl}/editorial-policy`,
+            lastModified: siteConfig.lastVerified,
+            changeFrequency: 'monthly',
+            priority: 0.6,
+        },
+        {
+            url: `${baseUrl}/testing-methodology`,
+            lastModified: siteConfig.lastVerified,
+            changeFrequency: 'monthly',
+            priority: 0.6,
+        },
+        {
+            url: `${baseUrl}/corrections`,
+            lastModified: siteConfig.lastVerified,
+            changeFrequency: 'monthly',
+            priority: 0.5,
+        },
+        {
             url: `${baseUrl}/privacy`,
             lastModified: siteConfig.lastVerified,
             changeFrequency: 'yearly',
@@ -84,30 +103,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
         },
     ];
 
-    const dynamicRoutes: MetadataRoute.Sitemap = versionsData.map((v) => ({
+    const dynamicRoutes: MetadataRoute.Sitemap = versionsData.filter((v) => v.indexable).map((v) => ({
         url: `${baseUrl}/install/${v.mcVersion.replace(/\./g, '-')}`,
         lastModified: siteConfig.lastVerified,
         changeFrequency: 'monthly',
         priority: 0.7,
     }));
-    const loaderRoutes = versionsData.flatMap((v) => ['fabric', 'neoforge'].map((loader) => ({
-        url: `${baseUrl}/install/${v.mcVersion.replace(/\./g, '-')}/${loader}`,
-        lastModified: siteConfig.lastVerified,
-        changeFrequency: 'monthly' as const,
-        priority: 0.8,
-    })));
 
-    const shaderRoutes = shadersData.map((shader) => ({
+    const shaderRoutes = shadersData.filter((shader) => INDEXABLE_SHADER_SLUGS.has(shader.slug)).map((shader) => ({
         url: `${baseUrl}/shaders/${shader.slug}`,
         lastModified: shader.lastTested,
         changeFrequency: 'monthly' as const,
         priority: 0.7,
     }));
-    const guideRoutes = guides.map((guide) => ({
+    const guideRoutes = guides.filter((guide) => !REDIRECTED_GUIDE_SLUGS.has(guide.slug)).map((guide) => ({
         url: `${baseUrl}/guides/${guide.slug}`,
         lastModified: guide.updated,
         changeFrequency: 'monthly' as const,
         priority: 0.8,
     }));
-    return [...staticRoutes, ...dynamicRoutes, ...loaderRoutes, ...shaderRoutes, ...guideRoutes];
+    return [...staticRoutes, ...dynamicRoutes, ...shaderRoutes, ...guideRoutes];
 }

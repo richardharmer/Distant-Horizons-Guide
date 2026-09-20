@@ -1,17 +1,19 @@
 import type { Metadata } from 'next';
 import ConfigCalculator from '@/components/ConfigCalculator';
+import { socialMetadata } from '@/lib/seo';
 
 export const metadata: Metadata = {
-    title: 'Best Settings & Config Generator',
+    title: 'Distant Horizons Starting Settings Guide',
     description:
-        'Generate optimized Distant Horizons settings for your hardware. Input CPU, GPU, and target to get a ready-to-use distant_horizons.toml config file.',
+        'Choose conservative Distant Horizons starting settings for your CPU, GPU, RAM, shader use, and performance target.',
     alternates: {
         canonical: 'https://distanthorizonsguide.com/calculator',
     },
-    openGraph: {
-        title: 'Distant Horizons Best Settings Calculator',
-        description: 'Generate optimized DH config for your hardware — from entry GPUs to RTX 4090.',
-    },
+    ...socialMetadata(
+        'Distant Horizons Starting Settings Guide',
+        'Build a conservative DH starting profile for your hardware, then validate it in your current game version.',
+        '/calculator',
+    ),
 };
 
 export default function CalculatorPage() {

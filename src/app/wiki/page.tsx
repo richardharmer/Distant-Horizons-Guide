@@ -2,11 +2,17 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowRight, BookOpen, Download, Gauge, Server, Sparkles, Wrench } from 'lucide-react';
 import { siteConfig } from '@/data/site';
+import { socialMetadata } from '@/lib/seo';
 
 export const metadata: Metadata = {
   title: 'Distant Horizons Wiki: Config Files, Settings & Troubleshooting',
   description: 'A practical Distant Horizons wiki for Minecraft Java Edition: configuration files, settings, installation, dependencies, shaders, multiplayer, commands, and fixes.',
   alternates: { canonical: `${siteConfig.url}/wiki` },
+  ...socialMetadata(
+    'Distant Horizons Wiki: Config Files, Settings & Troubleshooting',
+    'A practical Distant Horizons wiki for Minecraft Java Edition: configuration files, settings, installation, dependencies, shaders, multiplayer, commands, and fixes.',
+    '/wiki',
+  ),
 };
 
 const sections = [

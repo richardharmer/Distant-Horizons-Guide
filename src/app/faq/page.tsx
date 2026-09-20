@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import FaqSection from '@/components/FaqSection';
 import Link from 'next/link';
 import faqData from '@/data/faq.json';
+import { socialMetadata } from '@/lib/seo';
 
 export const metadata: Metadata = {
     title: 'FAQ & Troubleshooting Guide',
@@ -10,10 +11,11 @@ export const metadata: Metadata = {
     alternates: {
         canonical: 'https://distanthorizonsguide.com/faq',
     },
-    openGraph: {
-        title: 'Distant Horizons FAQ & Troubleshooting',
-        description: 'Fix common DH issues — crashes, flickering, performance, shader compatibility and more.',
-    },
+    ...socialMetadata(
+        'Distant Horizons FAQ & Troubleshooting',
+        'Fix common DH issues — crashes, flickering, performance, shader compatibility and more.',
+        '/faq',
+    ),
 };
 
 function FaqSchema() {

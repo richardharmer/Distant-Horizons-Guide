@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import { Mail, MessageSquare, Heart } from 'lucide-react';
+import { siteConfig } from '@/data/site';
+import { socialMetadata } from '@/lib/seo';
 
 export const metadata: Metadata = {
     title: 'Contact Us',
@@ -7,6 +9,11 @@ export const metadata: Metadata = {
     alternates: {
         canonical: 'https://distanthorizonsguide.com/contact',
     },
+    ...socialMetadata(
+        'Contact Us',
+        'Get in touch with the Distant Horizons Guide team. Report issues, provide feedback, or contribute to the shader compatibility database.',
+        '/contact',
+    ),
 };
 
 export default function ContactPage() {
@@ -36,16 +43,16 @@ export default function ContactPage() {
                 </p>
 
                 <a
-                    href="mailto:contact@distanthorizonsguide.com"
+                    href={`mailto:${siteConfig.contactEmail}`}
                     className="text-xl sm:text-2xl font-bold text-primary hover:text-primary-dark transition-colors border-b border-primary/30 hover:border-primary pb-1 mb-8"
                 >
-                    contact@distanthorizonsguide.com
+                    {siteConfig.contactEmail}
                 </a>
 
                 <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 p-4 rounded-xl bg-surface/50 border border-border/50 text-sm text-text-muted text-left">
                     <Heart className="w-5 h-5 text-danger shrink-0 mx-auto sm:mx-0" />
                     <p>
-                        <strong>Note:</strong> We are an unofficial site. For technical support regarding the Distant Horizons mod itself, please use the official <a href="https://discord.gg/distanthorizons" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">Discord Server</a> or <a href="https://github.com/Jonodonozym/DistantHorizonsStub/issues" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">GitHub Issues</a>.
+                        <strong>Note:</strong> We are an unofficial site. For technical support regarding the Distant Horizons mod itself, please use the official <a href={siteConfig.officialDiscordUrl} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">Discord Server</a> or <a href={siteConfig.officialGitlabUrl} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">GitLab project</a>.
                     </p>
                 </div>
             </div>

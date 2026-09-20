@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
+import ConsentScripts from "@/components/ConsentScripts";
 import { siteConfig } from "@/data/site";
 
 export const metadata: Metadata = {
@@ -13,15 +14,15 @@ export const metadata: Metadata = {
     "Complete Distant Horizons mod guide for Minecraft: install Fabric or NeoForge, find compatible shaders, generate best settings, and fix LOD problems.",
   authors: [{ name: "DistantHorizonsGuide.com" }],
   creator: "DistantHorizonsGuide.com",
-  metadataBase: new URL("https://distanthorizonsguide.com"),
-  alternates: {
-    canonical: siteConfig.url,
+  other: {
+    "google-adsense-account": "ca-pub-6600426197600184",
   },
+  metadataBase: new URL("https://distanthorizonsguide.com"),
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://distanthorizonsguide.com",
     siteName: "Distant Horizons Guide",
+    url: siteConfig.url,
     title: "Distant Horizons Mod for Minecraft — Guide, Shaders & Settings",
     description:
       "Install the Distant Horizons Minecraft mod, check Fabric and NeoForge compatibility, find shaders, generate settings, and fix common LOD problems.",
@@ -61,12 +62,7 @@ const jsonLd = {
   name: "Distant Horizons Guide",
   url: "https://distanthorizonsguide.com",
   description:
-    "The ultimate resource for the Distant Horizons Minecraft mod — shader compatibility, config generator, installation guides, and FAQ.",
-  potentialAction: {
-    "@type": "SearchAction",
-    target: "https://distanthorizonsguide.com/?q={search_term_string}",
-    "query-input": "required name=search_term_string",
-  },
+    "Independent Distant Horizons installation, settings, shader compatibility, and troubleshooting guidance.",
 };
 
 const softwareJsonLd = {
@@ -95,36 +91,21 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark scroll-smooth">
       <head>
-        {/* Google AdSense — enables Auto ads across the entire site */}
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6600426197600184"
-          crossOrigin="anonymous"
-        />
-
-        {/* Microsoft Clarity */}
-        <script
-          type="text/javascript"
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function(c,l,a,r,i,t,y){
-                  c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-                  t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-                  y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-              })(window, document, "clarity", "script", "vozzwftmwa");
-            `,
-          }}
-        />
-
-        {/* Google Analytics */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-89V8QD3P9T"></script>
+        {/* Consent defaults run before any optional analytics script. */}
         <script
           dangerouslySetInnerHTML={{
             __html: `
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
+              window.gtag = gtag;
+              gtag('consent', 'default', {
+                analytics_storage: 'denied',
+                ad_storage: 'denied',
+                ad_user_data: 'denied',
+                ad_personalization: 'denied',
+                wait_for_update: 500
+              });
               gtag('js', new Date());
-              gtag('config', 'G-89V8QD3P9T');
             `,
           }}
         />
@@ -142,6 +123,7 @@ export default function RootLayout({
         <NavBar />
         <main>{children}</main>
         <Footer />
+        <ConsentScripts />
       </body>
     </html>
   );

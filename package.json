@@ -4,9 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && node scripts/fix-static-export.mjs",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "check:home-seo": "node scripts/check-home-seo.mjs",
+    "check:indexing": "node scripts/check-indexing.mjs"
   },
   "dependencies": {
     "lucide-react": "^0.575.0",

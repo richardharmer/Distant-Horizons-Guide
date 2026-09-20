@@ -1,8 +1,15 @@
 import Link from 'next/link';
+import type { Metadata } from 'next';
 import HeroSection from '@/components/HeroSection';
 import { Calculator, Download, HelpCircle, ArrowRight, CheckCircle, AlertTriangle, XCircle } from 'lucide-react';
 import shadersData from '@/data/shaders.json';
 import { siteConfig } from '@/data/site';
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: siteConfig.url,
+  },
+};
 
 // Show top 6 shaders on the homepage as a preview
 const topShaders = shadersData.slice(0, 6);
@@ -129,7 +136,7 @@ export default function Home() {
               </span>
             </Link>
 
-            <Link href="/install/1-21-11/fabric" className="glass rounded-2xl p-8 card-hover group text-center">
+            <Link href="/install/1-21-11" className="glass rounded-2xl p-8 card-hover group text-center">
               <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-purple-500 to-violet-400 flex items-center justify-center mx-auto mb-4 transition-transform group-hover:scale-110">
                 <Download className="w-7 h-7 text-white" />
               </div>

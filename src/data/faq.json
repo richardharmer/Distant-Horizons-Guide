@@ -83,7 +83,7 @@
         "questions": [
             {
                 "q": "Which shaders work with Distant Horizons?",
-                "a": "Based on extensive community testing on r/DistantHorizons and GitHub:\n\n✅ Fully Compatible:\n- Complementary Reimagined & Unbound (best DH support, proper LOD-to-chunk fading)\n- BSL Shaders\n- Bliss Shaders (v2.1.0+ required)\n- Nostalgia Shader\n- Photon Shader\n- Sora Shaders\n- Super Duper Vanilla\n\n⚠️ Partially Compatible:\n- SEUS Renewed (shadows don't render on LOD chunks)\n- Chocapic13 (some visual artifacts)\n- Kappa Shader (PBR not supported on LODs)\n\n❌ Incompatible:\n- Sildur's Vibrant Shaders (no DH integration planned)\n- OptiFine-exclusive shaders\n- FLAVOR\n\nNote: Shader compatibility with DH is considered 'early testing' and unstable. Always check for the latest development builds."
+                "a": "Shader compatibility changes with the Distant Horizons, Minecraft, shader-loader, and shader-pack versions. Use the shader compatibility database for entries that record a DH version, Minecraft version, loader, evidence date, settings, and known limitations. A shader loading successfully does not prove that it renders DH LOD terrain correctly. Confirm the exact shader build and use the author's documentation or issue tracker when an entry is old or incomplete."
             },
             {
                 "q": "Why do LOD chunks look different from loaded chunks with shaders?",

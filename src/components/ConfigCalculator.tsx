@@ -1,15 +1,11 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import React from 'react';
 import {
     Sparkles,
-    Copy,
-    Check,
     Cpu,
     Monitor,
     Target,
-    Download,
     Gauge,
     Zap,
     Eye,
@@ -37,36 +33,12 @@ const targetOptions = [
     { value: 'visuals', label: 'Ultra Visuals', desc: 'Maximum eye candy', icon: Eye },
 ];
 
-function highlightToml(toml: string): React.ReactNode[] {
-    return toml.split('\n').map((line, i) => {
-        if (line.trim().startsWith('#')) {
-            return <div key={i} className="text-text-dim/50">{line}</div>;
-        }
-        if (line.includes('=')) {
-            const [key, ...rest] = line.split('=');
-            const val = rest.join('=');
-            return (
-                <div key={i}>
-                    <span className="text-primary/80">{key}</span>
-                    <span className="text-text-dim">=</span>
-                    <span className="text-accent">{val}</span>
-                </div>
-            );
-        }
-        if (line.startsWith('[')) {
-            return <div key={i} className="text-warning font-semibold mt-1">{line}</div>;
-        }
-        return <div key={i}>{line}</div>;
-    });
-}
-
 export default function ConfigCalculator() {
     const [cpu, setCpu] = useState(8);
     const [gpu, setGpu] = useState('mid');
     const [targetVal, setTarget] = useState('balanced');
     const [ram, setRam] = useState(6);
     const [shaderSupport, setShaderSupport] = useState(false);
-    const [copied, setCopied] = useState(false);
     const [generated, setGenerated] = useState(false);
 
     const result = useMemo(() => {
@@ -81,36 +53,14 @@ export default function ConfigCalculator() {
         return generateConfig(profile);
     }, [cpu, gpu, targetVal, ram, shaderSupport, generated]);
 
-    const copyToClipboard = () => {
-        if (!result) return;
-        navigator.clipboard.writeText(result.toml);
-        analyticsEvent('copy_config', { cpu_threads: cpu, gpu_level: gpu, target: targetVal, ram_gb: ram, shader_support: shaderSupport });
-        setCopied(true);
-        setTimeout(() => setCopied(false), 2000);
-    };
-
-    const downloadToml = () => {
-        if (!result) return;
-        const blob = new Blob([result.toml], { type: 'text/plain' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = 'distant_horizons.toml';
-        document.body.appendChild(a);
-        a.click();
-        analyticsEvent('download_config', { cpu_threads: cpu, gpu_level: gpu, target: targetVal, ram_gb: ram, shader_support: shaderSupport });
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
-    };
-
     // Visual preview data
     const previewData = useMemo(() => {
         if (targetVal === 'performance') {
-            return { label: 'Performance profile', gradient: 'from-green-500/20 to-emerald-500/10', icon: '⚡', chunks: '128', detail: 'Low' };
+            return { label: 'Performance-first profile', gradient: 'from-green-500/20 to-emerald-500/10', chunks: '64–128', detail: 'Low' };
         } else if (targetVal === 'visuals') {
-            return { label: 'Max Beauty', gradient: 'from-purple-500/20 to-pink-500/10', icon: '✨', chunks: '512+', detail: 'Ultra' };
+            return { label: 'Visual quality profile', gradient: 'from-purple-500/20 to-pink-500/10', chunks: '128–256', detail: 'High' };
         }
-        return { label: 'Best Balance', gradient: 'from-blue-500/20 to-cyan-500/10', icon: '⚖️', chunks: '256', detail: 'Medium' };
+        return { label: 'Balanced starting profile', gradient: 'from-blue-500/20 to-cyan-500/10', chunks: '96–192', detail: 'Medium' };
     }, [targetVal]);
 
     return (
@@ -118,11 +68,11 @@ export default function ConfigCalculator() {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-12">
                     <h2 className="section-title">
-                        Distant Horizons <span className="gradient-text">Best Settings</span> Generator
+                        Distant Horizons <span className="gradient-text">Starting Settings</span> Guide
                     </h2>
                     <p className="section-subtitle">
-                        Select your hardware and get an optimized distant_horizons.toml configuration.
-                        Our generator accounts for CPU thread allocation, GPU capabilities, RAM allocation, shader use, and your priority.
+                        Select your hardware to get a conservative profile you can enter in the current DH settings screen.
+                        This tool does not generate a version-independent config file or guarantee FPS.
                     </p>
                 </div>
 
@@ -219,7 +169,6 @@ export default function ConfigCalculator() {
                         <div className={`rounded-xl p-5 mb-6 bg-gradient-to-br ${previewData.gradient} border border-border/30`}>
                             <div className="flex items-center justify-between">
                                 <div>
-                                    <div className="text-2xl mb-1">{previewData.icon}</div>
                                     <div className="font-bold text-foreground">{previewData.label}</div>
                                     <div className="text-xs text-text-muted mt-1">
                                         ~{previewData.chunks} chunks • LOD Quality: {previewData.detail}
@@ -239,7 +188,7 @@ export default function ConfigCalculator() {
                             className="btn-primary w-full !py-3.5 text-base"
                         >
                             <Sparkles className="w-5 h-5" />
-                            Generate Configuration
+                            Generate Starting Profile
                         </button>
                     </div>
 
@@ -247,34 +196,32 @@ export default function ConfigCalculator() {
                     <div className="glass rounded-2xl p-6 sm:p-8 flex flex-col">
                         {result ? (
                             <>
-                                <div className="flex items-center justify-between mb-4">
-                                    <h3 className="font-semibold text-foreground text-sm">Generated Config</h3>
-                                    <div className="flex gap-2">
-                                        <button
-                                            onClick={downloadToml}
-                                            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-accent/15 text-accent text-xs font-medium hover:bg-accent/25 transition-colors"
-                                        >
-                                            <Download className="w-3 h-3" />
-                                            Download .toml
-                                        </button>
-                                        <button
-                                            onClick={copyToClipboard}
-                                            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface text-text-muted text-xs font-medium hover:bg-surface-light transition-colors"
-                                        >
-                                            {copied ? <Check className="w-3 h-3 text-accent" /> : <Copy className="w-3 h-3" />}
-                                            {copied ? 'Copied!' : 'Copy Config'}
-                                        </button>
-                                    </div>
+                                <div className="mb-4">
+                                    <h3 className="font-semibold text-foreground">Conservative starting profile</h3>
+                                    <p className="text-xs text-text-dim mt-1">Setting names can change by DH build. Match the value by meaning in your current settings screen.</p>
                                 </div>
-                                <div className="flex-1 bg-background rounded-xl p-4 font-mono text-xs leading-relaxed overflow-y-auto max-h-[500px] custom-scrollbar">
-                                    {highlightToml(result.toml)}
+                                <div className="grid grid-cols-2 gap-3">
+                                    {[
+                                        ['LOD distance', `${result.settings.lodDistance} chunks`],
+                                        ['LOD quality', result.settings.lodQuality],
+                                        ['Builder threads', `${result.settings.builderThreads}`],
+                                        ['CPU load', result.settings.cpuLoad],
+                                        ['Cave rendering', result.settings.caveRendering ? 'On' : 'Off'],
+                                        ['Vanilla distance', `${result.settings.vanillaRenderDistance} chunks`],
+                                        ['Minecraft RAM', result.settings.ramAllocation],
+                                    ].map(([label, value]) => (
+                                        <div key={label} className="rounded-xl border border-border bg-background/60 p-4">
+                                            <p className="text-xs text-text-dim mb-1">{label}</p>
+                                            <p className="font-semibold">{value}</p>
+                                        </div>
+                                    ))}
                                 </div>
 
                                 {/* Suggestions */}
                                 {result.suggestions.length > 0 && (
                                     <div className="mt-4 space-y-2">
                                         <h4 className="text-xs font-semibold text-text-muted uppercase tracking-wider">
-                                            💡 Suggestions
+                                            How to validate the profile
                                         </h4>
                                         {result.suggestions.map((s, i) => (
                                             <div key={i} className="flex items-start gap-2 text-xs text-text-muted bg-surface/50 rounded-lg px-3 py-2">
@@ -293,7 +240,7 @@ export default function ConfigCalculator() {
                                     <Sparkles className="w-12 h-12 text-primary/30 mx-auto mb-4" />
                                     <p className="text-text-muted font-medium">Configure your hardware</p>
                                     <p className="text-sm text-text-dim mt-1">
-                                        Select your specs and click &ldquo;Generate Configuration&rdquo; to get an optimized .toml file
+                                        Select your specs to get conservative settings and a validation checklist
                                     </p>
                                 </div>
                             </div>

@@ -1,4 +1,6 @@
 import type { Metadata } from 'next';
+import { siteConfig } from '@/data/site';
+import { socialMetadata } from '@/lib/seo';
 
 export const metadata: Metadata = {
     title: 'Terms of Service',
@@ -6,6 +8,11 @@ export const metadata: Metadata = {
     alternates: {
         canonical: 'https://distanthorizonsguide.com/terms',
     },
+    ...socialMetadata(
+        'Terms of Service',
+        'Terms of Service for Distant Horizons Guide. Use of our website implies acceptance of these terms.',
+        '/terms',
+    ),
 };
 
 export default function TermsPage() {
@@ -56,8 +63,8 @@ export default function TermsPage() {
                 <h2 className="text-xl font-bold text-foreground mt-8 mb-3">7. Contact Information</h2>
                 <p>
                     If you have any questions regarding these Terms of Service or believe copyrighted material has been misused, please contact us at{' '}
-                    <a href="mailto:contact@distanthorizonsguide.com" className="text-primary hover:underline font-medium">
-                        contact@distanthorizonsguide.com
+                    <a href={`mailto:${siteConfig.contactEmail}`} className="text-primary hover:underline font-medium">
+                        {siteConfig.contactEmail}
                     </a>.
                 </p>
             </div>

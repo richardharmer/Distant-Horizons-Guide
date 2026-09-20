@@ -27,6 +27,7 @@ const statusConfig: Record<ShaderStatus, { label: string; icon: typeof CheckCirc
 
 const performanceLevels = ['low', 'medium', 'high', 'ultra'];
 const allVersions = Array.from(new Set(shadersData.flatMap(s => s.mcVersions)));
+const latestEvidenceDate = [...shadersData].map((shader) => shader.lastTested).sort().at(-1);
 
 export default function ShaderTable() {
     const [search, setSearch] = useState('');
@@ -62,8 +63,7 @@ export default function ShaderTable() {
                         <span className="gradient-text">Shader Compatibility</span> Database
                     </h1>
                     <p className="mt-4 text-text-muted text-lg max-w-2xl mx-auto">
-                        Find out which shaders work with Distant Horizons. Our database covers 20+
-                        popular shaders with detailed compatibility notes and recommended settings.
+                        Review recorded compatibility notes, version scope, settings, and known limitations for popular shader packs.
                     </p>
                 </div>
 
@@ -255,9 +255,9 @@ export default function ShaderTable() {
                 {/* SEO text */}
                 <div className="mt-10 text-center">
                     <p className="text-sm text-text-dim max-w-3xl mx-auto">
-                        This shader compatibility database is maintained by the community. Data is sourced from
-                        GitHub Issues, Reddit r/DistantHorizons, and the Iris Discord #dh-shader-testing channel.
-                        Last updated: {new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}.
+                        Entries summarize dated project and community evidence and can become stale after a DH, loader, or shader update.
+                        Latest recorded evidence in this dataset: {latestEvidenceDate}. Read our{' '}
+                        <Link href="/testing-methodology" className="text-primary hover:underline">testing methodology</Link>.
                     </p>
                 </div>
             </div>
@@ -298,7 +298,7 @@ export default function ShaderTable() {
 
                         <div className="rounded-xl p-4 mb-6 bg-primary/5 border border-primary/15">
                             <p className="text-xs text-text-dim uppercase tracking-wider">Verification note</p>
-                            <p className="text-sm text-text-muted mt-1">This compatibility entry was last tested in {modalShader.lastTested}. Test results can change with new DH, Iris, loader, or shader releases.</p>
+                            <p className="text-sm text-text-muted mt-1">Evidence date: {modalShader.lastTested}. This is the scope date recorded by the database, not a claim that every current build was retested. Results can change with new DH, Iris, loader, or shader releases.</p>
                         </div>
 
                         {/* Details grid */}

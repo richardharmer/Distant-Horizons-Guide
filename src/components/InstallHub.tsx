@@ -22,6 +22,8 @@ interface VersionEntry {
     dhVersion: string;
     releaseDate: string;
     stability: string;
+    verified: boolean;
+    indexable: boolean;
     loaders: {
         fabric: LoaderInfo;
         neoforge: LoaderInfo;
@@ -159,7 +161,7 @@ export default function InstallHub({ initialVersion, initialLoader = 'fabric' }:
                     </div>
 
                     {/* Dependencies */}
-                    {hasLoader && (
+                    {hasLoader && loaderInfo.dependencies.length > 0 && (
                         <div className="glass rounded-xl p-6">
                             <h3 className="font-semibold text-foreground mb-4 flex items-center gap-2">
                                 <Check className="w-5 h-5 text-accent" />
@@ -193,6 +195,13 @@ export default function InstallHub({ initialVersion, initialLoader = 'fabric' }:
                                     </div>
                                 ))}
                             </div>
+                        </div>
+                    )}
+
+                    {hasLoader && loaderInfo.dependencies.length === 0 && (
+                        <div className="rounded-xl border border-warning/30 bg-warning/10 p-5 text-sm text-text-muted">
+                            <p className="font-semibold text-warning mb-2">Dependency list not independently verified</p>
+                            <p>Use the official file page for Minecraft {version.mcVersion} and {selectedLoaderLabel}. This guide does not copy dependency requirements from another Minecraft version.</p>
                         </div>
                     )}
 

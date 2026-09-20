@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import ShaderTable from '@/components/ShaderTable';
 import Link from 'next/link';
+import { socialMetadata } from '@/lib/seo';
 
 export const metadata: Metadata = {
     title: 'Distant Horizons Shaders: Compatibility Database',
@@ -9,11 +10,11 @@ export const metadata: Metadata = {
     alternates: {
         canonical: 'https://distanthorizonsguide.com/shaders',
     },
-    openGraph: {
-        title: 'Distant Horizons Shaders: Compatibility Database',
-        description:
-            'Find which shaders work with Distant Horizons. 20+ shaders tested with compatibility status and settings.',
-    },
+    ...socialMetadata(
+        'Distant Horizons Shaders: Compatibility Database',
+        'Find which shaders work with Distant Horizons. 20+ shaders tested with compatibility status and settings.',
+        '/shaders',
+    ),
 };
 
 const jsonLd = {

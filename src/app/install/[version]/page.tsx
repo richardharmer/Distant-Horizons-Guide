@@ -1,8 +1,10 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import InstallHub from '@/components/InstallHub';
-import versionsData from '@/data/versionCatalog';
+import versionsData, { getLoaderLabel } from '@/data/versionCatalog';
 import Link from 'next/link';
+import { siteConfig } from '@/data/site';
+import { socialMetadata } from '@/lib/seo';
 
 const validVersions = versionsData.map((v) => v.mcVersion.replace(/\./g, '-'));
 
@@ -23,13 +25,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return {
         title: `Distant Horizons ${mcVersion} Install Guide | Fabric & NeoForge`,
         description: `Step-by-step guide to install Distant Horizons ${vData.dhVersion} on Minecraft ${mcVersion}. Download links, dependencies, and setup for Fabric and NeoForge.`,
+        robots: vData.indexable ? undefined : { index: false, follow: true },
         alternates: {
             canonical: `https://distanthorizonsguide.com/install/${version}`,
         },
-        openGraph: {
-            title: `Install Distant Horizons for Minecraft ${mcVersion}`,
-            description: `Download and install DH ${vData.dhVersion} on MC ${mcVersion} with Fabric or NeoForge.`,
-        },
+        ...socialMetadata(
+            `Install Distant Horizons for Minecraft ${mcVersion}`,
+            `Download and install DH ${vData.dhVersion} on MC ${mcVersion} with Fabric or NeoForge.`,
+            `/install/${version}`,
+        ),
     };
 }
 
@@ -67,10 +71,11 @@ export default async function InstallVersionPage({ params }: Props) {
                 <section className="pt-12 pb-2">
                     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                         <h1 className="text-4xl sm:text-5xl font-black tracking-tight mb-5">Install Distant Horizons for Minecraft {mcVersion}</h1>
-                        <p className="text-lg text-text-muted leading-relaxed max-w-3xl">Choose Fabric or NeoForge for your existing Minecraft setup, then use the matching Distant Horizons build and dependencies. This overview helps you choose a loader; the loader pages below contain the version-specific path.</p>
+                        <p className="text-lg text-text-muted leading-relaxed max-w-3xl">Choose Fabric or {getLoaderLabel(mcVersion, 'neoforge')} below, then use the official version filter to confirm the exact Distant Horizons file before downloading.</p>
+                        {!vData.verified && <p className="mt-4 rounded-xl border border-warning/30 bg-warning/10 p-4 text-sm text-warning">This legacy version page is kept for existing visitors, but its dependency list has not been re-verified for the current DH release. Confirm every file on the official project page.</p>}
                         <div className="flex flex-wrap gap-3 mt-6">
-                            <Link href={`/install/${version}/fabric`} className="btn-primary !py-2.5">Install with Fabric</Link>
-                            <Link href={`/install/${version}/neoforge`} className="btn-secondary !py-2.5">Install with NeoForge</Link>
+                            <a href="#install" className="btn-primary !py-2.5">Choose loader and dependencies</a>
+                            <a href={siteConfig.officialModrinthUrl} target="_blank" rel="noopener noreferrer" className="btn-secondary !py-2.5">Open official files</a>
                         </div>
                     </div>
                 </section>
@@ -81,7 +86,7 @@ export default async function InstallVersionPage({ params }: Props) {
                     <div className="glass rounded-2xl p-6">
                         <h3 className="font-semibold text-foreground mb-3 text-center">Other Minecraft Versions</h3>
                         <div className="flex flex-wrap gap-2 justify-center mb-4">
-                            {versionsData.map((v) => (
+                            {versionsData.filter((v) => v.indexable).map((v) => (
                                 <Link
                                     key={v.mcVersion}
                                     href={`/install/${v.mcVersion.replace(/\./g, '-')}`}
@@ -102,7 +107,7 @@ export default async function InstallVersionPage({ params }: Props) {
                                 Optimize Settings →
                             </Link>
                         </div>
-                        <p className="mt-5 text-center text-sm text-text-dim">Use the overview when choosing a loader. Once you know your loader, open its dedicated page for the exact download and dependency path.</p>
+                        <p className="mt-5 text-center text-sm text-text-dim">Loader choices are consolidated on this page so version, dependency, and safety notes stay in one place.</p>
                     </div>
                 </div>
             </div>

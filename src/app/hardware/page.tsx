@@ -2,11 +2,17 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowRight, Cpu, Laptop, MemoryStick, Sparkles } from 'lucide-react';
 import { siteConfig } from '@/data/site';
+import { socialMetadata } from '@/lib/seo';
 
 export const metadata: Metadata = {
   title: 'Distant Horizons Hardware Settings',
   description: 'Practical Distant Horizons settings for low-end PCs, laptops, integrated graphics, and common gaming GPUs.',
   alternates: { canonical: `${siteConfig.url}/hardware` },
+  ...socialMetadata(
+    'Distant Horizons Hardware Settings',
+    'Practical Distant Horizons settings for low-end PCs, laptops, integrated graphics, and common gaming GPUs.',
+    '/hardware',
+  ),
 };
 
 const profiles = [

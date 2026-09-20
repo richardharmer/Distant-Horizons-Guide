@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { ChevronDown, Info, Download as DownloadIcon, Gauge, Palette, Wrench } from 'lucide-react';
 import faqData from '@/data/faq.json';
+import { siteConfig } from '@/data/site';
 
 interface FaqQuestion {
     q: string;
@@ -113,7 +114,7 @@ export default function FaqSection() {
                     </p>
                     <div className="flex flex-wrap gap-3 justify-center">
                         <a
-                            href="https://discord.gg/distanthorizons"
+                            href={siteConfig.officialDiscordUrl}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="btn-secondary !py-2 !px-5 text-sm"
@@ -129,12 +130,12 @@ export default function FaqSection() {
                             r/DistantHorizons
                         </a>
                         <a
-                            href="https://github.com/Jonodonozym/DistantHorizonsStub/issues"
+                            href={siteConfig.officialGitlabUrl}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="btn-secondary !py-2 !px-5 text-sm"
                         >
-                            GitHub Issues
+                            Official GitLab
                         </a>
                     </div>
                 </div>

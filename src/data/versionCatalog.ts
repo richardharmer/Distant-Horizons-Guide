@@ -1,6 +1,11 @@
 import versionsData from '@/data/versions.json';
+import { INDEXABLE_INSTALL_VERSIONS } from '@/data/indexing';
 
 type BaseVersion = (typeof versionsData)[number];
+export type VersionCatalogEntry = BaseVersion & {
+  verified: boolean;
+  indexable: boolean;
+};
 
 const makeCurrentVersion = (mcVersion: string, dhVersion: string, releaseDate: string): BaseVersion => ({
   mcVersion,
@@ -9,11 +14,11 @@ const makeCurrentVersion = (mcVersion: string, dhVersion: string, releaseDate: s
   stability: 'stable',
   loaders: {
     fabric: {
-      ...versionsData[0].loaders.fabric,
+      dependencies: [],
       downloadUrl: `https://modrinth.com/mod/distanthorizons/versions?g=${mcVersion}&l=fabric`,
     },
     neoforge: {
-      ...versionsData[0].loaders.neoforge,
+      dependencies: [],
       downloadUrl: `https://modrinth.com/mod/distanthorizons/versions?g=${mcVersion}&l=neoforge`,
     },
   },
@@ -24,9 +29,12 @@ const additionalVersions: BaseVersion[] = [
   ...['1.21.10', '1.21.9', '1.21.8', '1.21.6', '1.21.3'].map((version) => makeCurrentVersion(version, '3.3.1', '2026-09-18')),
 ];
 
-const versionCatalog = [...additionalVersions, ...versionsData].map((version) => {
-  if (version.mcVersion !== '1.20.6') return version;
-  return { ...version, loaders: { ...version.loaders, neoforge: { ...version.loaders.neoforge, downloadUrl: 'https://modrinth.com/mod/distanthorizons/versions?g=1.20.6&l=neoforge' } } };
+const versionCatalog: VersionCatalogEntry[] = [...additionalVersions, ...versionsData].map((sourceVersion) => {
+  const version = sourceVersion.mcVersion === '1.20.6'
+    ? { ...sourceVersion, loaders: { ...sourceVersion.loaders, neoforge: { ...sourceVersion.loaders.neoforge, downloadUrl: 'https://modrinth.com/mod/distanthorizons/versions?g=1.20.6&l=neoforge' } } }
+    : sourceVersion;
+  const indexable = INDEXABLE_INSTALL_VERSIONS.has(version.mcVersion);
+  return { ...version, verified: indexable, indexable };
 });
 
 export default versionCatalog;

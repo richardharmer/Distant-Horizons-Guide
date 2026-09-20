@@ -4,6 +4,7 @@ import Link from 'next/link';
 import InstallHub from '@/components/InstallHub';
 import versionsData, { getLoaderLabel } from '@/data/versionCatalog';
 import { siteConfig } from '@/data/site';
+import { socialMetadata } from '@/lib/seo';
 
 interface Props { params: Promise<{ version: string; loader: string }> }
 const loaders = ['fabric', 'neoforge'] as const;
@@ -23,8 +24,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title,
     description: `Step-by-step Distant Horizons installation for Minecraft ${mcVersion} with ${loaderName}: downloads, dependencies, settings, and compatibility checks.`,
-    alternates: { canonical: `${siteConfig.url}/install/${version}/${loader}` },
-    openGraph: { title, description: `Install DH for Minecraft ${mcVersion} using ${loaderName}.` },
+    robots: { index: false, follow: true },
+    alternates: { canonical: `${siteConfig.url}/install/${version}` },
+    ...socialMetadata(title, `Install DH for Minecraft ${mcVersion} using ${loaderName}.`, `/install/${version}`),
   };
 }
 

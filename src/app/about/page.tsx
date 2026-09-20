@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Mountain, Download, Eye, Layers, Cpu, Zap, HelpCircle, CheckCircle, ExternalLink } from 'lucide-react';
+import { siteConfig } from '@/data/site';
+import { socialMetadata } from '@/lib/seo';
 
 export const metadata: Metadata = {
     title: 'What Is Distant Horizons Mod?',
@@ -9,11 +11,11 @@ export const metadata: Metadata = {
     alternates: {
         canonical: 'https://distanthorizonsguide.com/about',
     },
-    openGraph: {
-        title: 'What Is the Distant Horizons Mod for Minecraft?',
-        description:
-            'Everything you need to know about the Distant Horizons LOD mod — how it works, performance, shaders, and installation.',
-    },
+    ...socialMetadata(
+        'What Is the Distant Horizons Mod for Minecraft?',
+        'Everything you need to know about the Distant Horizons LOD mod — how it works, performance, shaders, and installation.',
+        '/about',
+    ),
 };
 
 const jsonLd = {
@@ -22,10 +24,10 @@ const jsonLd = {
     headline: 'What Is Distant Horizons? The Ultimate Minecraft LOD Mod Explained',
     description:
         'A comprehensive guide to the Distant Horizons mod for Minecraft. Learn about LOD rendering, supported versions, shader compatibility, and optimization.',
-    author: { '@type': 'Organization', name: 'DistantHorizonsGuide.com' },
+    author: { '@type': 'Organization', name: 'DistantHorizonsGuide Editorial Team' },
     publisher: { '@type': 'Organization', name: 'DistantHorizonsGuide.com' },
     datePublished: '2025-12-01',
-    dateModified: '2026-02-28',
+    dateModified: '2026-09-20',
 };
 
 const features = [
@@ -49,9 +51,9 @@ const features = [
     },
     {
         icon: Zap,
-        title: 'Minimal FPS Impact',
+        title: 'Configurable Workload',
         description:
-            'With proper settings, most mid-range PCs maintain 60+ FPS even at 256-chunk LOD distance. GPU upload is throttled to prevent stuttering.',
+            'LOD distance, quality, and generation load can be reduced to leave headroom for Minecraft, modpacks, and shaders.',
     },
 ];
 
@@ -60,7 +62,7 @@ const comparisons = [
         feature: 'Max View Distance',
         dh: '512+ chunks',
         vanilla: '32 chunks',
-        voxy: '256 chunks',
+        voxy: 'Version-dependent',
     },
     {
         feature: 'Render Method',
@@ -70,21 +72,21 @@ const comparisons = [
     },
     {
         feature: 'Shader Support',
-        dh: '20+ compatible shaders',
+        dh: 'Pack-dependent integration',
         vanilla: 'N/A',
-        voxy: 'Limited',
+        voxy: 'Check current support',
     },
     {
         feature: 'Mod Loaders',
         dh: 'Fabric + NeoForge',
         vanilla: 'N/A',
-        voxy: 'Fabric only',
+        voxy: 'Check current build',
     },
     {
         feature: 'Performance Impact',
-        dh: 'Low — Medium',
+        dh: 'Configurable',
         vanilla: 'N/A',
-        voxy: 'Medium — High',
+        voxy: 'Version-dependent',
     },
     {
         feature: 'Server Support',
@@ -112,7 +114,7 @@ export default function AboutPage() {
                         <div className="text-center mb-12">
                             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm mb-6">
                                 <Mountain className="w-4 h-4" />
-                                The #1 LOD Mod for Minecraft
+                                Independent Distant Horizons overview
                             </div>
                             <h1 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight mb-6">
                                 What Is the{' '}
@@ -120,8 +122,8 @@ export default function AboutPage() {
                             </h1>
                             <p className="text-lg text-text-muted max-w-2xl mx-auto leading-relaxed">
                                 Distant Horizons is a free, open-source Minecraft mod that adds a <strong>Level of Detail (LOD)</strong> system,
-                                rendering simplified terrain far beyond the normal render distance. See up to <strong>512+ chunks</strong> without
-                                destroying your frame rate.
+                                rendering simplified terrain far beyond the normal render distance. The visual range and performance cost depend on
+                                your DH settings, hardware, world generation, shaders, and other mods.
                             </p>
                         </div>
 
@@ -196,8 +198,8 @@ export default function AboutPage() {
                             <p>
                                 Both DH and <strong>Voxy</strong> aim to extend Minecraft&apos;s view distance, but they use fundamentally different
                                 approaches. DH uses a traditional LOD system with configurable quality levels, while Voxy uses voxel-based
-                                representation. DH supports more Minecraft versions, has broader shader compatibility (20+ tested packs),
-                                and works with both Fabric and NeoForge. Voxy is currently Fabric-only with limited shader support.
+                                representation. Loader, shader, and Minecraft-version support can change for both projects, so compare the exact
+                                builds you intend to install rather than relying on a universal winner.
                             </p>
 
                             <h3 className="text-xl font-bold text-foreground mt-8 mb-3">Which Minecraft Versions Are Supported?</h3>
@@ -216,7 +218,7 @@ export default function AboutPage() {
                                 <Link href="/shaders" className="text-primary hover:underline">
                                     Shader Compatibility Database
                                 </Link>{' '}
-                                for the full list of 20+ tested packs.
+                                for dated compatibility evidence and known limitations.
                             </p>
                         </div>
                     </div>
@@ -264,11 +266,11 @@ export default function AboutPage() {
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             {[
                                 ['Free & Open Source', 'Available on Modrinth and CurseForge at no cost.'],
-                                ['Client-Side Only', 'No server installation needed. Works on any server.'],
+                                ['Client-Side Option', 'DH can be used client-side; server-provided LOD features require a compatible server setup.'],
                                 ['Active Development', 'Regular updates with new features and bug fixes.'],
-                                ['Community-Driven', 'Large Discord community with 100K+ members.'],
+                                ['Unofficial Guide', 'This site is independent from the Distant Horizons project, Mojang, and Microsoft.'],
                                 ['Performance Optimized', 'Configurable CPU/GPU usage to match your hardware.'],
-                                ['Shader Compatible', '20+ shader packs tested and documented.'],
+                                ['Shader Evidence', 'Compatibility entries record version scope, evidence dates, settings, and limitations.'],
                             ].map(([title, desc]) => (
                                 <div key={title} className="flex items-start gap-3 p-4 rounded-xl bg-surface/30 border border-border/30">
                                     <CheckCircle className="w-5 h-5 text-accent shrink-0 mt-0.5" />
@@ -278,6 +280,18 @@ export default function AboutPage() {
                                     </div>
                                 </div>
                             ))}
+                        </div>
+                    </div>
+                </section>
+
+                <section className="py-16 border-t border-border/30">
+                    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <h2 className="text-2xl sm:text-3xl font-bold mb-4">How this guide is maintained</h2>
+                        <p className="text-text-muted leading-relaxed">The DistantHorizonsGuide Editorial Team reviews official releases, distribution pages, dated compatibility evidence, and reproducible troubleshooting reports. An editorial review date is not a claim that every hardware and mod combination was tested. Editorial questions can be sent to <a className="text-primary hover:underline" href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a>.</p>
+                        <div className="flex flex-wrap gap-4 mt-6 text-sm">
+                            <Link href="/editorial-policy" className="text-primary hover:underline">Editorial policy</Link>
+                            <Link href="/testing-methodology" className="text-primary hover:underline">Testing methodology</Link>
+                            <Link href="/corrections" className="text-primary hover:underline">Report a correction</Link>
                         </div>
                     </div>
                 </section>
