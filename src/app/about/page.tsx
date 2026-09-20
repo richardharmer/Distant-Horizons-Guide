@@ -126,7 +126,7 @@ export default function AboutPage() {
                         </div>
 
                         <div className="flex flex-wrap gap-3 justify-center">
-                            <Link href="/install/1-21-1" className="btn-primary !py-3 !px-6">
+                            <Link href="/install/1-21-11" className="btn-primary !py-3 !px-6">
                                 <Download className="w-4 h-4" />
                                 Install Distant Horizons
                             </Link>
@@ -293,7 +293,7 @@ export default function AboutPage() {
                                 Get started in minutes. Install the mod, generate optimized settings, and explore Minecraft like never before.
                             </p>
                             <div className="flex flex-wrap gap-3 justify-center">
-                                <Link href="/install/1-21-1" className="btn-primary !py-2.5 !px-5 text-sm">
+                                <Link href="/install/1-21-11" className="btn-primary !py-2.5 !px-5 text-sm">
                                     <Download className="w-4 h-4" /> Install Guide
                                 </Link>
                                 <Link href="/calculator" className="btn-secondary !py-2.5 !px-5 text-sm">

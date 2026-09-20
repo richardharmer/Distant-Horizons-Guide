@@ -1,8 +1,6 @@
-'use client';
-
-import { ChevronDown, Layers, Calculator, Download, HelpCircle } from 'lucide-react';
-import ImageSlider from '@/components/ImageSlider';
+import { ArrowRight, CheckCircle2, Layers, Calculator, Download, HelpCircle } from 'lucide-react';
 import Link from 'next/link';
+import { siteConfig } from '@/data/site';
 
 const features = [
     {
@@ -21,9 +19,9 @@ const features = [
     },
     {
         icon: Download,
-        title: 'Installation Guide',
-        description: 'Step-by-step setup for Fabric & NeoForge',
-        href: '/install/1-21-1',
+        title: 'Install Distant Horizons 3.3',
+        description: 'Minecraft 1.21.11 setup for Fabric & NeoForge',
+        href: '/install/1-21-11',
         color: 'from-purple-500 to-violet-400',
     },
     {
@@ -37,12 +35,11 @@ const features = [
 
 export default function HeroSection() {
     return (
-        <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden pt-16">
+        <section className="relative overflow-hidden pt-28 pb-16 sm:pt-32 sm:pb-20">
             {/* Background effects */}
             <div className="absolute inset-0 overflow-hidden">
                 <div className="absolute top-1/4 -left-40 w-[500px] h-[500px] rounded-full bg-primary/5 blur-[120px]" />
                 <div className="absolute bottom-1/4 -right-40 w-[500px] h-[500px] rounded-full bg-accent/5 blur-[120px]" />
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-primary/3 blur-[200px]" />
                 {/* Grid pattern */}
                 <div
                     className="absolute inset-0 opacity-[0.03]"
@@ -54,74 +51,107 @@ export default function HeroSection() {
                 />
             </div>
 
-            <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                {/* Badge */}
-                <div className="animate-fade-in-up mb-6 inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm font-medium text-primary">
-                    <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-                    The Ultimate Minecraft LOD Mod Resource
-                </div>
+            <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="grid items-center gap-12 lg:grid-cols-[1.08fr_0.92fr] lg:gap-16">
+                    <div className="text-center lg:text-left">
+                        <div className="animate-fade-in-up mb-6 inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm font-medium text-primary">
+                            <span className="w-2 h-2 rounded-full bg-accent" />
+                            Independent guide · verified for {siteConfig.currentReleaseLabel}
+                        </div>
 
-                {/* Title */}
-                <h1 className="animate-fade-in-up text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tight leading-[1.1] mb-6" style={{ animationDelay: '0.1s' }}>
-                    <span className="gradient-text-animated">Distant Horizons Mod</span>{' '}for Minecraft
-                    <br />
-                    <span className="text-text-muted text-2xl sm:text-3xl md:text-4xl font-medium">
-                        Guide, Shaders, Settings &amp; Troubleshooting
-                    </span>
-                </h1>
+                        <h1 className="animate-fade-in-up text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.08] mb-6" style={{ animationDelay: '0.1s' }}>
+                            <span className="gradient-text-animated">Distant Horizons Mod</span>{' '}for Minecraft
+                            <br />
+                            <span className="text-text-muted text-2xl sm:text-3xl font-medium">
+                                Guide, Shaders, Settings &amp; Troubleshooting
+                            </span>
+                        </h1>
 
-                {/* Subtitle */}
-                <p className="animate-fade-in-up text-text-muted text-lg sm:text-xl max-w-2xl mx-auto mb-10" style={{ animationDelay: '0.2s' }}>
-                    Your complete resource for the Distant Horizons mod — shader compatibility database,
-                    smart config generator, installation guides, and community-driven troubleshooting.
-                </p>
+                        <p className="animate-fade-in-up text-text-muted text-lg max-w-2xl mx-auto lg:mx-0 mb-8" style={{ animationDelay: '0.2s' }}>
+                            Install the right build, choose a stable starting profile, check shader compatibility,
+                            and fix LOD problems with version-aware guidance.
+                        </p>
 
-                {/* CTA buttons */}
-                <div className="animate-fade-in-up flex flex-col sm:flex-row gap-4 justify-center mb-12" style={{ animationDelay: '0.3s' }}>
-                    <Link href="/shaders" className="btn-primary text-base !py-3.5 !px-8">
-                        <Layers className="w-5 h-5" />
-                        Check Shader Compatibility
-                    </Link>
-                    <Link href="/calculator" className="btn-secondary text-base !py-3.5 !px-8">
-                        <Calculator className="w-5 h-5" />
-                        Generate Optimal Config
-                    </Link>
-                </div>
+                        <div className="animate-fade-in-up flex flex-col sm:flex-row gap-3 justify-center lg:justify-start" style={{ animationDelay: '0.3s' }}>
+                            <Link href="/install/1-21-11" className="btn-primary text-base !py-3.5 !px-7">
+                                <Download className="w-5 h-5" />
+                                Install Distant Horizons 3.3
+                            </Link>
+                            <Link href="/guides/distant-horizons-best-settings" className="btn-secondary text-base !py-3.5 !px-7">
+                                Choose Safe Settings
+                                <ArrowRight className="w-4 h-4" />
+                            </Link>
+                        </div>
 
-                {/* Before / After comparison slider */}
-                <div className="animate-fade-in-up max-w-4xl mx-auto mb-16" style={{ animationDelay: '0.4s' }}>
-                    <ImageSlider
-                        beforeSrc="/before.png"
-                        afterSrc="/after.png"
-                        beforeLabel="Vanilla — 16 Chunks"
-                        afterLabel="DH — 512 Chunks"
-                    />
+                        <div className="animate-fade-in-up flex flex-wrap justify-center lg:justify-start gap-x-6 gap-y-2 mt-6 text-sm" style={{ animationDelay: '0.35s' }}>
+                            <Link href="/shaders" className="text-text-muted hover:text-primary transition-colors">Shader compatibility</Link>
+                            <Link href="/guides/distant-horizons-how-to-use" className="text-text-muted hover:text-primary transition-colors">First-time setup</Link>
+                            <Link href="/guides" className="text-text-muted hover:text-primary transition-colors">Troubleshooting</Link>
+                        </div>
+                    </div>
+
+                    <div className="animate-fade-in-up rounded-2xl border border-border bg-surface/80 p-5 sm:p-7" style={{ animationDelay: '0.2s' }}>
+                        <div className="flex items-start justify-between gap-4 pb-5 border-b border-border/70">
+                            <div>
+                                <p className="text-xs uppercase tracking-[0.16em] text-text-dim mb-2">Verified setup snapshot</p>
+                                <h2 className="text-xl font-bold">A safe Distant Horizons starting point</h2>
+                            </div>
+                            <span className="shrink-0 rounded-md border border-accent/30 bg-accent/10 px-2.5 py-1 text-xs font-semibold text-accent">
+                                DH {siteConfig.currentRelease}
+                            </span>
+                        </div>
+
+                        <dl className="grid grid-cols-2 gap-x-6 gap-y-5 py-6">
+                            <div>
+                                <dt className="text-xs text-text-dim mb-1">Minecraft</dt>
+                                <dd className="font-semibold">1.21.11</dd>
+                            </div>
+                            <div>
+                                <dt className="text-xs text-text-dim mb-1">Loaders</dt>
+                                <dd className="font-semibold">Fabric / NeoForge</dd>
+                            </div>
+                            <div>
+                                <dt className="text-xs text-text-dim mb-1">Vanilla distance</dt>
+                                <dd className="font-semibold">8–12 chunks</dd>
+                            </div>
+                            <div>
+                                <dt className="text-xs text-text-dim mb-1">LOD distance</dt>
+                                <dd className="font-semibold">64–128 chunks</dd>
+                            </div>
+                        </dl>
+
+                        <div className="rounded-xl border border-border/70 bg-background/50 p-4">
+                            <div className="flex items-center justify-between gap-4 mb-3">
+                                <span className="text-sm font-semibold">Recommended setup order</span>
+                                <span className="text-xs text-text-dim">Conservative profile</span>
+                            </div>
+                            <ol className="space-y-2.5 text-sm text-text-muted">
+                                <li className="flex gap-2.5"><CheckCircle2 className="w-4 h-4 text-accent shrink-0 mt-1" />Install the matching DH file and loader.</li>
+                                <li className="flex gap-2.5"><CheckCircle2 className="w-4 h-4 text-accent shrink-0 mt-1" />Test LOD generation without shaders first.</li>
+                                <li className="flex gap-2.5"><CheckCircle2 className="w-4 h-4 text-accent shrink-0 mt-1" />Add a verified compatible shader last.</li>
+                            </ol>
+                        </div>
+
+                        <p className="mt-4 text-xs leading-relaxed text-text-dim">
+                            Starting values, not a performance guarantee. Results depend on hardware, modpack, world generation, and shader load.
+                        </p>
+                    </div>
                 </div>
 
                 {/* Feature cards */}
-                <div className="stagger-children grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto">
+                <div className="stagger-children grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-14">
                     {features.map((feature) => (
-                        <a
+                        <Link
                             key={feature.title}
                             href={feature.href}
-                            className="group glass rounded-xl p-5 text-left card-hover"
+                            className="group rounded-xl border border-border/70 bg-surface/45 p-5 text-left card-hover"
                         >
-                            <div className={`w-10 h-10 rounded-lg bg-gradient-to-br ${feature.color} flex items-center justify-center mb-3 transition-transform group-hover:scale-110`}>
-                                <feature.icon className="w-5 h-5 text-white" />
-                            </div>
-                            <h3 className="font-semibold text-foreground mb-1">{feature.title}</h3>
+                            <feature.icon className="w-5 h-5 text-primary mb-4" />
+                            <h3 className="font-semibold text-foreground mb-1 group-hover:text-primary transition-colors">{feature.title}</h3>
                             <p className="text-sm text-text-muted">{feature.description}</p>
-                        </a>
+                        </Link>
                     ))}
                 </div>
-            </div>
-
-            {/* Scroll indicator */}
-            <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-float">
-                <Link href="/shaders" className="flex flex-col items-center gap-2 text-text-dim hover:text-primary transition-colors">
-                    <span className="text-xs font-medium">Scroll to explore</span>
-                    <ChevronDown className="w-5 h-5" />
-                </Link>
             </div>
         </section>
     );

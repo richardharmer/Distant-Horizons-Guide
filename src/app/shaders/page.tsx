@@ -49,7 +49,7 @@ export default function ShadersPage() {
                             Found a compatible shader? Set up Distant Horizons with our step-by-step guide.
                         </p>
                         <div className="flex flex-wrap gap-3 justify-center">
-                            <Link href="/install/1-21-1" className="btn-primary !py-2 !px-5 text-sm">Install for 1.21.1</Link>
+                            <Link href="/install/1-21-11" className="btn-primary !py-2 !px-5 text-sm">Install for 1.21.11</Link>
                             <Link href="/install/1-20-1" className="btn-primary !py-2 !px-5 text-sm">Install for 1.20.1</Link>
                             <Link href="/calculator" className="btn-secondary !py-2 !px-5 text-sm">Optimize Settings</Link>
                         </div>

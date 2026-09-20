@@ -43,7 +43,7 @@ export default async function GuidePage({ params }: Props) {
               {guide.quickAnswer && <div className="mt-7 max-w-3xl rounded-2xl border border-primary/20 bg-primary/5 p-5"><h2 className="font-semibold mb-2">Quick answer</h2><p className="text-sm text-text-muted leading-relaxed">{guide.quickAnswer}</p></div>}
             <div className="flex flex-wrap gap-3 mt-8">
               <Link href="/calculator" className="btn-primary">Generate settings <ArrowRight className="w-4 h-4" /></Link>
-              <Link href="/install/1-21-1" className="btn-secondary">Open install guide</Link>
+              <Link href="/install/1-21-11" className="btn-secondary">Open install guide</Link>
             </div>
           </div>
         </section>

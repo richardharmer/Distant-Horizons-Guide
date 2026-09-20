@@ -52,7 +52,7 @@ export default function FaqPage() {
                         <div className="flex flex-wrap gap-3 justify-center">
                             <Link href="/shaders" className="btn-secondary !py-2 !px-5 text-sm">Shader Compatibility</Link>
                             <Link href="/calculator" className="btn-secondary !py-2 !px-5 text-sm">Optimize Settings</Link>
-                            <Link href="/install/1-21-1" className="btn-secondary !py-2 !px-5 text-sm">Install Guide</Link>
+                            <Link href="/install/1-21-11" className="btn-secondary !py-2 !px-5 text-sm">Install Guide</Link>
                         </div>
                     </div>
                 </div>

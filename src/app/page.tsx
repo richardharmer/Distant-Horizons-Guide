@@ -18,6 +18,36 @@ export default function Home() {
     <>
       <HeroSection />
 
+      {/* Current release update */}
+      <section className="py-10 border-y border-border/30 bg-surface/20">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+            <div className="max-w-3xl">
+              <p className="text-sm font-medium text-primary mb-2">Current stable release · verified September 20, 2026</p>
+              <h2 className="text-2xl sm:text-3xl font-bold mb-3">Distant Horizons 3.3 is available</h2>
+              <p className="text-text-muted leading-relaxed">
+                The 3.3.x release line includes Distant Horizons 3.3.1 for Minecraft 1.21.11 on Fabric and NeoForge.
+                Match the download to your exact Minecraft version and loader, then start with conservative settings
+                before enabling shaders.
+              </p>
+            </div>
+            <a
+              href={siteConfig.officialModrinthUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-secondary whitespace-nowrap"
+            >
+              Check official files <ArrowRight className="w-4 h-4" />
+            </a>
+          </div>
+          <div className="flex flex-wrap gap-3 mt-6">
+            <Link href="/install/1-21-11" className="btn-primary !py-2.5">Install for Minecraft 1.21.11</Link>
+            <Link href="/guides/distant-horizons-best-settings" className="btn-secondary !py-2.5">Choose safe settings</Link>
+            <Link href="/guides/distant-horizons-how-to-use" className="btn-secondary !py-2.5">How to use Distant Horizons</Link>
+          </div>
+        </div>
+      </section>
+
       {/* Popular Shaders Preview */}
       <section className="py-20 sm:py-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -99,7 +129,7 @@ export default function Home() {
               </span>
             </Link>
 
-            <Link href="/install/1-21-1/fabric" className="glass rounded-2xl p-8 card-hover group text-center">
+            <Link href="/install/1-21-11/fabric" className="glass rounded-2xl p-8 card-hover group text-center">
               <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-purple-500 to-violet-400 flex items-center justify-center mx-auto mb-4 transition-transform group-hover:scale-110">
                 <Download className="w-7 h-7 text-white" />
               </div>
@@ -132,7 +162,9 @@ export default function Home() {
           </h2>
           <div className="prose prose-invert max-w-none text-text-muted text-sm leading-relaxed space-y-4">
             <p>
-              <strong>Version note:</strong> this site tracks version-specific compatibility separately. The official Distant Horizons mod currently has a 3.2.x beta release line; always check the official release notes before installing a newer build. <a href={siteConfig.officialReleaseUrl} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">View official releases</a>.
+              <strong>Version note:</strong> this site currently tracks the {siteConfig.currentReleaseLabel} release line.
+              Distant Horizons 3.3.1 is available for Minecraft 1.21.11, but files differ by game version and loader.
+              Always verify the exact build before installing. <a href={siteConfig.officialReleaseUrl} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">View official releases</a>.
             </p>
             <p>
               <strong>Distant Horizons</strong> is a free, open-source Minecraft mod that revolutionizes

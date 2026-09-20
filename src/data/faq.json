@@ -47,7 +47,7 @@
             },
             {
                 "q": "What Minecraft versions does Distant Horizons support?",
-                "a": "Distant Horizons supports a wide range of Minecraft versions. As of July 2026, the current beta release line is DH 3.2.0-b, with official files available for versions including 1.21.11, 1.21.5, 1.21.1, 1.20.6, 1.20.4, 1.20.1, and 1.18.2. Always select the file matching your exact Minecraft version and loader, and check the official Modrinth or CurseForge page for newer builds."
+                "a": "Distant Horizons supports a wide range of Minecraft versions. As of September 20, 2026, the current stable release line is DH 3.3.x, including DH 3.3.1 for Minecraft 1.21.11 on Fabric and NeoForge. Older Minecraft versions may use a different DH build, so always select the file matching your exact game version and loader and verify it on the official Modrinth or release page."
             }
         ]
     },

@@ -2,11 +2,11 @@ import versionsData from '@/data/versions.json';
 
 type BaseVersion = (typeof versionsData)[number];
 
-const makeCurrentVersion = (mcVersion: string): BaseVersion => ({
+const makeCurrentVersion = (mcVersion: string, dhVersion: string, releaseDate: string): BaseVersion => ({
   mcVersion,
-  dhVersion: '3.2.0-b',
-  releaseDate: '2026-07',
-  stability: 'beta',
+  dhVersion,
+  releaseDate,
+  stability: 'stable',
   loaders: {
     fabric: {
       ...versionsData[0].loaders.fabric,
@@ -19,7 +19,10 @@ const makeCurrentVersion = (mcVersion: string): BaseVersion => ({
   },
 });
 
-const additionalVersions: BaseVersion[] = ['26.2', '26.1.2', '1.21.10', '1.21.9', '1.21.8', '1.21.6', '1.21.3'].map(makeCurrentVersion);
+const additionalVersions: BaseVersion[] = [
+  ...['26.3', '26.2', '26.1.2'].map((version) => makeCurrentVersion(version, '3.3.0', '2026-09-17')),
+  ...['1.21.10', '1.21.9', '1.21.8', '1.21.6', '1.21.3'].map((version) => makeCurrentVersion(version, '3.3.1', '2026-09-18')),
+];
 
 const versionCatalog = [...additionalVersions, ...versionsData].map((version) => {
   if (version.mcVersion !== '1.20.6') return version;
