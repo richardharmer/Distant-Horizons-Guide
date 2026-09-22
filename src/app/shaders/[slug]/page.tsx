@@ -4,7 +4,6 @@ import { notFound } from 'next/navigation';
 import { ArrowRight, ExternalLink } from 'lucide-react';
 import shadersData from '@/data/shaders.json';
 import { siteConfig } from '@/data/site';
-import { INDEXABLE_SHADER_SLUGS } from '@/data/indexing';
 import { socialMetadata } from '@/lib/seo';
 
 interface Props { params: Promise<{ slug: string }> }
@@ -22,7 +21,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title,
     description: `${shader.name} compatibility with Distant Horizons: evidence scope, Minecraft versions, loaders, settings, and known limitations.`,
-    robots: INDEXABLE_SHADER_SLUGS.has(shader.slug) ? undefined : { index: false, follow: true },
     alternates: { canonical: `${siteConfig.url}/shaders/${shader.slug}` },
     ...socialMetadata(title, `${shader.name} compatibility notes for Distant Horizons.`, `/shaders/${shader.slug}`, 'article'),
   };

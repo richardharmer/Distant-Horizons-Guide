@@ -24,9 +24,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title,
     description: `Step-by-step Distant Horizons installation for Minecraft ${mcVersion} with ${loaderName}: downloads, dependencies, settings, and compatibility checks.`,
-    robots: { index: false, follow: true },
-    alternates: { canonical: `${siteConfig.url}/install/${version}` },
-    ...socialMetadata(title, `Install DH for Minecraft ${mcVersion} using ${loaderName}.`, `/install/${version}`),
+    alternates: { canonical: `${siteConfig.url}/install/${version}/${loader}` },
+    ...socialMetadata(title, `Install DH for Minecraft ${mcVersion} using ${loaderName}.`, `/install/${version}/${loader}`),
   };
 }
 

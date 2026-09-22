@@ -33,8 +33,8 @@ const versionCatalog: VersionCatalogEntry[] = [...additionalVersions, ...version
   const version = sourceVersion.mcVersion === '1.20.6'
     ? { ...sourceVersion, loaders: { ...sourceVersion.loaders, neoforge: { ...sourceVersion.loaders.neoforge, downloadUrl: 'https://modrinth.com/mod/distanthorizons/versions?g=1.20.6&l=neoforge' } } }
     : sourceVersion;
-  const indexable = INDEXABLE_INSTALL_VERSIONS.has(version.mcVersion);
-  return { ...version, verified: indexable, indexable };
+  const verified = INDEXABLE_INSTALL_VERSIONS.has(version.mcVersion);
+  return { ...version, verified, indexable: true };
 });
 
 export default versionCatalog;

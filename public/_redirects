@@ -1,9 +1,0 @@
-/install/:version/fabric /install/:version 301
-/install/:version/neoforge /install/:version 301
-
-/guides/distant-horizons-lod-not-generating /guides/distant-horizons-chunks-not-loading 301
-/guides/distant-horizons-high-cpu-usage /guides/distant-horizons-low-fps 301
-/guides/distant-horizons-out-of-memory /guides/distant-horizons-ram-settings 301
-/guides/distant-horizons-garbage-collector /guides/distant-horizons-ram-settings 301
-/guides/distant-horizons-wrong-dimension /guides/distant-horizons-lod-cache-reset 301
-/guides/distant-horizons-dependencies /install/1-21-11 301

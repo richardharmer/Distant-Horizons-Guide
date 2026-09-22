@@ -25,7 +25,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return {
         title: `Distant Horizons ${mcVersion} Install Guide | Fabric & NeoForge`,
         description: `Step-by-step guide to install Distant Horizons ${vData.dhVersion} on Minecraft ${mcVersion}. Download links, dependencies, and setup for Fabric and NeoForge.`,
-        robots: vData.indexable ? undefined : { index: false, follow: true },
         alternates: {
             canonical: `https://distanthorizonsguide.com/install/${version}`,
         },

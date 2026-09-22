@@ -5,13 +5,12 @@ import { ArrowRight, CheckCircle2, ExternalLink } from 'lucide-react';
 import { getGuide, guides } from '@/data/guides';
 import { siteConfig } from '@/data/site';
 import BestSettingsGuide from '@/components/BestSettingsGuide';
-import { REDIRECTED_GUIDE_SLUGS } from '@/data/indexing';
 import { socialMetadata } from '@/lib/seo';
 
 interface Props { params: Promise<{ slug: string }> }
 
 export function generateStaticParams() {
-  return guides.filter((guide) => !REDIRECTED_GUIDE_SLUGS.has(guide.slug)).map((guide) => ({ slug: guide.slug }));
+  return guides.map((guide) => ({ slug: guide.slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -30,7 +29,7 @@ export default async function GuidePage({ params }: Props) {
   if (!guide) notFound();
   const relatedGuides = [...new Set(guide.related)]
     .map((slug) => getGuide(slug))
-    .filter((related) => related !== undefined && !REDIRECTED_GUIDE_SLUGS.has(related.slug));
+    .filter((related) => related !== undefined);
   const isShaderGuide = guide.category === 'Shaders';
   const schema = {
     '@context': 'https://schema.org', '@type': 'HowTo', name: guide.title,
