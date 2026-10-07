@@ -96,6 +96,7 @@ export default function Footer() {
                             <li><a href="https://animepfp.app/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-sm text-text-muted hover:text-primary transition-colors"><ExternalLink className="w-3 h-3" /> Anime PFP</a></li>
                             <li><a href="https://tbctalentcalculator.net/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-sm text-text-muted hover:text-primary transition-colors"><ExternalLink className="w-3 h-3" /> TBC Talent Calculator</a></li>
                             <li><a href="https://normalmapgenerator.io/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-sm text-text-muted hover:text-primary transition-colors"><ExternalLink className="w-3 h-3" /> Normal Map Generator</a></li>
+                            <li><a href="https://malfoid.com/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-sm text-text-muted hover:text-primary transition-colors"><ExternalLink className="w-3 h-3" /> Malfoid</a></li>
                         </ul>
                     </div>
                 </div>
