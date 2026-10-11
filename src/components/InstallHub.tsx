@@ -82,6 +82,7 @@ export default function InstallHub({ initialVersion, initialLoader = 'fabric' }:
                                 {versions.map((v) => (
                                     <button
                                         key={v.mcVersion}
+                                        aria-pressed={selectedVersion === v.mcVersion}
                                         onClick={() => { setSelectedVersion(v.mcVersion); analyticsEvent('select_minecraft_version', { version: v.mcVersion }); }}
                                         className={`px-3 py-2.5 rounded-lg text-sm font-medium transition-all ${selectedVersion === v.mcVersion
                                             ? 'bg-primary/15 text-primary border border-primary/30'
@@ -101,6 +102,7 @@ export default function InstallHub({ initialVersion, initialLoader = 'fabric' }:
                             </label>
                             <div className="grid grid-cols-2 gap-2">
                                 <button
+                                    aria-pressed={selectedLoader === 'fabric'}
                                     onClick={() => { setSelectedLoader('fabric'); analyticsEvent('select_loader', { loader: 'fabric' }); }}
                                     className={`px-4 py-4 rounded-xl text-center transition-all ${selectedLoader === 'fabric'
                                         ? 'bg-primary/15 text-primary border border-primary/30'
@@ -111,6 +113,7 @@ export default function InstallHub({ initialVersion, initialLoader = 'fabric' }:
                                     <div className="text-xs opacity-60">Recommended</div>
                                 </button>
                                 <button
+                                    aria-pressed={selectedLoader === 'neoforge'}
                                     onClick={() => { setSelectedLoader('neoforge'); analyticsEvent('select_loader', { loader: 'neoforge' }); }}
                                     className={`px-4 py-4 rounded-xl text-center transition-all ${selectedLoader === 'neoforge'
                                         ? 'bg-primary/15 text-primary border border-primary/30'
@@ -126,7 +129,7 @@ export default function InstallHub({ initialVersion, initialLoader = 'fabric' }:
 
                     {/* Info box */}
                     <div className="glass rounded-xl p-6 mb-6">
-                        <div className="flex items-center gap-3 mb-4">
+                        <div className="flex flex-wrap items-center gap-3 mb-4">
                             <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center">
                                 <Download className="w-5 h-5 text-background" />
                             </div>
@@ -144,7 +147,7 @@ export default function InstallHub({ initialVersion, initialLoader = 'fabric' }:
                                     onClick={() => analyticsEvent('click_download_dh', { version: version.mcVersion, loader: selectedLoader })}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="ml-auto btn-primary !py-2.5 !px-5 text-sm"
+                                    className="w-full sm:w-auto sm:ml-auto btn-primary !py-2.5 !px-5 text-sm"
                                 >
                                     <Download className="w-4 h-4" />
                                     Download
@@ -155,7 +158,7 @@ export default function InstallHub({ initialVersion, initialLoader = 'fabric' }:
                         {!hasLoader && (
                             <div className="flex items-center gap-2 p-3 rounded-lg bg-danger/10 border border-danger/20 text-sm text-danger">
                                 <AlertCircle className="w-4 h-4 shrink-0" />
-                                {alternativeLoaderLabel} is not available for Minecraft {version.mcVersion}. Please use Fabric.
+                                No {selectedLoaderLabel} download is listed here for Minecraft {version.mcVersion}. Select Fabric or check the official release files.
                             </div>
                         )}
                     </div>
@@ -165,7 +168,7 @@ export default function InstallHub({ initialVersion, initialLoader = 'fabric' }:
                         <div className="glass rounded-xl p-6">
                             <h3 className="font-semibold text-foreground mb-4 flex items-center gap-2">
                                 <Check className="w-5 h-5 text-accent" />
-                                Required & Recommended Dependencies
+                                Dependencies & Optional Rendering Mods
                             </h3>
                             <div className="space-y-3">
                                 {loaderInfo.dependencies.map((dep) => (
@@ -178,7 +181,7 @@ export default function InstallHub({ initialVersion, initialLoader = 'fabric' }:
                                             <div className="flex items-center gap-2">
                                                 <span className="font-medium text-sm text-foreground">{dep.name}</span>
                                                 <span className={`text-xs px-2 py-0.5 rounded ${dep.required ? 'bg-danger/15 text-danger' : 'bg-accent/15 text-accent'}`}>
-                                                    {dep.required ? 'Required' : 'Recommended'}
+                                                    {dep.required ? 'Required' : 'Optional'}
                                                 </span>
                                             </div>
                                             {dep.note && <p className="text-xs text-text-dim mt-0.5">{dep.note}</p>}
@@ -205,20 +208,29 @@ export default function InstallHub({ initialVersion, initialLoader = 'fabric' }:
                         </div>
                     )}
 
+                    <aside className="mt-6 rounded-xl border border-border bg-surface/50 p-5 text-sm text-text-muted">
+                        <h3 className="font-semibold text-foreground mb-2">Before adding shaders</h3>
+                        <p>Forge and NeoForge are different loaders. Sodium and Iris publish Fabric and NeoForge files; an older Forge profile needs its own compatible rendering stack. Indium is only for older Sodium setups.</p>
+                        <p className="mt-3 text-xs text-text-dim">Rendering guidance checked October 11, 2026 against the official <a className="text-primary underline" href="https://modrinth.com/mod/sodium" target="_blank" rel="noopener noreferrer">Sodium</a>, <a className="text-primary underline" href="https://modrinth.com/mod/iris" target="_blank" rel="noopener noreferrer">Iris</a> and <a className="text-primary underline" href="https://modrinth.com/mod/indium" target="_blank" rel="noopener noreferrer">Indium</a> pages. This is not a test of every mod combination.</p>
+                    </aside>
+
                     {/* Installation steps */}
-                    <div className="mt-8 glass rounded-xl p-6">
+                    {hasLoader && <div className="mt-8 glass rounded-xl p-6">
                         <h3 className="font-semibold text-foreground mb-5 flex items-center gap-2">
                             <ChevronRight className="w-5 h-5 text-primary" />
                             Quick Installation Steps
                         </h3>
                         <div className="space-y-4">
                             {[
-                                `Install ${selectedLoaderLabel} for Minecraft ${version.mcVersion}`,
-                                            selectedLoader === 'fabric' ? 'Download and place Fabric API in your mods folder' : `${selectedLoaderLabel} includes its API — no extra download needed`,
-                                `Download Distant Horizons ${version.dhVersion} from the link above`,
-                                'Place the DH .jar file in your .minecraft/mods folder',
-                                'Install recommended dependencies (Sodium/Iris for Fabric, Embeddium/Oculus for NeoForge)',
-                                `Launch Minecraft with the ${selectedLoaderLabel} profile and verify that distant terrain appears.`,
+                                'Back up your world and duplicate your launcher profile before changing an existing modpack.',
+                                `Install ${selectedLoaderLabel} for Minecraft ${version.mcVersion} and launch the empty profile once.`,
+                                `Open the official file list above. Choose Minecraft ${version.mcVersion} and ${selectedLoaderLabel}, then check the file’s dependency requirements.`,
+                                'Place the DH .jar and its required dependencies in this profile’s mods folder. Do not mix Forge and NeoForge files.',
+                                'Launch without shaders first. Visit terrain and allow LOD generation to finish before testing distant views.',
+                                selectedLoaderLabel === 'Forge'
+                                    ? 'For optional shaders, check the exact Embeddium/Oculus and DH combination. Legacy Forge shader support varies by file.'
+                                    : 'For optional shaders, add matching Sodium and Iris files for your loader, then choose a DH-compatible shader. Do not add Indium to Sodium 0.6+.',
+
                             ].map((step, i) => (
                                 <div key={i} className="flex items-start gap-4">
                                     <div className="w-8 h-8 rounded-full bg-primary/15 border border-primary/30 flex items-center justify-center shrink-0 text-sm font-bold text-primary">
@@ -228,15 +240,15 @@ export default function InstallHub({ initialVersion, initialLoader = 'fabric' }:
                                 </div>
                             ))}
                         </div>
-                    </div>
+                    </div>}
                 </div>
 
                 {/* SEO text */}
                 <div className="mt-12 max-w-3xl mx-auto text-center">
                     <p className="text-sm text-text-dim leading-relaxed">
                         Download Distant Horizons for Minecraft {version.mcVersion} on {selectedLoaderLabel}.
-                        This guide covers the complete installation process including all required dependencies like
-                        {selectedLoader === 'fabric' ? ' Fabric API, Sodium, Iris, and Indium' : ' Embeddium and Oculus'}.
+                        Required dependencies come from the selected official file. Performance mods and shader loaders are optional;
+                        confirm their exact Minecraft version and loader before installing.
                         Distant Horizons is a free, open-source Minecraft LOD mod that extends your view distance up to 512+ chunks.
                     </p>
                 </div>

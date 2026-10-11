@@ -33,6 +33,28 @@ const versionCatalog: VersionCatalogEntry[] = [...additionalVersions, ...version
   const version = sourceVersion.mcVersion === '1.20.6'
     ? { ...sourceVersion, loaders: { ...sourceVersion.loaders, neoforge: { ...sourceVersion.loaders.neoforge, downloadUrl: 'https://modrinth.com/mod/distanthorizons/versions?g=1.20.6&l=neoforge' } } }
     : sourceVersion;
+  // Renderer recommendations depend on the loader, not on the DH release.
+  // Keep legacy Forge stacks separate from modern NeoForge downloads.
+  for (const loader of ['fabric', 'neoforge'] as const) {
+    const info = version.loaders[loader];
+    if (!info.downloadUrl) continue;
+    const label = getLoaderLabel(version.mcVersion, loader);
+    if (label === 'NeoForge' && info.dependencies.length > 0) {
+      info.dependencies = [
+        { name: 'Sodium', url: 'https://modrinth.com/mod/sodium', required: false, note: 'Optional performance mod. Select the exact Minecraft version and NeoForge file.' },
+        { name: 'Iris Shaders', url: 'https://modrinth.com/mod/iris', required: false, note: 'Optional shader loader. Match its required Sodium version; confirm DH support before enabling a shader.' },
+      ];
+    }
+    if (label === 'Forge') {
+      info.dependencies = info.dependencies.map((dependency) => ({
+        ...dependency,
+        note: 'Optional legacy Forge rendering mod. Check its exact Minecraft file and DH compatibility before installing.',
+      }));
+    }
+    info.dependencies = info.dependencies.map((dependency) => dependency.name === 'Indium'
+      ? { ...dependency, note: 'Only for older Sodium 0.5.x setups that need the Fabric Rendering API. Do not install with Sodium 0.6 or newer.' }
+      : dependency);
+  }
   const verified = INDEXABLE_INSTALL_VERSIONS.has(version.mcVersion);
   return { ...version, verified, indexable: true };
 });
