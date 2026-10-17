@@ -17,15 +17,15 @@ export const guides: Guide[] = [
     title: 'Distant Horizons Low FPS Fix: Reduce Stutter and CPU Load',
     description: 'Fix Distant Horizons low FPS and stutter with a safe order for vanilla render distance, LOD distance, builder load, RAM, and shaders.',
     category: 'Performance',
-    updated: '2026-09-20',
+    updated: '2026-10-18',
     intro: 'Distant Horizons can extend the visible world without rendering every distant chunk at full detail, but LOD generation and shader rendering still use CPU, GPU, memory, and disk bandwidth. The fastest fix is to lower vanilla render distance first, then tune DH generation load.',
     quickAnswer: 'Start with 8–12 vanilla chunks and a conservative 64–128 chunk LOD distance. If stutter happens while new terrain is building, reduce builder load before increasing RAM or render distance.',
     symptoms: ['FPS drops while flying or exploring', 'CPU stays near 100%', 'stutter continues after installing DH', 'shaders make the problem much worse'],
     steps: [
       { title: 'Lower vanilla render distance', body: 'Start at 8–12 chunks. Let DH render the far terrain instead of asking Minecraft to render full-detail chunks at the same distance.' },
       { title: 'Identify generation load', body: 'Compare an already-generated area with unexplored terrain. High CPU use that settles after LOD building is different from constant stutter in an area whose LODs are already complete.' },
-      { title: 'Reduce DH building threads', body: 'Use no more than roughly half your logical CPU threads as an initial ceiling for LOD building. Reduce the value further if mouse input or the game thread stalls while exploring.' },
-      { title: 'Use a conservative LOD profile', body: 'Start with 128–256 chunks, medium or low quality, and cave rendering disabled. Increase one setting at a time after generation stabilizes.' },
+      { title: 'Reduce DH building threads', body: 'Begin with the low CPU-load preset. If your DH build exposes a thread control, reduce its load while repeating the same route; there is no universally optimal fraction of CPU threads.' },
+      { title: 'Use a conservative LOD profile', body: 'For this diagnostic baseline, use 64–128 LOD chunks, low or medium quality, and no shaders. These are editorial starting values, not measured limits. Increase one setting at a time after generation stabilizes.' },
       { title: 'Test without shaders', body: 'Disable shaders temporarily. If performance returns, use a shader with documented DH support and enable its DH integration option.' },
       { title: 'Wait for initial generation', body: 'CPU usage and stutter are usually highest while new LODs are generated. Re-test after the area around your base has finished generating.' },
     ],
@@ -36,12 +36,12 @@ export const guides: Guide[] = [
     title: 'Distant Horizons Shaders Not Working: Compatibility Fixes',
     description: 'Learn why Distant Horizons shaders fail, disappear, or show mismatched lighting, and how to troubleshoot Iris, shader packs, and DH settings.',
     category: 'Shaders',
-    updated: '2026-09-20',
+    updated: '2026-10-18',
     intro: 'Distant Horizons shader support depends on the shader pack implementing the DH rendering programs, not only on whether Iris or another shader loader is installed. A shader can load successfully while distant terrain still renders incorrectly.',
     symptoms: ['LOD terrain disappears when shaders are enabled', 'distant terrain is too bright or too dark', 'a hard seam appears at the LOD boundary', 'Minecraft crashes while compiling shaders'],
     steps: [
-      { title: 'Confirm the loader combination', body: 'On Fabric, test with a current Iris and Sodium combination. On NeoForge, verify the exact Oculus/Embeddium and DH versions before changing settings.' },
-      { title: 'Use a known compatible pack', body: 'Start with Complementary Reimagined, BSL, or another pack in the compatibility database. Test one shader at a time.' },
+      { title: 'Confirm the loader combination', body: 'On Fabric, test with a current Iris and Sodium combination. On NeoForge 1.21.1 or newer, check matching Iris and Sodium files. Older Forge profiles use a separate rendering stack; Iris does not support Forge.' },
+      { title: 'Use a known compatible pack', body: 'Use the shader author’s DH statement for the exact archive. The database distinguishes author documentation from unverified combinations; test one shader at a time.' },
       { title: 'Enable DH support in the shader pack', body: 'Look for Distant Horizons Support, DH Integration, or a compatibility option in the shader settings. The label varies by pack.' },
       { title: 'Reload resources', body: 'Press F3+T after changing shader or DH settings. If the problem remains, test in a new world with other rendering mods removed.' },
       { title: 'Record exact versions', body: 'When reporting a bug, include Minecraft, DH, Iris/Oculus, Sodium/Embeddium, shader pack, GPU, and a crash log or screenshot.' },
@@ -53,7 +53,7 @@ export const guides: Guide[] = [
     title: 'Distant Horizons LODs Not Generating: Checklist and Fixes',
     description: 'Fix missing or empty distant terrain in Distant Horizons by checking generation settings, memory, server speed, and data conflicts.',
     category: 'Troubleshooting',
-    updated: '2026-07-29',
+    updated: '2026-10-18',
     intro: 'LOD generation is progressive. If the distant terrain is empty, first determine whether generation is paused, overloaded, still catching up, or blocked by a version or mod conflict.',
     symptoms: ['the horizon is empty', 'LOD chunks only appear after flying around', 'generation stops near a server spawn', 'holes appear in otherwise generated terrain'],
     steps: [
@@ -70,7 +70,7 @@ export const guides: Guide[] = [
     title: 'How Much RAM Does Distant Horizons Need?',
     description: 'Choose a sensible Minecraft RAM allocation for Distant Horizons without starving the operating system or creating unnecessary garbage collection.',
     category: 'Performance',
-    updated: '2026-07-29',
+    updated: '2026-10-18',
     intro: 'RAM needs depend on Minecraft, the modpack, LOD distance, quality, and whether the world is generating new terrain. More RAM is not automatically faster: leave enough memory for the operating system and avoid using an unnecessarily large heap.',
     symptoms: ['out-of-memory crashes', 'long freezes during LOD generation', 'garbage collection stutter', 'LOD generation stops under load'],
     steps: [
@@ -88,7 +88,7 @@ export const guides: Guide[] = [
     title: 'Distant Horizons Crashes on Startup: Version and Mod Checklist',
     description: 'Fix Distant Horizons startup crashes by checking Minecraft, loader, Java, Iris, Sodium, Oculus, and rendering-mod compatibility.',
     category: 'Troubleshooting',
-    updated: '2026-07-29',
+    updated: '2026-10-18',
     intro: 'Startup crashes are usually caused by a version mismatch or a rendering-mod conflict. Isolate the setup with a clean profile first, then add performance and shader mods back one at a time.',
     symptoms: ['Minecraft closes during loading', 'a crash report mentions DH, Iris, or Sodium', 'the title screen never appears', 'the crash started after updating one mod'],
     steps: [
@@ -105,7 +105,7 @@ export const guides: Guide[] = [
     title: 'Distant Horizons Fabric vs NeoForge: Which Loader Should You Use?',
     description: 'Compare Fabric and NeoForge for Distant Horizons installation, shader support, performance troubleshooting, and modpack compatibility.',
     category: 'Installation',
-    updated: '2026-07-29',
+    updated: '2026-10-18',
     intro: 'Neither loader is universally best. Choose the loader that matches the mods you already use, then keep the rendering stack consistent. For a new lightweight DH profile, Fabric is often the simpler starting point; a NeoForge modpack should stay on NeoForge.',
     symptoms: ['you are choosing a loader for a new instance', 'a modpack only supports one loader', 'shader dependencies differ between profiles', 'you want to migrate an existing world'],
     steps: [
@@ -121,7 +121,7 @@ export const guides: Guide[] = [
     title: 'Distant Horizons OptiFine Alternative: Iris and Sodium Setup',
     description: 'Set up Distant Horizons without OptiFine using a modern Fabric or NeoForge rendering stack and compatible shader settings.',
     category: 'Installation',
-    updated: '2026-07-29',
+    updated: '2026-10-18',
     intro: 'For a modern DH setup, use a loader and rendering stack that supports the DH integration path required by your shader. Avoid troubleshooting multiple rendering pipelines at the same time.',
     symptoms: ['OptiFine causes a DH conflict', 'shaders load but distant terrain is missing', 'you need an alternative to OptiFine', 'your modpack uses Sodium or Embeddium'],
     steps: [
@@ -137,7 +137,7 @@ export const guides: Guide[] = [
     title: 'Distant Horizons Chunk Flickering and LOD Seams: Fixes',
     description: 'Reduce Distant Horizons LOD flickering, bright seams, and transition artifacts by checking shader support, generation state, and render settings.',
     category: 'Troubleshooting',
-    updated: '2026-07-29',
+    updated: '2026-10-18',
     intro: 'A seam can come from incomplete LOD generation, a shader transition mismatch, stale resources, or a real compatibility bug. Change one variable at a time so you know which fix helped.',
     symptoms: ['terrain flickers at the LOD boundary', 'distant terrain has a different brightness', 'holes appear while flying', 'the issue only appears with shaders'],
     steps: [
@@ -151,7 +151,7 @@ export const guides: Guide[] = [
   },
   {
     slug: 'distant-horizons-lod-cache-reset', title: 'How to Reset the Distant Horizons LOD Cache',
-    description: 'Safely rebuild stale, corrupted, or wrong-dimension Distant Horizons LOD data after changing versions, servers, dimensions, resource packs, or world-generation mods.', category: 'Troubleshooting', updated: '2026-09-20',
+    description: 'Safely rebuild stale, corrupted, or wrong-dimension Distant Horizons LOD data after changing versions, servers, dimensions, resource packs, or world-generation mods.', category: 'Troubleshooting', updated: '2026-10-18',
     intro: 'A stale LOD database can preserve old terrain, show the wrong resource-pack colors, or make a dimension look incomplete. Back up your world first, then remove only the affected DH data rather than deleting the save.',
     symptoms: ['old terrain remains after an update', 'LOD colors do not match the resource pack', 'the Nether or End shows terrain from another profile', 'generation works in a new world but not the old one'],
     steps: [
@@ -165,8 +165,8 @@ export const guides: Guide[] = [
   },
   {
     slug: 'distant-horizons-server-realms', title: 'Distant Horizons on Servers and Realms: What Actually Works',
-    description: 'Understand Distant Horizons multiplayer limits, server chunk delivery, Realm data, and why distant terrain may take time to appear.', category: 'Multiplayer', updated: '2026-07-29',
-    intro: 'Distant Horizons can render distant terrain on a client, but it cannot create information that the server has never sent. Multiplayer generation speed depends on server view distance, chunk delivery, connection quality, and client LOD settings.',
+    description: 'Understand Distant Horizons multiplayer limits, server chunk delivery, Realm data, and why distant terrain may take time to appear.', category: 'Multiplayer', updated: '2026-10-18',
+    intro: 'Distant Horizons can render distant terrain on a client, but client-only play relies on terrain received while exploring; a server running DH can supply LOD data through a separate path. Multiplayer generation speed depends on server view distance, chunk delivery, connection quality, and client LOD settings.',
     symptoms: ['single-player works but a server looks empty', 'Realms LODs do not update', 'terrain from an old server session appears', 'flying creates a large generation backlog'],
     steps: [
       { title: 'Test the same profile offline', body: 'Compare a local world with the server. If local generation works, investigate server view distance, chunk delivery, or server-side restrictions.' },
@@ -178,7 +178,7 @@ export const guides: Guide[] = [
   },
   {
     slug: 'distant-horizons-chunks-not-loading', title: 'Distant Horizons Chunks Not Loading: Fix Empty Horizons',
-    description: 'Fix empty horizons, missing LOD chunks, paused generation, and slow distant-terrain building with a clear client and server checklist.', category: 'Troubleshooting', updated: '2026-09-20',
+    description: 'Fix empty horizons, missing LOD chunks, paused generation, and slow distant-terrain building with a clear client and server checklist.', category: 'Troubleshooting', updated: '2026-10-18',
     intro: '“Chunks not loading” can mean the renderer is disabled, the generator is paused, the client is overloaded, or the server has not delivered the required terrain. Identify which layer is failing before changing every setting.',
     symptoms: ['only nearby chunks render', 'the LOD distance is visible but empty', 'chunks appear after restarting', 'generation is stuck at one percentage'],
     steps: [
@@ -193,7 +193,7 @@ export const guides: Guide[] = [
   },
   {
     slug: 'distant-horizons-high-cpu-usage', title: 'Distant Horizons High CPU Usage: Reduce Stutter Without Losing the Horizon',
-    description: 'Tune CPU load, builder threads, vanilla render distance, and LOD generation so Distant Horizons stops overwhelming Minecraft.', category: 'Performance', updated: '2026-07-29',
+    description: 'Tune CPU load, builder threads, vanilla render distance, and LOD generation so Distant Horizons stops overwhelming Minecraft.', category: 'Performance', updated: '2026-10-18',
     intro: 'High CPU usage is expected while new LODs are being built, but constant stutter means the generator is taking too much time from the game thread or other mods. Reduce the workload before increasing memory.',
     symptoms: ['CPU stays at 100% while exploring', 'mouse input stutters during generation', 'the game freezes when flying', 'a high-end GPU does not improve the problem'],
     steps: [
@@ -205,7 +205,7 @@ export const guides: Guide[] = [
   },
   {
     slug: 'distant-horizons-out-of-memory', title: 'Distant Horizons Out of Memory Fix: RAM and LOD Settings',
-    description: 'Fix Distant Horizons out-of-memory crashes by balancing Java heap size, modpack memory, LOD distance, quality, and shader use.', category: 'Performance', updated: '2026-07-29',
+    description: 'Fix Distant Horizons out-of-memory crashes by balancing Java heap size, modpack memory, LOD distance, quality, and shader use.', category: 'Performance', updated: '2026-10-18',
     intro: 'An out-of-memory crash is not solved by assigning every gigabyte to Minecraft. The right allocation depends on the modpack and leaves memory for the operating system, the launcher, and graphics drivers.',
     symptoms: ['Minecraft crashes with an out-of-memory error', 'generation causes long freezes', 'RAM usage climbs continuously', 'the same world works with fewer mods'],
     steps: [
@@ -217,7 +217,7 @@ export const guides: Guide[] = [
   },
   {
     slug: 'distant-horizons-wrong-dimension', title: 'Distant Horizons Wrong-Dimension LODs: Fix Nether and End Data',
-    description: 'Stop Distant Horizons from showing stale or cross-dimension terrain by checking world identity, server folders, and cached LOD data.', category: 'Troubleshooting', updated: '2026-07-29',
+    description: 'Stop Distant Horizons from showing stale or cross-dimension terrain by checking world identity, server folders, and cached LOD data.', category: 'Troubleshooting', updated: '2026-10-18',
     intro: 'LOD data is associated with a world, server identity, and dimension. If those identifiers change or old data is reused, the horizon can show terrain from the wrong dimension or an earlier session.',
     symptoms: ['Nether terrain appears in the Overworld', 'Realms data changes after reconnecting', 'the End shows a previous world', 'the issue survives a Minecraft restart'],
     steps: [
@@ -229,7 +229,7 @@ export const guides: Guide[] = [
   },
   {
     slug: 'distant-horizons-iris-sodium-crash', title: 'Distant Horizons Crashes with Iris or Sodium: Clean Test Setup',
-    description: 'Diagnose Distant Horizons crashes involving Iris, Sodium, Embeddium, Oculus, shader packs, and duplicate rendering mods.', category: 'Compatibility', updated: '2026-07-29',
+    description: 'Diagnose Distant Horizons crashes involving Iris, Sodium, Embeddium, Oculus, shader packs, and duplicate rendering mods.', category: 'Compatibility', updated: '2026-10-18',
     intro: 'Rendering crashes are difficult to diagnose when several versions and rendering libraries are changed together. Build a clean profile, verify it launches, and add one dependency at a time.',
     symptoms: ['the game crashes when entering a world', 'the crash starts when shaders are enabled', 'a mixin or renderer error appears', 'the title screen loads but the world does not'],
     steps: [
@@ -242,7 +242,7 @@ export const guides: Guide[] = [
   },
   {
     slug: 'distant-horizons-best-settings-laptop', title: 'Best Distant Horizons Settings for Laptops and Integrated Graphics',
-    description: 'Use a balanced Distant Horizons profile on laptops and integrated GPUs with lower heat, memory, and battery demand. Includes a safe starting point for integrated graphics.', category: 'Hardware', updated: '2026-08-25',
+    description: 'Use a balanced Distant Horizons profile on laptops and integrated GPUs with lower heat, memory, and battery demand. Includes a safe starting point for integrated graphics.', category: 'Hardware', updated: '2026-10-18',
     intro: 'Laptop performance depends on cooling, power mode, shared memory, and CPU limits as much as the GPU name. A stable medium-distance profile is usually better than a very high distance that constantly generates terrain.',
     symptoms: ['the laptop overheats while exploring', 'battery drains quickly', 'integrated graphics stutter with shaders', 'the game slows down after several minutes'],
     steps: [
@@ -254,7 +254,7 @@ export const guides: Guide[] = [
   },
   {
     slug: 'distant-horizons-vs-voxy-bobby', title: 'Distant Horizons vs Voxy vs Bobby: Which Mod Fits Your Goal?',
-    description: 'Compare Distant Horizons, Voxy, and Bobby by view distance, terrain detail, storage, server behavior, and shader expectations.', category: 'Comparisons', updated: '2026-07-29',
+    description: 'Compare Distant Horizons, Voxy, and Bobby by view distance, terrain detail, storage, server behavior, and shader expectations.', category: 'Comparisons', updated: '2026-10-18',
     intro: 'These mods solve related but different problems. Distant Horizons focuses on far-distance LOD terrain, Bobby stores and renders previously loaded chunks, and Voxy uses its own approach to distant terrain. Choose by world size, server access, visual expectations, and loader support.',
     symptoms: ['you are choosing a distant-rendering mod', 'you want exact blocks far away', 'you play mostly on servers', 'you need shader support'],
     steps: [
@@ -266,7 +266,7 @@ export const guides: Guide[] = [
   },
   {
     slug: 'distant-horizons-dependencies', title: 'Distant Horizons Dependencies: Fabric, Forge, Iris, and Sodium',
-    description: 'Understand which Distant Horizons dependencies are required, recommended, or optional for Fabric, Forge, and NeoForge installations.', category: 'Installation', updated: '2026-07-29',
+    description: 'Understand which Distant Horizons dependencies are required, recommended, or optional for Fabric, Forge, and NeoForge installations.', category: 'Installation', updated: '2026-10-18',
     intro: 'Distant Horizons dependencies change with Minecraft version and loader. The safest approach is to choose the exact game version first, install the matching loader, and then add only dependencies that target that same version.',
     symptoms: ['the mod does not appear in the Mods menu', 'Minecraft reports a missing dependency', 'Iris or Sodium fails to load', 'a shader works without DH but not with it'],
     steps: [
@@ -279,24 +279,24 @@ export const guides: Guide[] = [
   },
   {
     slug: 'distant-horizons-c2me', title: 'Distant Horizons and C2ME: Compatibility Settings',
-    description: 'Troubleshoot Distant Horizons with C2ME by isolating multithreaded world generation, optimized IO, and garbage-collection settings.', category: 'Compatibility', updated: '2026-07-29',
-    intro: 'C2ME can change chunk-generation and IO behavior, which makes it important to test the combination carefully. The official compatibility guidance recommends disabling specific C2ME features when diagnosing DH world-generation problems.',
+    description: 'Troubleshoot Distant Horizons with C2ME by isolating multithreaded world generation, optimized IO, and garbage-collection settings.', category: 'Compatibility', updated: '2026-10-18',
+    intro: 'C2ME can change chunk-generation and IO behavior, which makes it important to test the combination carefully. This review has not established universal C2ME settings for every DH build. Use a clean comparison and version-specific author guidance.',
     symptoms: ['world generation crashes with C2ME installed', 'LOD generation stops near newly generated terrain', 'the game freezes during exploration', 'the problem disappears when C2ME is removed'],
     steps: [
       { title: 'Reproduce with a clean profile', body: 'Test Distant Horizons without C2ME first. This confirms whether the base loader, DH build, and world are working.' },
-      { title: 'Disable multithreaded world generation', body: 'Use the official Mod Support guidance and disable C2ME world-generation features when testing generation conflicts.' },
-      { title: 'Check optimized IO and serializer options', body: 'If the issue remains, compare C2ME settings for optimized IO and garbage-free chunk serialization rather than changing DH settings at random.' },
+      { title: 'Add C2ME without extra configuration changes', body: 'After DH works alone, add the exact C2ME build intended for your Minecraft version. Compare the same new-world seed and route; this isolates the added mod without guessing obsolete option names.' },
+      { title: 'Follow a version-matched issue report', body: 'Only change IO, serializer or world-generation options if the installed C2ME version documents them. Save the original config and reverse one change at a time; this guide does not prescribe a universal compatibility patch.' },
       { title: 'Test a new world', body: 'A world-generation conflict may only appear with a particular generator or mod combination. Compare a clean vanilla world before reporting the issue.' },
       { title: 'Include the full mod list', body: 'Record Minecraft, loader, DH, C2ME, world-generation mods, Java, GPU, and the first meaningful crash-report error.' },
     ], related: ['distant-horizons-iris-sodium-crash', 'distant-horizons-crash-on-startup'],
   },
   {
     slug: 'distant-horizons-vulkan-opengl', title: 'Distant Horizons Vulkan and Raw OpenGL Errors',
-    description: 'Diagnose Vulkan Mod conflicts, raw OpenGL errors, renderer crashes, and graphics-driver problems in Distant Horizons.', category: 'Compatibility', updated: '2026-07-29',
+    description: 'Diagnose Vulkan Mod conflicts, raw OpenGL errors, renderer crashes, and graphics-driver problems in Distant Horizons.', category: 'Compatibility', updated: '2026-10-18',
     intro: 'Distant Horizons depends on the Minecraft rendering environment. Vulkan wrappers, shader loaders, GPU drivers, and loader versions can all change the failure mode, so identify the renderer before tuning LOD distance.',
     symptoms: ['Minecraft reports a raw OpenGL error', 'the game crashes when entering a world', 'Vulkan Mod is installed', 'the issue only appears with shaders or a specific GPU'],
     steps: [
-      { title: 'Remove Vulkan Mod for the test', body: 'The official compatibility list identifies Vulkan Mod as a known incompatibility direction. Test with the standard Minecraft OpenGL path first.' },
+      { title: 'Remove Vulkan Mod for the test', body: 'Iris lists Vulkan rendering mods as incompatible with Iris; this does not mean every DH renderer option uses the same path. Test with the standard Minecraft OpenGL path first.' },
       { title: 'Update the GPU driver', body: 'Install a stable driver for your GPU and restart the computer before comparing results. Avoid changing the driver and every mod at the same time.' },
       { title: 'Test without shaders', body: 'Disable shader packs and test DH alone. If the crash disappears, add a documented DH-aware shader one at a time.' },
       { title: 'Check the first renderer error', body: 'Open the latest log or crash report and record the first OpenGL, Iris, Sodium, DH, or loader error rather than only the final exit code.' },
@@ -305,7 +305,7 @@ export const guides: Guide[] = [
   },
   {
     slug: 'distant-horizons-server-commands', title: 'Distant Horizons Server Commands and Distant Generation',
-    description: 'Learn what Distant Horizons server owners need to know about /dh commands, Distant Generation, pre-generation, and client-server versions.', category: 'Multiplayer', updated: '2026-07-29',
+    description: 'Learn what Distant Horizons server owners need to know about /dh commands, Distant Generation, pre-generation, and client-server versions.', category: 'Multiplayer', updated: '2026-10-18',
     intro: 'Server-side Distant Horizons behavior is different from a client-only installation. Server owners need a compatible server setup, matching client expectations, and the correct generation settings before players can receive distant LOD data.',
     symptoms: ['players see no server LODs', 'the /dh command is unavailable', 'generation causes timeouts', 'server and client show different terrain'],
     steps: [
@@ -318,7 +318,7 @@ export const guides: Guide[] = [
   },
   {
     slug: 'distant-horizons-bedrock', title: 'Does Distant Horizons Work on Minecraft Bedrock?',
-    description: 'Clarify Distant Horizons Java Edition support, Bedrock limitations, and what to check before downloading a Minecraft render-distance mod.', category: 'Installation', updated: '2026-07-29',
+    description: 'Clarify Distant Horizons Java Edition support, Bedrock limitations, and what to check before downloading a Minecraft render-distance mod.', category: 'Installation', updated: '2026-10-18',
     intro: 'Distant Horizons is a Java Edition mod. If you play Minecraft Bedrock Edition, Java mod installation instructions and Fabric or NeoForge files will not work in the Bedrock client.',
     symptoms: ['you play Minecraft for Windows or console', 'a Java .jar file does not install', 'you are searching for a Bedrock render-distance mod', 'Fabric or NeoForge is unavailable in your launcher'],
     steps: [
@@ -330,7 +330,7 @@ export const guides: Guide[] = [
   },
   {
     slug: 'distant-horizons-how-to-use', title: 'How to Use Distant Horizons: First Setup and LOD Generation',
-    description: 'Learn how to use Distant Horizons after installation, choose render distance, generate LODs, and verify that the mod is working.', category: 'Getting Started', updated: '2026-07-29',
+    description: 'Learn how to use Distant Horizons after installation, choose render distance, generate LODs, and verify that the mod is working.', category: 'Getting Started', updated: '2026-10-18',
     intro: 'Distant Horizons does not instantly turn every unexplored area into full-detail terrain. It renders simplified LOD data and needs time, chunks, CPU, storage, and suitable settings to build the distant world.',
     symptoms: ['you installed DH but see no distant terrain', 'the horizon is empty in a new world', 'you are unsure which distance setting matters', 'generation causes temporary stutter'],
     steps: [
@@ -343,7 +343,7 @@ export const guides: Guide[] = [
   },
   {
     slug: 'distant-horizons-garbage-collector', title: 'Distant Horizons Garbage Collector Stutter: Java Memory Fixes',
-    description: 'Reduce Distant Horizons garbage-collection pauses, freezes, and memory pressure by balancing Java heap, LOD distance, and modpack load.', category: 'Performance', updated: '2026-07-29',
+    description: 'Reduce Distant Horizons garbage-collection pauses, freezes, and memory pressure by balancing Java heap, LOD distance, and modpack load.', category: 'Performance', updated: '2026-10-18',
     intro: 'Garbage collection is Java cleaning unused objects from the heap. Distant Horizons generation, shaders, resource packs, and large modpacks can all increase allocation pressure, but assigning an unlimited heap is not a reliable fix.',
     symptoms: ['the game freezes for a few seconds', 'RAM rises and suddenly drops', 'stutter appears during LOD generation', 'the problem is worse with a large modpack'],
     steps: [
@@ -356,7 +356,7 @@ export const guides: Guide[] = [
   },
   {
     slug: 'distant-horizons-best-settings', title: 'Distant Horizons Best Settings: Performance, Quality & Laptop Profiles',
-    description: 'Find the best Distant Horizons settings for performance, quality, laptops, shaders, LOD distance, vanilla render distance, CPU load, and RAM.', category: 'Performance', updated: '2026-08-25',
+    description: 'Find the best Distant Horizons settings for performance, quality, laptops, shaders, LOD distance, vanilla render distance, CPU load, and RAM.', category: 'Performance', updated: '2026-10-18',
     intro: 'There is no single best Distant Horizons profile for every PC. The best starting point keeps Minecraft responsive, lets LOD generation catch up, and increases distance only after frame pacing and memory use are stable.',
     quickAnswer: 'For most new setups, start with 8–12 vanilla chunks, 64–128 chunks of LOD distance, low or medium LOD quality, and no shaders. Test one change at a time, then use the profile that stays smooth while new terrain generates.',
     symptoms: ['you want the best DH settings', 'the horizon looks good but FPS stutters', 'you do not know which distance setting to change', 'shaders make the setup unstable'],

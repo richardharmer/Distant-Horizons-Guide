@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 
 const evidenceLevels = [
   ['Official source', 'A release, compatibility statement, file listing, or instruction published by the project or dependency author.'],
-  ['Reproduced test', 'A result with Minecraft, DH, loader, dependency, shader, hardware, and test conditions recorded.'],
+  ['Reproduced test', 'A result with Minecraft, DH, loader, dependency, shader, hardware, and test conditions recorded. No such independently reproduced record is currently published by this site.'],
   ['Community report', 'A useful report from an issue tracker or community discussion that has not been independently reproduced.'],
 ];
 
@@ -30,10 +30,11 @@ export default function TestingMethodologyPage() {
         {evidenceLevels.map(([title, body]) => <section key={title} className="rounded-xl border border-border bg-surface/50 p-5"><h2 className="font-bold mb-2">{title}</h2><p className="text-sm text-text-muted leading-relaxed">{body}</p></section>)}
       </div>
 
+      <p className="text-text-muted mb-8">Current evidence status (October 18, 2026): release-file metadata and linked author documentation have been reviewed. The settings tool uses disclosed editorial rules. No in-game FPS benchmark, hardware comparison or independently reproduced shader matrix was produced for this update.</p>
       <div className="space-y-9 text-text-muted leading-relaxed">
         <section><h2 className="text-2xl font-bold text-foreground mb-3">Compatibility test record</h2><p>A complete record should include Minecraft version, Distant Horizons build, Fabric/Forge/NeoForge version, Iris/Oculus or equivalent renderer, shader name and build, GPU and driver, world type, whether LODs had finished generating, and the result observed.</p></section>
         <section><h2 className="text-2xl font-bold text-foreground mb-3">Performance guidance</h2><p>Settings are published as conservative starting points, not FPS guarantees. Performance guidance should describe the workload and bottleneck being changed, then tell the reader how to verify whether the change helped.</p></section>
-        <section><h2 className="text-2xl font-bold text-foreground mb-3">Installation data</h2><p>Version and dependency information is checked per Minecraft version. We do not copy one version&apos;s dependency list onto another version without an official source. Unverified legacy pages are excluded from search indexing until reviewed.</p></section>
+        <section><h2 className="text-2xl font-bold text-foreground mb-3">Installation data</h2><p>Version and dependency information is checked per Minecraft version. We do not copy one version&apos;s dependency list onto another version without an official source. Existing search URLs are retained while evidence is corrected. A source-review date verifies only the stated source scope; it does not certify every dependency, shader or hardware combination.</p></section>
         <section><h2 className="text-2xl font-bold text-foreground mb-3">Compatibility limitations</h2><p>A result may become stale after a DH, loader, shader, or driver update. Each compatibility page shows the date and scope of the available evidence. Missing evidence is reported as unknown rather than assumed compatible.</p></section>
       </div>
     </article>

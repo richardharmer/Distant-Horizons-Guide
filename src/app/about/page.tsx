@@ -207,14 +207,12 @@ export default function AboutPage() {
                                 Distant Horizons supports a wide range of Minecraft versions. The latest builds support MC <strong>1.21.11</strong>,{' '}
                                 <strong>1.21.5</strong>, <strong>1.21.4</strong>, <strong>1.21.1</strong>, <strong>1.20.1</strong>,{' '}
                                 <strong>1.20.4</strong>, <strong>1.20.6</strong>, and <strong>1.18.2</strong>.
-                                Both <strong>Fabric</strong> and <strong>NeoForge</strong> mod loaders are supported on most versions.
+                                Use the exact file listing: older releases may use Forge rather than NeoForge. The installation pages link to source-checked release records.
                             </p>
 
                             <h3 className="text-xl font-bold text-foreground mt-8 mb-3">Does Distant Horizons Work with Shaders?</h3>
                             <p>
-                                Yes! Many popular shader packs have added native Distant Horizons support. Packs like <strong>BSL Shaders</strong>,{' '}
-                                <strong>Complementary Reimagined</strong>, <strong>Complementary Unbound</strong>, and <strong>Bliss Shaders</strong>{' '}
-                                are fully compatible. Some packs like <strong>SEUS Renewed</strong> have partial support. Check our{' '}
+                                A shader must explicitly implement DH integration. General Iris support does not establish a tested DH combination. Read the author statements and exact-version limits in our{' '}
                                 <Link href="/shaders" className="text-primary hover:underline">
                                     Shader Compatibility Database
                                 </Link>{' '}
@@ -270,7 +268,7 @@ export default function AboutPage() {
                                 ['Active Development', 'Regular updates with new features and bug fixes.'],
                                 ['Unofficial Guide', 'This site is independent from the Distant Horizons project, Mojang, and Microsoft.'],
                                 ['Performance Optimized', 'Configurable CPU/GPU usage to match your hardware.'],
-                                ['Shader Evidence', 'Compatibility entries record version scope, evidence dates, settings, and limitations.'],
+                                ['Shader Evidence', 'Entries separate author documentation, unknown version combinations and source-review dates.'],
                             ].map(([title, desc]) => (
                                 <div key={title} className="flex items-start gap-3 p-4 rounded-xl bg-surface/30 border border-border/30">
                                     <CheckCircle className="w-5 h-5 text-accent shrink-0 mt-0.5" />
@@ -304,14 +302,14 @@ export default function AboutPage() {
                                 Ready to Try <span className="gradient-text">Distant Horizons</span>?
                             </h2>
                             <p className="text-text-muted mb-6 max-w-xl mx-auto">
-                                Get started in minutes. Install the mod, generate optimized settings, and explore Minecraft like never before.
+                                Get started in minutes. Install the mod, choose starting settings, and explore Minecraft like never before.
                             </p>
                             <div className="flex flex-wrap gap-3 justify-center">
                                 <Link href="/install/1-21-11" className="btn-primary !py-2.5 !px-5 text-sm">
                                     <Download className="w-4 h-4" /> Install Guide
                                 </Link>
                                 <Link href="/calculator" className="btn-secondary !py-2.5 !px-5 text-sm">
-                                    <Cpu className="w-4 h-4" /> Config Generator
+                                    <Cpu className="w-4 h-4" /> Starting Settings Tool
                                 </Link>
                                 <Link href="/shaders" className="btn-secondary !py-2.5 !px-5 text-sm">
                                     <Layers className="w-4 h-4" /> Shader Database

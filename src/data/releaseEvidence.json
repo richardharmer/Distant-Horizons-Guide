@@ -1,0 +1,242 @@
+[
+  {
+    "mcVersion": "26.3",
+    "dhVersion": "3.3.4",
+    "versionNumber": "3.3.4-26.3",
+    "releaseDate": "2026-09-29",
+    "stability": "release",
+    "loaders": [
+      "fabric",
+      "neoforge"
+    ],
+    "dependencies": [],
+    "sourceUrl": "https://modrinth.com/mod/distanthorizons/version/TGgEbP9A",
+    "sourceApi": "https://api.modrinth.com/v2/version/TGgEbP9A",
+    "checkedAt": "2026-10-18"
+  },
+  {
+    "mcVersion": "26.2",
+    "dhVersion": "3.3.3",
+    "versionNumber": "3.3.3-26.2",
+    "releaseDate": "2026-09-29",
+    "stability": "release",
+    "loaders": [
+      "fabric",
+      "neoforge"
+    ],
+    "dependencies": [],
+    "sourceUrl": "https://modrinth.com/mod/distanthorizons/version/aAow4a9f",
+    "sourceApi": "https://api.modrinth.com/v2/version/aAow4a9f",
+    "checkedAt": "2026-10-18"
+  },
+  {
+    "mcVersion": "26.1.2",
+    "dhVersion": "3.3.3",
+    "versionNumber": "3.3.3-26.1.2",
+    "releaseDate": "2026-09-29",
+    "stability": "release",
+    "loaders": [
+      "fabric",
+      "neoforge"
+    ],
+    "dependencies": [],
+    "sourceUrl": "https://modrinth.com/mod/distanthorizons/version/QHxoccsN",
+    "sourceApi": "https://api.modrinth.com/v2/version/QHxoccsN",
+    "checkedAt": "2026-10-18"
+  },
+  {
+    "mcVersion": "1.21.10",
+    "dhVersion": "3.3.3",
+    "versionNumber": "3.3.3-1.21.10",
+    "releaseDate": "2026-09-29",
+    "stability": "release",
+    "loaders": [
+      "fabric",
+      "neoforge"
+    ],
+    "dependencies": [],
+    "sourceUrl": "https://modrinth.com/mod/distanthorizons/version/dXJr1PPw",
+    "sourceApi": "https://api.modrinth.com/v2/version/dXJr1PPw",
+    "checkedAt": "2026-10-18"
+  },
+  {
+    "mcVersion": "1.21.9",
+    "dhVersion": "3.3.3",
+    "versionNumber": "3.3.3-1.21.9",
+    "releaseDate": "2026-09-29",
+    "stability": "release",
+    "loaders": [
+      "fabric",
+      "neoforge"
+    ],
+    "dependencies": [],
+    "sourceUrl": "https://modrinth.com/mod/distanthorizons/version/6j8Stvci",
+    "sourceApi": "https://api.modrinth.com/v2/version/6j8Stvci",
+    "checkedAt": "2026-10-18"
+  },
+  {
+    "mcVersion": "1.21.8",
+    "dhVersion": "3.3.3",
+    "versionNumber": "3.3.3-1.21.8",
+    "releaseDate": "2026-09-29",
+    "stability": "release",
+    "loaders": [
+      "fabric",
+      "neoforge"
+    ],
+    "dependencies": [],
+    "sourceUrl": "https://modrinth.com/mod/distanthorizons/version/ybg8dWNM",
+    "sourceApi": "https://api.modrinth.com/v2/version/ybg8dWNM",
+    "checkedAt": "2026-10-18"
+  },
+  {
+    "mcVersion": "1.21.6",
+    "dhVersion": "3.3.3",
+    "versionNumber": "3.3.3-1.21.6",
+    "releaseDate": "2026-09-29",
+    "stability": "release",
+    "loaders": [
+      "fabric",
+      "neoforge"
+    ],
+    "dependencies": [],
+    "sourceUrl": "https://modrinth.com/mod/distanthorizons/version/etaNDws6",
+    "sourceApi": "https://api.modrinth.com/v2/version/etaNDws6",
+    "checkedAt": "2026-10-18"
+  },
+  {
+    "mcVersion": "1.21.3",
+    "dhVersion": "3.3.3",
+    "versionNumber": "3.3.3-1.21.3",
+    "releaseDate": "2026-09-29",
+    "stability": "release",
+    "loaders": [
+      "fabric",
+      "neoforge"
+    ],
+    "dependencies": [],
+    "sourceUrl": "https://modrinth.com/mod/distanthorizons/version/1din3DCu",
+    "sourceApi": "https://api.modrinth.com/v2/version/1din3DCu",
+    "checkedAt": "2026-10-18"
+  },
+  {
+    "mcVersion": "1.21.11",
+    "dhVersion": "3.3.3",
+    "versionNumber": "3.3.3-1.21.11",
+    "releaseDate": "2026-09-29",
+    "stability": "release",
+    "loaders": [
+      "fabric",
+      "neoforge"
+    ],
+    "dependencies": [],
+    "sourceUrl": "https://modrinth.com/mod/distanthorizons/version/oNqCUHFk",
+    "sourceApi": "https://api.modrinth.com/v2/version/oNqCUHFk",
+    "checkedAt": "2026-10-18"
+  },
+  {
+    "mcVersion": "1.21.5",
+    "dhVersion": "3.3.3",
+    "versionNumber": "3.3.3-1.21.5",
+    "releaseDate": "2026-09-29",
+    "stability": "release",
+    "loaders": [
+      "fabric",
+      "neoforge"
+    ],
+    "dependencies": [],
+    "sourceUrl": "https://modrinth.com/mod/distanthorizons/version/Lb7ygvfg",
+    "sourceApi": "https://api.modrinth.com/v2/version/Lb7ygvfg",
+    "checkedAt": "2026-10-18"
+  },
+  {
+    "mcVersion": "1.21.1",
+    "dhVersion": "3.3.3",
+    "versionNumber": "3.3.3-1.21.1",
+    "releaseDate": "2026-09-29",
+    "stability": "release",
+    "loaders": [
+      "fabric",
+      "neoforge"
+    ],
+    "dependencies": [],
+    "sourceUrl": "https://modrinth.com/mod/distanthorizons/version/9w34y8ai",
+    "sourceApi": "https://api.modrinth.com/v2/version/9w34y8ai",
+    "checkedAt": "2026-10-18"
+  },
+  {
+    "mcVersion": "1.21.4",
+    "dhVersion": "3.3.3",
+    "versionNumber": "3.3.3-1.21.4",
+    "releaseDate": "2026-09-29",
+    "stability": "release",
+    "loaders": [
+      "fabric",
+      "neoforge"
+    ],
+    "dependencies": [],
+    "sourceUrl": "https://modrinth.com/mod/distanthorizons/version/SSfzA0Av",
+    "sourceApi": "https://api.modrinth.com/v2/version/SSfzA0Av",
+    "checkedAt": "2026-10-18"
+  },
+  {
+    "mcVersion": "1.20.1",
+    "dhVersion": "3.3.3",
+    "versionNumber": "3.3.3-1.20.1",
+    "releaseDate": "2026-09-29",
+    "stability": "release",
+    "loaders": [
+      "fabric",
+      "forge"
+    ],
+    "dependencies": [],
+    "sourceUrl": "https://modrinth.com/mod/distanthorizons/version/6UnEfsRQ",
+    "sourceApi": "https://api.modrinth.com/v2/version/6UnEfsRQ",
+    "checkedAt": "2026-10-18"
+  },
+  {
+    "mcVersion": "1.20.4",
+    "dhVersion": "3.3.3",
+    "versionNumber": "3.3.3-1.20.4",
+    "releaseDate": "2026-09-29",
+    "stability": "release",
+    "loaders": [
+      "fabric",
+      "forge"
+    ],
+    "dependencies": [],
+    "sourceUrl": "https://modrinth.com/mod/distanthorizons/version/EGw562qa",
+    "sourceApi": "https://api.modrinth.com/v2/version/EGw562qa",
+    "checkedAt": "2026-10-18"
+  },
+  {
+    "mcVersion": "1.20.6",
+    "dhVersion": "3.3.3",
+    "versionNumber": "3.3.3-1.20.6",
+    "releaseDate": "2026-09-29",
+    "stability": "release",
+    "loaders": [
+      "fabric",
+      "neoforge"
+    ],
+    "dependencies": [],
+    "sourceUrl": "https://modrinth.com/mod/distanthorizons/version/lEA4fbOO",
+    "sourceApi": "https://api.modrinth.com/v2/version/lEA4fbOO",
+    "checkedAt": "2026-10-18"
+  },
+  {
+    "mcVersion": "1.18.2",
+    "dhVersion": "3.3.3",
+    "versionNumber": "3.3.3-1.18.2",
+    "releaseDate": "2026-09-29",
+    "stability": "release",
+    "loaders": [
+      "fabric",
+      "forge"
+    ],
+    "dependencies": [],
+    "sourceUrl": "https://modrinth.com/mod/distanthorizons/version/tYRYS64l",
+    "sourceApi": "https://api.modrinth.com/v2/version/tYRYS64l",
+    "checkedAt": "2026-10-18"
+  }
+]

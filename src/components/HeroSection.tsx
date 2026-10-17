@@ -12,8 +12,8 @@ const features = [
     },
     {
         icon: Calculator,
-        title: 'Config Generator',
-        description: 'Get optimized settings for your hardware',
+        title: 'Starting Settings Tool',
+        description: 'Choose starting values with published rules',
         href: '/calculator',
         color: 'from-green-500 to-emerald-400',
     },
@@ -56,7 +56,7 @@ export default function HeroSection() {
                     <div className="text-center lg:text-left">
                         <div className="animate-fade-in-up mb-6 inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm font-medium text-primary">
                             <span className="w-2 h-2 rounded-full bg-accent" />
-                            Independent guide · verified for {siteConfig.currentReleaseLabel}
+                            Independent guide · source notes for {siteConfig.currentReleaseLabel}
                         </div>
 
                         <h1 className="animate-fade-in-up text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.08] mb-6" style={{ animationDelay: '0.1s' }}>
@@ -93,8 +93,8 @@ export default function HeroSection() {
                     <div className="animate-fade-in-up rounded-2xl border border-border bg-surface/80 p-5 sm:p-7" style={{ animationDelay: '0.2s' }}>
                         <div className="flex items-start justify-between gap-4 pb-5 border-b border-border/70">
                             <div>
-                                <p className="text-xs uppercase tracking-[0.16em] text-text-dim mb-2">Verified setup snapshot</p>
-                                <h2 className="text-xl font-bold">A safe Distant Horizons starting point</h2>
+                                <p className="text-xs uppercase tracking-[0.16em] text-text-dim mb-2">Editorial starting profile</p>
+                                <h2 className="text-xl font-bold">A Distant Horizons starting point</h2>
                             </div>
                             <span className="shrink-0 rounded-md border border-accent/30 bg-accent/10 px-2.5 py-1 text-xs font-semibold text-accent">
                                 DH {siteConfig.currentRelease}
@@ -128,7 +128,7 @@ export default function HeroSection() {
                             <ol className="space-y-2.5 text-sm text-text-muted">
                                 <li className="flex gap-2.5"><CheckCircle2 className="w-4 h-4 text-accent shrink-0 mt-1" />Install the matching DH file and loader.</li>
                                 <li className="flex gap-2.5"><CheckCircle2 className="w-4 h-4 text-accent shrink-0 mt-1" />Test LOD generation without shaders first.</li>
-                                <li className="flex gap-2.5"><CheckCircle2 className="w-4 h-4 text-accent shrink-0 mt-1" />Add a verified compatible shader last.</li>
+                                <li className="flex gap-2.5"><CheckCircle2 className="w-4 h-4 text-accent shrink-0 mt-1" />Check the exact shader requirements before adding it.</li>
                             </ol>
                         </div>
 

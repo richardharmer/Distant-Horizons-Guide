@@ -1,36 +1,28 @@
 import type { Metadata } from 'next';
 import ShaderTable from '@/components/ShaderTable';
 import Link from 'next/link';
+import shaders from '@/data/shaders.json';
 import { socialMetadata } from '@/lib/seo';
 
 export const metadata: Metadata = {
     title: 'Distant Horizons Shaders: Compatibility Database',
     description:
-        'Find which shaders work with Distant Horizons. 20+ shader packs tested with compatibility status, recommended settings, and known issues for DH mod.',
+        'Distant Horizons shader compatibility sources, author statements, exact-version limitations and setup checks for 20 shader packs.',
     alternates: {
         canonical: 'https://distanthorizonsguide.com/shaders',
     },
     ...socialMetadata(
         'Distant Horizons Shaders: Compatibility Database',
-        'Find which shaders work with Distant Horizons. 20+ shaders tested with compatibility status and settings.',
+        'Check Distant Horizons shader sources, documented support and exact-version limitations.',
         '/shaders',
     ),
 };
 
 const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'ItemList',
-    name: 'Shaders Compatible with Distant Horizons',
-    description:
-        'A comprehensive list of Minecraft shader packs and their compatibility with the Distant Horizons LOD mod.',
-    numberOfItems: 20,
-    itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'BSL Shaders', description: 'Compatible' },
-        { '@type': 'ListItem', position: 2, name: 'Complementary Reimagined', description: 'Compatible' },
-        { '@type': 'ListItem', position: 3, name: 'Complementary Unbound', description: 'Compatible' },
-        { '@type': 'ListItem', position: 4, name: 'SEUS Renewed', description: 'Partial' },
-        { '@type': 'ListItem', position: 5, name: "Sildur's Vibrant", description: 'Incompatible' },
-    ],
+    '@context': 'https://schema.org', '@type': 'ItemList',
+    name: 'Distant Horizons Shader Compatibility Sources',
+    numberOfItems: shaders.length,
+    itemListElement: shaders.map((shader, index) => ({ '@type': 'ListItem', position: index + 1, name: shader.name, url: `https://distanthorizonsguide.com/shaders/${shader.slug}` })),
 };
 
 export default function ShadersPage() {
@@ -47,12 +39,12 @@ export default function ShadersPage() {
                     <div className="glass rounded-2xl p-6 text-center">
                         <h3 className="font-semibold text-foreground mb-2">Ready to install?</h3>
                         <p className="text-sm text-text-muted mb-4">
-                            Found a compatible shader? Set up Distant Horizons with our step-by-step guide.
+                            Check the exact versions and author requirements, then set up DH without shaders before adding a pack.
                         </p>
                         <div className="flex flex-wrap gap-3 justify-center">
                             <Link href="/install/1-21-11" className="btn-primary !py-2 !px-5 text-sm">Install for 1.21.11</Link>
                             <Link href="/install/1-20-1" className="btn-primary !py-2 !px-5 text-sm">Install for 1.20.1</Link>
-                            <Link href="/calculator" className="btn-secondary !py-2 !px-5 text-sm">Optimize Settings</Link>
+                            <Link href="/calculator" className="btn-secondary !py-2 !px-5 text-sm">Choose starting settings</Link>
                         </div>
                     </div>
                 </div>

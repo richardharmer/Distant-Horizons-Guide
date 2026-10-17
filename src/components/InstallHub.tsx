@@ -168,7 +168,7 @@ export default function InstallHub({ initialVersion, initialLoader = 'fabric' }:
                         <div className="glass rounded-xl p-6">
                             <h3 className="font-semibold text-foreground mb-4 flex items-center gap-2">
                                 <Check className="w-5 h-5 text-accent" />
-                                Dependencies & Optional Rendering Mods
+                                Optional Rendering Mods
                             </h3>
                             <div className="space-y-3">
                                 {loaderInfo.dependencies.map((dep) => (
@@ -203,15 +203,15 @@ export default function InstallHub({ initialVersion, initialLoader = 'fabric' }:
 
                     {hasLoader && loaderInfo.dependencies.length === 0 && (
                         <div className="rounded-xl border border-warning/30 bg-warning/10 p-5 text-sm text-text-muted">
-                            <p className="font-semibold text-warning mb-2">Dependency list not independently verified</p>
-                            <p>Use the official file page for Minecraft {version.mcVersion} and {selectedLoaderLabel}. This guide does not copy dependency requirements from another Minecraft version.</p>
+                            <p className="font-semibold text-warning mb-2">Read the exact release record</p>
+                            <p>Use the official file page for Minecraft {version.mcVersion} and {selectedLoaderLabel}. No optional renderer recipe is supplied for this loader here; use version-matched author instructions.</p>
                         </div>
                     )}
 
                     <aside className="mt-6 rounded-xl border border-border bg-surface/50 p-5 text-sm text-text-muted">
                         <h3 className="font-semibold text-foreground mb-2">Before adding shaders</h3>
-                        <p>Forge and NeoForge are different loaders. Sodium and Iris publish Fabric and NeoForge files; an older Forge profile needs its own compatible rendering stack. Indium is only for older Sodium setups.</p>
-                        <p className="mt-3 text-xs text-text-dim">Rendering guidance checked October 11, 2026 against the official <a className="text-primary underline" href="https://modrinth.com/mod/sodium" target="_blank" rel="noopener noreferrer">Sodium</a>, <a className="text-primary underline" href="https://modrinth.com/mod/iris" target="_blank" rel="noopener noreferrer">Iris</a> and <a className="text-primary underline" href="https://modrinth.com/mod/indium" target="_blank" rel="noopener noreferrer">Indium</a> pages. This is not a test of every mod combination.</p>
+                        <p>Forge and NeoForge are different loaders. Iris supports Fabric and NeoForge 1.21.1 or newer, and does not support Forge. An older Forge or NeoForge profile needs version-specific author guidance. Indium is only for older Sodium setups.</p>
+                        <p className="mt-3 text-xs text-text-dim">Source guidance reviewed October 18, 2026 against the official <a className="text-primary underline" href="https://modrinth.com/mod/sodium" target="_blank" rel="noopener noreferrer">Sodium</a>, <a className="text-primary underline" href="https://modrinth.com/mod/iris" target="_blank" rel="noopener noreferrer">Iris</a> and <a className="text-primary underline" href="https://modrinth.com/mod/indium" target="_blank" rel="noopener noreferrer">Indium</a> pages. This is not a test of every mod combination.</p>
                     </aside>
 
                     {/* Installation steps */}
@@ -229,7 +229,7 @@ export default function InstallHub({ initialVersion, initialLoader = 'fabric' }:
                                 'Launch without shaders first. Visit terrain and allow LOD generation to finish before testing distant views.',
                                 selectedLoaderLabel === 'Forge'
                                     ? 'For optional shaders, check the exact Embeddium/Oculus and DH combination. Legacy Forge shader support varies by file.'
-                                    : 'For optional shaders, add matching Sodium and Iris files for your loader, then choose a DH-compatible shader. Do not add Indium to Sodium 0.6+.',
+                                    : 'For optional shaders, check that Iris has a file for this Minecraft version and loader before adding Sodium or a shader. Do not add Indium to Sodium 0.6+.',
 
                             ].map((step, i) => (
                                 <div key={i} className="flex items-start gap-4">

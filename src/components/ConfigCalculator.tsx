@@ -21,16 +21,16 @@ const cpuOptions = [
 ];
 
 const gpuOptions = [
-    { value: 'entry', label: 'Entry', desc: 'GTX 1050 / RX 570 tier' },
-    { value: 'mid', label: 'Mid-Range', desc: 'RTX 3060 / RX 6600 tier' },
-    { value: 'high', label: 'High-End', desc: 'RTX 4070 / RX 7800 tier' },
-    { value: 'ultra', label: 'Ultra', desc: 'RTX 4090 / RX 7900 XTX tier' },
+    { value: 'entry', label: 'Entry', desc: 'Limited graphics headroom' },
+    { value: 'mid', label: 'Mid-Range', desc: 'Moderate graphics headroom' },
+    { value: 'high', label: 'High-End', desc: 'More graphics headroom' },
+    { value: 'ultra', label: 'Ultra', desc: 'Most graphics headroom' },
 ];
 
 const targetOptions = [
-    { value: 'performance', label: 'Max FPS', desc: 'Prioritize frame rate', icon: Zap },
-    { value: 'balanced', label: 'Balanced', desc: 'Best of both worlds', icon: Gauge },
-    { value: 'visuals', label: 'Ultra Visuals', desc: 'Maximum eye candy', icon: Eye },
+    { value: 'performance', label: 'Lower load', desc: 'Prioritize frame rate', icon: Zap },
+    { value: 'balanced', label: 'Balanced', desc: 'Moderate starting point', icon: Gauge },
+    { value: 'visuals', label: 'More detail', desc: 'Increase cautiously', icon: Eye },
 ];
 
 export default function ConfigCalculator() {
@@ -53,23 +53,16 @@ export default function ConfigCalculator() {
         return generateConfig(profile);
     }, [cpu, gpu, targetVal, ram, shaderSupport, generated]);
 
-    // Visual preview data
-    const previewData = useMemo(() => {
-        if (targetVal === 'performance') {
-            return { label: 'Performance-first profile', gradient: 'from-green-500/20 to-emerald-500/10', chunks: '64–128', detail: 'Low' };
-        } else if (targetVal === 'visuals') {
-            return { label: 'Visual quality profile', gradient: 'from-purple-500/20 to-pink-500/10', chunks: '128–256', detail: 'High' };
-        }
-        return { label: 'Balanced starting profile', gradient: 'from-blue-500/20 to-cyan-500/10', chunks: '96–192', detail: 'Medium' };
-    }, [targetVal]);
+    const preview = generateConfig({ cpuThreads: cpu as HardwareProfile['cpuThreads'], gpuLevel: gpu as HardwareProfile['gpuLevel'], target: targetVal as HardwareProfile['target'], ramAllocation: ram as HardwareProfile['ramAllocation'], shaderSupport });
+    const previewData = { label: 'Rule-based starting profile', gradient: 'from-blue-500/20 to-cyan-500/10', chunks: preview.settings.lodDistance, detail: preview.settings.lodQuality };
 
     return (
         <section id="calculator" className="py-20 sm:py-28 border-t border-border/30">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-12">
-                    <h2 className="section-title">
+                    <h1 className="section-title">
                         Distant Horizons <span className="gradient-text">Starting Settings</span> Guide
-                    </h2>
+                    </h1>
                     <p className="section-subtitle">
                         Select your hardware to get a conservative profile you can enter in the current DH settings screen.
                         This tool does not generate a version-independent config file or guarantee FPS.
@@ -129,7 +122,7 @@ export default function ConfigCalculator() {
                         <div className="mb-6">
                             <div className="flex items-center gap-2 mb-3">
                                 <Target className="w-4 h-4 text-primary" />
-                                <h3 className="font-semibold text-foreground text-sm">Optimization Target</h3>
+                                <h3 className="font-semibold text-foreground text-sm">Starting preference</h3>
                             </div>
                             <div className="grid grid-cols-3 gap-2">
                                 {targetOptions.map((opt) => {
@@ -171,7 +164,7 @@ export default function ConfigCalculator() {
                                 <div>
                                     <div className="font-bold text-foreground">{previewData.label}</div>
                                     <div className="text-xs text-text-muted mt-1">
-                                        ~{previewData.chunks} chunks • LOD Quality: {previewData.detail}
+                                        {previewData.chunks} chunks • LOD Quality: {previewData.detail}
                                     </div>
                                 </div>
                                 <div className="text-right">
@@ -204,7 +197,7 @@ export default function ConfigCalculator() {
                                     {[
                                         ['LOD distance', `${result.settings.lodDistance} chunks`],
                                         ['LOD quality', result.settings.lodQuality],
-                                        ['Builder threads', `${result.settings.builderThreads}`],
+                                        ['Optional thread starting point', `${result.settings.builderThreads}`],
                                         ['CPU load', result.settings.cpuLoad],
                                         ['Cave rendering', result.settings.caveRendering ? 'On' : 'Off'],
                                         ['Vanilla distance', `${result.settings.vanillaRenderDistance} chunks`],

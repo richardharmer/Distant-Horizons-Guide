@@ -78,7 +78,6 @@ const softwareJsonLd = {
     priceCurrency: "USD",
   },
   downloadUrl: "https://modrinth.com/mod/distanthorizons",
-  softwareVersion: siteConfig.currentRelease,
   description:
     "A Minecraft mod that adds a Level of Detail (LOD) system, rendering simplified terrain beyond the normal render distance for up to 512+ chunks.",
 };

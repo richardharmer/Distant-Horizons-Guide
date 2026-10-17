@@ -32,7 +32,7 @@ export default function Footer() {
                         <h4 className="font-semibold text-foreground mb-3 text-sm uppercase tracking-wider">Resources</h4>
                         <ul className="space-y-2.5">
                             <li><Link href="/shaders" className="text-sm text-text-muted hover:text-primary transition-colors">Shader Database</Link></li>
-                            <li><Link href="/calculator" className="text-sm text-text-muted hover:text-primary transition-colors">Config Generator</Link></li>
+                            <li><Link href="/calculator" className="text-sm text-text-muted hover:text-primary transition-colors">Starting Settings Tool</Link></li>
                             <li><Link href="/install/1-21-11" className="text-sm text-text-muted hover:text-primary transition-colors">Installation Guide</Link></li>
                             <li><Link href="/faq" className="text-sm text-text-muted hover:text-primary transition-colors">FAQ</Link></li>
                             <li><Link href="/guides" className="text-sm text-text-muted hover:text-primary transition-colors">Troubleshooting Guides</Link></li>

@@ -3,6 +3,7 @@ import versionsData from '@/data/versionCatalog';
 import shadersData from '@/data/shaders.json';
 import { guides } from '@/data/guides';
 import { siteConfig } from '@/data/site';
+import { isInstallIndexable } from '@/data/indexing';
 
 export const dynamic = 'force-static';
 
@@ -66,13 +67,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
         },
         {
             url: `${baseUrl}/contact`,
-            lastModified: siteConfig.lastVerified,
+            lastModified: '2026-09-20',
             changeFrequency: 'monthly',
             priority: 0.6,
         },
         {
             url: `${baseUrl}/editorial-policy`,
-            lastModified: siteConfig.lastVerified,
+            lastModified: '2026-09-20',
             changeFrequency: 'monthly',
             priority: 0.6,
         },
@@ -84,31 +85,31 @@ export default function sitemap(): MetadataRoute.Sitemap {
         },
         {
             url: `${baseUrl}/corrections`,
-            lastModified: siteConfig.lastVerified,
+            lastModified: '2026-09-20',
             changeFrequency: 'monthly',
             priority: 0.5,
         },
         {
             url: `${baseUrl}/privacy`,
-            lastModified: siteConfig.lastVerified,
+            lastModified: '2026-09-20',
             changeFrequency: 'yearly',
             priority: 0.5,
         },
         {
             url: `${baseUrl}/terms`,
-            lastModified: siteConfig.lastVerified,
+            lastModified: '2026-09-20',
             changeFrequency: 'yearly',
             priority: 0.5,
         },
     ];
 
-    const dynamicRoutes: MetadataRoute.Sitemap = versionsData.map((v) => ({
+    const dynamicRoutes: MetadataRoute.Sitemap = versionsData.filter((v) => v.indexable).map((v) => ({
         url: `${baseUrl}/install/${v.mcVersion.replace(/\./g, '-')}`,
         lastModified: siteConfig.lastVerified,
         changeFrequency: 'monthly',
         priority: 0.7,
     }));
-    const loaderRoutes = versionsData.flatMap((v) => ['fabric', 'neoforge'].map((loader) => ({
+    const loaderRoutes = versionsData.flatMap((v) => (['fabric', 'neoforge'] as const).filter((loader) => isInstallIndexable(v.loaders[loader].downloadUrl)).map((loader) => ({
         url: `${baseUrl}/install/${v.mcVersion.replace(/\./g, '-')}/${loader}`,
         lastModified: siteConfig.lastVerified,
         changeFrequency: 'monthly' as const,
@@ -117,7 +118,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     const shaderRoutes = shadersData.map((shader) => ({
         url: `${baseUrl}/shaders/${shader.slug}`,
-        lastModified: shader.lastTested,
+        lastModified: shader.reviewedAt,
         changeFrequency: 'monthly' as const,
         priority: 0.7,
     }));

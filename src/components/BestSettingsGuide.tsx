@@ -24,7 +24,7 @@ export default function BestSettingsGuide() {
     <section className="mt-12 border-t border-border/30 pt-12" aria-labelledby="settings-profiles">
       <h2 id="settings-profiles" className="text-2xl font-bold mb-3">Choose a Distant Horizons settings profile</h2>
       <p className="text-text-muted leading-relaxed mb-7">
-        These are safe starting profiles rather than universal maximum settings. The useful test is whether Minecraft stays responsive while Distant Horizons is creating new LOD terrain—not whether a benchmark remains smooth in an already-generated area.
+        These are editorial starting profiles, without an independent in-game benchmark. The useful test is whether Minecraft stays responsive while Distant Horizons is creating new LOD terrain—not whether a benchmark remains smooth in an already-generated area.
       </p>
 
       <div className="grid gap-4 md:grid-cols-3">
