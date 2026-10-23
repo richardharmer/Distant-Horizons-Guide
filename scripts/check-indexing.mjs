@@ -39,7 +39,7 @@ for (const shader of shaderFiles) {
   assert(!html.includes('2025-12') && !html.includes('2.3+'), `Unsupported legacy compatibility evidence: ${shader.slug}`);
   if (shader.sourceUrl) assert(html.includes(shader.sourceUrl), `Missing author source: ${shader.slug}`);
 }
-for (const path of ['index.html', 'calculator.html', 'shaders.html', 'shaders/bsl-shaders.html', 'guides/distant-horizons-low-fps.html', 'install/26-3/fabric.html']) {
+for (const path of ['index.html', 'calculator.html', 'faq.html', 'shaders.html', 'shaders/bsl-shaders.html', 'guides/distant-horizons-low-fps.html', 'install/26-3/fabric.html']) {
   const html = readFileSync(join(root, 'out', path), 'utf8');
   assert.equal((html.match(/<h1(?:\s|>)/g) || []).length, 1, `Expected one main H1: ${path}`);
 }

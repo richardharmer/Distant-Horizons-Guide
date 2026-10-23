@@ -1,6 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
+import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Menu, X, Layers, Calculator, Download, HelpCircle, Info, BookOpen, Cpu } from 'lucide-react';
@@ -18,11 +19,22 @@ const navLinks = [
 export default function NavBar() {
     const [isOpen, setIsOpen] = useState(false);
 
+    const toggleRef = useRef<HTMLButtonElement>(null);
+    const pathname = usePathname();
+    const isActive = (href: string) => href.startsWith('/install/')
+        ? pathname.startsWith('/install/')
+        : pathname === href || pathname.startsWith(`${href}/`);
+
     return (
-        <nav className="fixed top-0 left-0 right-0 z-50 glass-strong">
+        <nav aria-label="Main navigation" className="fixed top-0 left-0 right-0 z-50 glass-strong" onKeyDown={(event) => {
+            if (event.key === 'Escape' && isOpen) {
+                setIsOpen(false);
+                toggleRef.current?.focus();
+            }
+        }}>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-16">
-                    <Link href="/" className="flex items-center gap-2 group">
+                    <Link href="/" onClick={() => setIsOpen(false)} className="flex items-center gap-2 group">
                         <Image
                             src="/logo.png"
                             alt="DHGuide Logo"
@@ -37,12 +49,13 @@ export default function NavBar() {
                         </span>
                     </Link>
 
-                    <div className="hidden md:flex items-center gap-1">
+                    <div className="hidden xl:flex items-center gap-1">
                         {navLinks.map((link) => (
                             <Link
                                 key={link.href}
                                 href={link.href}
-                                className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium text-text-muted hover:text-primary hover:bg-primary-glow transition-all duration-200"
+                                aria-current={isActive(link.href) ? 'page' : undefined}
+                                className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium text-text-muted aria-[current=page]:text-primary aria-[current=page]:bg-primary-glow hover:text-primary hover:bg-primary-glow transition-all duration-200"
                             >
                                 <link.icon className="w-4 h-4" />
                                 {link.label}
@@ -60,41 +73,44 @@ export default function NavBar() {
                     </div>
 
                     <button
+                        ref={toggleRef}
+                        type="button"
+                        aria-expanded={isOpen}
+                        aria-controls="mobile-navigation"
                         onClick={() => setIsOpen(!isOpen)}
-                        className="md:hidden p-2 rounded-lg text-text-muted hover:text-foreground hover:bg-surface transition-colors"
-                        aria-label="Toggle menu"
+                        className="xl:hidden min-h-11 min-w-11 flex items-center justify-center p-2 rounded-lg text-text-muted hover:text-foreground hover:bg-surface transition-colors"
+                        aria-label={isOpen ? 'Close menu' : 'Open menu'}
                     >
                         {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
                     </button>
                 </div>
             </div>
 
-            {isOpen && (
-                <div className="md:hidden glass-strong border-t border-border animate-fade-in">
-                    <div className="px-4 py-3 space-y-1">
-                        {navLinks.map((link) => (
-                            <Link
-                                key={link.href}
-                                href={link.href}
-                                onClick={() => setIsOpen(false)}
-                                className="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium text-text-muted hover:text-primary hover:bg-primary-glow transition-all"
-                            >
-                                <link.icon className="w-4 h-4" />
-                                {link.label}
-                            </Link>
-                        ))}
-                        <a
-                            href="https://modrinth.com/mod/distanthorizons"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium text-primary"
+            <div id="mobile-navigation" hidden={!isOpen} className="xl:hidden max-h-[calc(100dvh-4rem)] overflow-y-auto glass-strong border-t border-border">
+                <div className="px-4 py-3 space-y-1">
+                    {navLinks.map((link) => (
+                        <Link
+                            key={link.href}
+                            href={link.href}
+                            aria-current={isActive(link.href) ? 'page' : undefined}
+                            onClick={() => setIsOpen(false)}
+                            className="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium text-text-muted aria-[current=page]:text-primary aria-[current=page]:bg-primary-glow hover:text-primary hover:bg-primary-glow transition-all"
                         >
-                            <Download className="w-4 h-4" />
-                            Download DH
-                        </a>
-                    </div>
+                            <link.icon className="w-4 h-4" />
+                            {link.label}
+                        </Link>
+                    ))}
+                    <a
+                        href="https://modrinth.com/mod/distanthorizons"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium text-primary"
+                    >
+                        <Download className="w-4 h-4" />
+                        Download DH
+                    </a>
                 </div>
-            )}
+            </div>
         </nav>
     );
 }

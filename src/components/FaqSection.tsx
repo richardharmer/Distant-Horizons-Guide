@@ -1,6 +1,3 @@
-'use client';
-
-import { useState } from 'react';
 import { ChevronDown, Info, Download as DownloadIcon, Gauge, Palette, Wrench } from 'lucide-react';
 import faqData from '@/data/faq.json';
 import { siteConfig } from '@/data/site';
@@ -26,20 +23,6 @@ const iconMap: Record<string, React.ElementType> = {
 
 export default function FaqSection() {
     const categories = faqData as FaqCategory[];
-    const [openItems, setOpenItems] = useState<Set<string>>(new Set());
-
-    const toggle = (key: string) => {
-        setOpenItems((prev) => {
-            const next = new Set(prev);
-            if (next.has(key)) {
-                next.delete(key);
-            } else {
-                next.add(key);
-            }
-            return next;
-        });
-    };
-
     return (
         <section id="faq" className="py-20 sm:py-28 relative">
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -48,9 +31,9 @@ export default function FaqSection() {
 
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div className="text-center mb-12">
-                    <h2 className="section-title">
+                    <h1 className="section-title">
                         <span className="gradient-text">Frequently Asked Questions</span>
-                    </h2>
+                    </h1>
                     <p className="section-subtitle mx-auto">
                         Common questions about Distant Horizons answered.
                         Can&apos;t find what you&apos;re looking for? Check the community resources below.
@@ -75,29 +58,20 @@ export default function FaqSection() {
                                 <div className="divide-y divide-border/30">
                                     {cat.questions.map((faq, qi) => {
                                         const key = `${cat.category}-${qi}`;
-                                        const isOpen = openItems.has(key);
                                         return (
-                                            <div key={key}>
-                                                <button
-                                                    onClick={() => toggle(key)}
-                                                    className="w-full flex items-center gap-3 px-6 py-4 text-left hover:bg-surface/20 transition-colors"
-                                                >
+                                            <details key={key} className="group">
+                                                <summary className="w-full flex items-center gap-3 px-6 py-4 text-left cursor-pointer list-none hover:bg-surface/20 transition-colors [&::-webkit-details-marker]:hidden">
                                                     <span className="flex-1 text-sm font-medium text-foreground">
                                                         {faq.q}
                                                     </span>
-                                                    <ChevronDown
-                                                        className={`w-4 h-4 text-text-dim shrink-0 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''
-                                                            }`}
-                                                    />
-                                                </button>
-                                                {isOpen && (
-                                                    <div className="px-6 pb-5 animate-fade-in">
-                                                        <div className="text-sm text-text-muted leading-relaxed whitespace-pre-line pl-0 border-l-2 border-primary/30 ml-0 p-4 rounded-r-lg bg-surface/30">
-                                                            {faq.a}
-                                                        </div>
+                                                    <ChevronDown aria-hidden="true" className="w-4 h-4 text-text-dim shrink-0 transition-transform duration-200 group-open:rotate-180" />
+                                                </summary>
+                                                <div className="px-6 pb-5">
+                                                    <div className="text-sm text-text-muted leading-relaxed whitespace-pre-line pl-0 border-l-2 border-primary/30 ml-0 p-4 rounded-r-lg bg-surface/30">
+                                                        {faq.a}
                                                     </div>
-                                                )}
-                                            </div>
+                                                </div>
+                                            </details>
                                         );
                                     })}
                                 </div>
