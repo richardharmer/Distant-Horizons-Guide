@@ -3,34 +3,7 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 
-type ConsentChoice = 'accepted' | 'rejected';
-
-const STORAGE_KEY = 'dhguide_analytics_consent';
-
-function enableAnalytics() {
-  if (!document.getElementById('google-analytics-script')) {
-    const ga = document.createElement('script');
-    ga.id = 'google-analytics-script';
-    ga.async = true;
-    ga.src = 'https://www.googletagmanager.com/gtag/js?id=G-89V8QD3P9T';
-    document.head.appendChild(ga);
-  }
-
-  window.gtag?.('consent', 'update', { analytics_storage: 'granted' });
-  window.gtag?.('config', 'G-89V8QD3P9T', { anonymize_ip: true });
-
-  if (!document.getElementById('clarity-script')) {
-    const clarity = document.createElement('script');
-    clarity.id = 'clarity-script';
-    clarity.async = true;
-    clarity.src = 'https://www.clarity.ms/tag/vozzwftmwa';
-    document.head.appendChild(clarity);
-  }
-}
-
-function disableAnalytics() {
-  window.gtag?.('consent', 'update', { analytics_storage: 'denied' });
-}
+import { applyConsent, readConsent, type ConsentChoice } from '@/lib/analytics';
 
 export default function ConsentScripts() {
   const [choice, setChoice] = useState<ConsentChoice | null>(null);
@@ -38,20 +11,17 @@ export default function ConsentScripts() {
 
   useEffect(() => {
     const timer = window.setTimeout(() => {
-      const stored = window.localStorage.getItem(STORAGE_KEY) as ConsentChoice | null;
+      const stored = readConsent();
       setChoice(stored);
-      if (stored === 'accepted') enableAnalytics();
-      if (stored === 'rejected') disableAnalytics();
+      if (stored) applyConsent(stored);
     }, 0);
     return () => window.clearTimeout(timer);
   }, []);
 
   const saveChoice = (nextChoice: ConsentChoice) => {
-    window.localStorage.setItem(STORAGE_KEY, nextChoice);
+    applyConsent(nextChoice);
     setChoice(nextChoice);
     setOpen(false);
-    if (nextChoice === 'accepted') enableAnalytics();
-    else disableAnalytics();
   };
 
   const showPanel = choice === null || open;

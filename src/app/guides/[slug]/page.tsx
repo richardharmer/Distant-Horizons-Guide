@@ -4,6 +4,8 @@ import { notFound } from 'next/navigation';
 import { ArrowRight, CheckCircle2, ExternalLink } from 'lucide-react';
 import { getGuide, guides } from '@/data/guides';
 import { siteConfig } from '@/data/site';
+import RenderModComparison from '@/components/RenderModComparison';
+import ClientServerGuide from '@/components/ClientServerGuide';
 import BestSettingsGuide from '@/components/BestSettingsGuide';
 import { socialMetadata } from '@/lib/seo';
 import { getGuideChecks, getGuideSources } from '@/data/guideChecks';
@@ -35,16 +37,16 @@ export default async function GuidePage({ params }: Props) {
   const sources = getGuideSources(guide.slug, guide.category);
   const isShaderGuide = guide.category === 'Shaders';
   const schema = {
-    '@context': 'https://schema.org', '@type': 'HowTo', name: guide.title,
+    '@context': 'https://schema.org', '@type': guide.format ? 'Article' : 'HowTo', name: guide.title,
     description: guide.description, dateModified: guide.updated,
     author: { '@type': 'Organization', name: 'DistantHorizonsGuide Editorial Team' },
-    step: guide.steps.map((step) => ({ '@type': 'HowToStep', name: step.title, text: step.body })),
+    ...(guide.format ? { mainEntityOfPage: `${siteConfig.url}/guides/${guide.slug}` } : { step: guide.steps.map((step) => ({ '@type': 'HowToStep', name: step.title, text: step.body })) }),
   };
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       <article className="pt-20">
-        <section className="py-20 sm:py-28 border-b border-border/30">
+        <section className="py-12 sm:py-16 border-b border-border/30">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex flex-wrap items-center gap-3 text-sm text-primary mb-5"><span className="badge badge-compatible">{guide.category}</span><span>Editorial review {guide.updated}</span></div>
               <h1 className="text-4xl sm:text-5xl font-black tracking-tight mb-6">{guide.title}</h1>
@@ -56,22 +58,26 @@ export default async function GuidePage({ params }: Props) {
             </div>
           </div>
         </section>
+        {guide.format && <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-10">
+          {guide.slug === 'distant-horizons-vs-voxy-bobby' && <RenderModComparison />}
+          {guide.slug === 'distant-horizons-client-or-server-side' && <ClientServerGuide />}
+          {guide.format === 'settings' && <BestSettingsGuide />}
+        </div>}
         <section className="py-14">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 grid gap-10 lg:grid-cols-[1fr_280px]">
             <div>
-              <h2 className="text-2xl font-bold mb-5">Common symptoms</h2>
+              <h2 className="text-2xl font-bold mb-5">{guide.format ? 'Find your starting point' : 'Common symptoms'}</h2>
               <ul className="grid gap-3 mb-12 sm:grid-cols-2">{guide.symptoms.map((symptom) => <li key={symptom} className="glass rounded-xl p-4 text-sm text-text-muted flex gap-2"><CheckCircle2 className="w-4 h-4 text-accent shrink-0 mt-0.5" />{symptom}</li>)}</ul>
-              <h2 className="text-2xl font-bold mb-6">Step-by-step fix</h2>
+              <h2 className="text-2xl font-bold mb-6">{guide.format ? 'Setup and comparison checklist' : 'Step-by-step fix'}</h2>
               <div className="space-y-6">{guide.steps.map((step, index) => <section key={step.title} className="glass rounded-2xl p-6"><div className="flex gap-4"><div className="w-8 h-8 rounded-full bg-primary/15 border border-primary/30 flex items-center justify-center text-primary font-bold shrink-0">{index + 1}</div><div><h3 className="font-semibold text-lg mb-2">{step.title}</h3><p className="text-text-muted leading-relaxed">{step.body}</p></div></div></section>)}</div>
-              {guide.slug === 'distant-horizons-best-settings' && <BestSettingsGuide />}
               <section className="mt-10" aria-labelledby="diagnostic-checks">
-                <h2 id="diagnostic-checks" className="text-2xl font-bold mb-4">Separate the possible causes</h2>
+                <h2 id="diagnostic-checks" className="text-2xl font-bold mb-4">{guide.format ? 'What to verify in your setup' : 'Separate the possible causes'}</h2>
                 <p className="text-sm text-text-muted mb-4">These are suggested diagnostic comparisons, not results from a test performed by this site. Work in a duplicate instance and change one variable at a time.</p>
                 <div className="space-y-6">{checks.map((check) => <section key={check.observation} className="border-l-2 border-primary/30 pl-5"><h3 className="font-semibold mb-2">{check.observation}</h3><p className="text-text-muted leading-relaxed">{check.check}</p><p className="text-sm text-text-dim mt-2">{check.meaning}</p></section>)}</div>
               </section>
               <section className="mt-10 border-t border-border/30 pt-8">
                 <h2 className="text-xl font-bold mb-3">Sources and verification scope</h2>
-                <p className="text-sm text-text-muted leading-relaxed">Source review and diagnostic update: October 18, 2026. The sources below support the stated general behavior only. This site did not run an in-game reproduction or benchmark for this update. Numeric starting values and isolation procedures are editorial guidance; exact menus and compatibility depend on the installed builds.</p>
+                <p className="text-sm text-text-muted leading-relaxed">Editorial update: {guide.updated}. The sources below support the stated general behavior only. This site did not run an in-game reproduction or benchmark for this update. Numeric starting values and isolation procedures are editorial guidance; exact menus and compatibility depend on the installed builds.</p>
                 <ul className="mt-4 space-y-3 text-sm text-text-muted">{sources.map((source) => <li key={source.url}><a className="text-primary underline" href={source.url} target="_blank" rel="noopener noreferrer">{source.title}</a><p className="mt-1">{source.scope}</p></li>)}</ul>
                 <div className="flex flex-wrap gap-4 mt-4 text-sm">
                   <a className="text-primary hover:underline" href={siteConfig.officialReleaseUrl} target="_blank" rel="noopener noreferrer">Official release notes</a>
@@ -80,7 +86,7 @@ export default async function GuidePage({ params }: Props) {
                   <Link className="text-primary hover:underline" href="/corrections">Report a correction</Link>
                 </div>
               </section>
-              <div className="mt-10 rounded-2xl border border-primary/20 bg-primary/5 p-6"><h2 className="font-semibold mb-2">Still stuck?</h2><p className="text-sm text-text-muted">Record your Minecraft version, DH version, loader, shader pack, GPU, and crash log before asking the community. That information makes compatibility problems much easier to diagnose.</p></div>
+              <div className="mt-10 rounded-2xl border border-primary/20 bg-primary/5 p-6"><h2 className="font-semibold mb-2">{guide.format ? 'Before changing your setup' : 'Still stuck?'}</h2><p className="text-sm text-text-muted">Record your Minecraft version, DH version, loader, shader pack, GPU, and crash log before asking the community. That information makes compatibility problems much easier to diagnose.</p></div>
             </div>
             <aside className="space-y-5"><div className="glass rounded-2xl p-5"><h2 className="font-semibold mb-3">Useful tools</h2><div className="space-y-3 text-sm"><Link className="flex items-center justify-between text-primary" href="/shaders">Shader compatibility <ArrowRight className="w-4 h-4" /></Link><Link className="flex items-center justify-between text-primary" href="/calculator">Starting settings tool <ArrowRight className="w-4 h-4" /></Link><a className="flex items-center justify-between text-primary" href={siteConfig.officialReleaseUrl} target="_blank" rel="noopener noreferrer">Official releases <ExternalLink className="w-4 h-4" /></a></div></div><div className="glass rounded-2xl p-5"><h2 className="font-semibold mb-3">Related guides</h2><div className="space-y-3">{relatedGuides.map((related) => related && <Link key={related.slug} className="block text-sm text-text-muted hover:text-primary" href={`/guides/${related.slug}`}>{related.title}</Link>)}</div></div>{isShaderGuide && <Link href="/shaders/complementary-reimagined" className="block glass rounded-2xl p-5 text-sm text-primary">Browse shader source reviews <ArrowRight className="inline w-4 h-4 ml-1" /></Link>}</aside>
           </div>

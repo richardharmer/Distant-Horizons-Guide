@@ -9,9 +9,27 @@ export type Guide = {
   steps: { title: string; body: string }[];
   related: string[];
   quickAnswer?: string;
+  format?: 'decision' | 'settings';
 };
 
 export const guides: Guide[] = [
+  {
+    slug: 'distant-horizons-client-or-server-side',
+    title: 'Is Distant Horizons Client-Side? Client vs Server Installation',
+    description: 'Learn when Distant Horizons only needs a client install, when server LOD delivery needs both sides, and what changes on Java Realms, Paper and Spigot.',
+    category: 'Multiplayer', updated: '2026-10-28', format: 'decision',
+    intro: 'You can use Distant Horizons on a Java client without installing it on the multiplayer server. Server-provided LOD data is a separate setup with additional requirements.',
+    quickAnswer: 'Client-only DH saves terrain you receive while exploring. For the documented server-delivery workflow, both client and server need a compatible setup and distant generation enabled. Installing it only on the server does not give an unmodified client DH rendering.',
+    symptoms: ['Joining a server you do not own', 'Setting up a modded server', 'Choosing a Paper or Spigot plugin', 'Playing on a Java Realm'],
+    steps: [
+      { title: 'Identify the edition and environment', body: 'Confirm Java Edition, the exact Minecraft version, client loader and server software. Treat these as separate requirements when selecting files.' },
+      { title: 'Choose client-only or server-provided terrain', body: 'Use client-only exploration when you cannot change the server. If you own the server, read the matching mod or plugin documentation before enabling LOD delivery.' },
+      { title: 'Test the client before adding optional shaders', body: 'Launch the matching client build and check terrain in a local world. Then join the server and explore a recognizable area before revisiting it.' },
+      { title: 'Check the server delivery settings', body: 'For a supported server setup, verify both sides have distant generation enabled. Keep the exact build numbers when asking for help.' },
+    ],
+    related: ['distant-horizons-server-realms', 'distant-horizons-server-commands', 'distant-horizons-chunks-not-loading', 'distant-horizons-bedrock'],
+  },
+
   {
     slug: 'distant-horizons-low-fps',
     title: 'Distant Horizons Low FPS Fix: Reduce Stutter and CPU Load',
@@ -174,7 +192,7 @@ export const guides: Guide[] = [
       { title: 'Keep server identities stable', body: 'A changing address or port can create separate LOD data folders. Confirm that you are looking at the current server profile.' },
       { title: 'Do not expect server-side magic', body: 'Increasing client RAM cannot make an unloaded server chunk appear. Ask the server owner about view distance and pre-generated terrain.' },
       { title: 'Report with multiplayer context', body: 'Include server type, Minecraft version, client loader, DH version, whether the issue affects every dimension, and a screenshot.' },
-    ], related: ['distant-horizons-chunks-not-loading', 'distant-horizons-lod-cache-reset'],
+    ], related: ['distant-horizons-client-or-server-side', 'distant-horizons-chunks-not-loading', 'distant-horizons-lod-cache-reset'],
   },
   {
     slug: 'distant-horizons-chunks-not-loading', title: 'Distant Horizons Chunks Not Loading: Fix Empty Horizons',
@@ -253,16 +271,17 @@ export const guides: Guide[] = [
     ], related: ['distant-horizons-low-fps', 'distant-horizons-ram-settings'],
   },
   {
-    slug: 'distant-horizons-vs-voxy-bobby', title: 'Distant Horizons vs Voxy vs Bobby: Which Mod Fits Your Goal?',
-    description: 'Compare Distant Horizons, Voxy, and Bobby by view distance, terrain detail, storage, server behavior, and shader expectations.', category: 'Comparisons', updated: '2026-10-18',
+    slug: 'distant-horizons-vs-voxy-bobby', title: 'Distant Horizons vs Voxy: Shaders, Servers & Bobby Compared',
+    description: 'Distant Horizons or Voxy? Compare loaders, shader support, server LOD delivery and Bobby’s chunk cache, with a checklist for your own performance test.', category: 'Comparisons', updated: '2026-10-28', format: 'decision',
     intro: 'These mods solve related but different problems. Distant Horizons focuses on far-distance LOD terrain, Bobby stores and renders previously loaded chunks, and Voxy uses its own approach to distant terrain. Choose by world size, server access, visual expectations, and loader support.',
+    quickAnswer: 'Choose by the setup you need: DH for its supported server LOD workflow and loader options; Voxy for a Fabric LOD alternative on supported hardware; Bobby to retain server-sent chunks. Shader support must be checked for each mod separately. This guide does not claim an FPS winner.',
     symptoms: ['you are choosing a distant-rendering mod', 'you want exact blocks far away', 'you play mostly on servers', 'you need shader support'],
     steps: [
       { title: 'Choose DH for a broad horizon', body: 'Distant Horizons is a strong fit when you want a very large view distance with simplified distant terrain and a documented shader integration path.' },
       { title: 'Choose Bobby for previously loaded chunks', body: 'Bobby is better understood as a client-side cache of chunks you have already loaded; it does not replace a true LOD generator for unexplored terrain.' },
       { title: 'Evaluate Voxy separately', body: 'Voxy may be attractive if its visual style, version support, and modpack compatibility match your setup. Test the exact game version before migrating.' },
       { title: 'Compare the same world', body: 'Use the same seed, camera route, render distance, loader, shader state, and performance target for a meaningful comparison.' },
-    ], related: ['distant-horizons-fabric-vs-neoforge', 'distant-horizons-shader-not-working'],
+    ], related: ['distant-horizons-client-or-server-side', 'distant-horizons-best-settings', 'distant-horizons-shader-not-working'],
   },
   {
     slug: 'distant-horizons-dependencies', title: 'Distant Horizons Dependencies: Fabric, Forge, Iris, and Sodium',
@@ -314,7 +333,7 @@ export const guides: Guide[] = [
       { title: 'Use /dh only on a supported server setup', body: 'Distant Horizons commands are server-side. Use /help dh or tab completion to inspect the commands available in your exact plugin or mod environment.' },
       { title: 'Pre-generate carefully', body: 'Pre-generation can improve the experience for players, but it also consumes CPU, storage, and bandwidth. Start with a bounded area and monitor the server.' },
       { title: 'Lower bandwidth or request distance if needed', body: 'Timeouts and connection lag can require lower server or client request settings. Change one limit at a time and test with a second player.' },
-    ], related: ['distant-horizons-server-realms', 'distant-horizons-chunks-not-loading'],
+    ], related: ['distant-horizons-client-or-server-side', 'distant-horizons-server-realms', 'distant-horizons-chunks-not-loading'],
   },
   {
     slug: 'distant-horizons-bedrock', title: 'Does Distant Horizons Work on Minecraft Bedrock?',
@@ -356,7 +375,7 @@ export const guides: Guide[] = [
   },
   {
     slug: 'distant-horizons-best-settings', title: 'Distant Horizons Best Settings: Performance, Quality & Laptop Profiles',
-    description: 'Find the best Distant Horizons settings for performance, quality, laptops, shaders, LOD distance, vanilla render distance, CPU load, and RAM.', category: 'Performance', updated: '2026-10-18',
+    description: 'Start with 8–12 vanilla chunks and 64–128 LOD chunks. Compare performance, balanced and laptop profiles, then tune CPU load and shaders for your setup.', category: 'Performance', updated: '2026-10-28', format: 'settings',
     intro: 'There is no single best Distant Horizons profile for every PC. The best starting point keeps Minecraft responsive, lets LOD generation catch up, and increases distance only after frame pacing and memory use are stable.',
     quickAnswer: 'For most new setups, start with 8–12 vanilla chunks, 64–128 chunks of LOD distance, low or medium LOD quality, and no shaders. Test one change at a time, then use the profile that stays smooth while new terrain generates.',
     symptoms: ['you want the best DH settings', 'the horizon looks good but FPS stutters', 'you do not know which distance setting to change', 'shaders make the setup unstable'],

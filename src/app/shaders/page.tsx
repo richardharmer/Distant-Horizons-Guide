@@ -5,14 +5,14 @@ import shaders from '@/data/shaders.json';
 import { socialMetadata } from '@/lib/seo';
 
 export const metadata: Metadata = {
-    title: 'Distant Horizons Shaders: Compatibility Database',
+    title: 'Distant Horizons Compatible Shaders: Pack List & Setup',
     description:
-        'Distant Horizons shader compatibility sources, author statements, exact-version limitations and setup checks for 20 shader packs.',
+        'Find shaders compatible with Distant Horizons. Compare Photon, Complementary, Bliss and other packs, check author support, and fix missing LOD terrain.',
     alternates: {
         canonical: 'https://distanthorizonsguide.com/shaders',
     },
     ...socialMetadata(
-        'Distant Horizons Shaders: Compatibility Database',
+        'Distant Horizons Compatible Shaders: Pack List & Setup',
         'Check Distant Horizons shader sources, documented support and exact-version limitations.',
         '/shaders',
     ),
@@ -34,7 +34,15 @@ export default function ShadersPage() {
             />
             <div className="pt-20">
                 <ShaderTable />
-                {/* Internal links to related pages */}
+                <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-10">
+                  <h2 className="text-2xl font-bold mb-4">Before enabling a shader</h2>
+                  <ol className="list-decimal pl-5 space-y-3 text-text-muted">
+                    <li>Confirm DH renders distant terrain with shaders disabled.</li>
+                    <li>Match Minecraft, your loader, DH, Iris and its required Sodium version.</li>
+                    <li>Read the shader archive’s explicit DH requirements, then test terrain and water beyond vanilla render distance.</li>
+                  </ol>
+                  <p className="mt-5 text-text-muted">Nearby lighting works but distant terrain disappears? Use the <Link className="text-primary underline" href="/guides/distant-horizons-shader-not-working">DH shaders not working checklist</Link>. For a stable baseline, start with the <Link className="text-primary underline" href="/guides/distant-horizons-best-settings">recommended settings profiles</Link>.</p>
+                </section>
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
                     <div className="glass rounded-2xl p-6 text-center">
                         <h3 className="font-semibold text-foreground mb-2">Ready to install?</h3>

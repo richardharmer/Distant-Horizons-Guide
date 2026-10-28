@@ -19,7 +19,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         },
         {
             url: `${baseUrl}/shaders`,
-            lastModified: siteConfig.lastVerified,
+            lastModified: '2026-10-28',
             changeFrequency: 'weekly',
             priority: 0.9,
         },

@@ -189,9 +189,8 @@ export default function AboutPage() {
 
                             <h3 className="text-xl font-bold text-foreground mt-8 mb-3">Is Distant Horizons Client-Side?</h3>
                             <p>
-                                <strong>Yes.</strong> Distant Horizons is primarily a <strong>client-side mod</strong>. You can install it on your
-                                local machine and join any vanilla or modded server — no server-side installation required. However, there is an
-                                optional server-side plugin that can pre-generate LOD data for all players, speeding up initial LOD loading.
+                                <strong>Yes, with different client-only and server-assisted workflows.</strong> A client-only installation retains terrain received while exploring. A compatible server mod or plugin can supply LOD data to DH clients; it does not replace the client mod.
+                                <Link href="/guides/distant-horizons-client-or-server-side" className="text-primary underline ml-1">See who needs to install DH and when server support is needed.</Link>
                             </p>
 
                             <h3 className="text-xl font-bold text-foreground mt-8 mb-3">Distant Horizons vs Voxy: Key Differences</h3>

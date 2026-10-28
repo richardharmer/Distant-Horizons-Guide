@@ -68,6 +68,10 @@ export const guideChecks: Record<string, DiagnosticCheck[]> = {
 };
 
 export function getGuideChecks(slug: string, category: string): DiagnosticCheck[] {
+  if (slug === 'distant-horizons-client-or-server-side') return [
+    { observation: 'Client-only multiplayer', check: 'Explore an area, disconnect and revisit it with the same instance.', meaning: 'Retaining visited terrain is different from receiving LODs for unexplored areas.' },
+    { observation: 'Server-provided LODs', check: 'Check the matching server mod or plugin and distant-generation settings on both sides.', meaning: 'Do not assume that a client download also belongs in a server plugins folder.' },
+  ];
   if (guideChecks[slug]) return guideChecks[slug];
   if (category === 'Installation' || category === 'Getting Started') return [
     { observation: 'Selecting files', check: 'Keep Minecraft and loader fixed; open the exact release record and compare the filename and dependency list.', meaning: 'A game-version label is not evidence that a nearby patch or different loader is compatible.' },
@@ -86,6 +90,10 @@ export function getGuideChecks(slug: string, category: string): DiagnosticCheck[
 const dhSource = { title: 'Distant Horizons project FAQ', url: 'https://modrinth.com/mod/distanthorizons', scope: 'Project description, client/server behavior and general stutter guidance; not a reproduction of this guide’s steps.' };
 const irisSource = { title: 'Iris compatibility FAQ', url: 'https://www.irisshaders.dev/', scope: 'Supported loaders, requirement for explicit shader integration and render-replacement conflicts.' };
 export function getGuideSources(slug: string, category: string) {
+  if (slug === 'distant-horizons-client-or-server-side') return [dhSource,
+    { title: 'Distant Horizons Support plugin', url: 'https://modrinth.com/plugin/distant-horizons-support', scope: 'Separate Bukkit-compatible server plugin and its own version requirements.' },
+    { title: 'Minecraft Java Realms guidance', url: 'https://help.minecraft.net/hc/en-us/articles/360029644312', scope: 'Official joining guidance recommends using Realms without mods; client-only DH is not an official Realms feature.' },
+  ];
   if (slug === 'distant-horizons-vs-voxy-bobby') return [dhSource,
     { title: 'Voxy author description', url: 'https://modrinth.com/mod/voxy', scope: 'LOD rendering, OpenGL requirement and explicit shader support.' },
     { title: 'Bobby author description', url: 'https://modrinth.com/mod/bobby', scope: 'Server-sent chunk caching and optional fallback-world behavior.' },

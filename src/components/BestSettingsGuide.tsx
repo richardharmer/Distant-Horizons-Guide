@@ -21,7 +21,7 @@ const profiles = [
 
 export default function BestSettingsGuide() {
   return (
-    <section className="mt-12 border-t border-border/30 pt-12" aria-labelledby="settings-profiles">
+    <section aria-labelledby="settings-profiles">
       <h2 id="settings-profiles" className="text-2xl font-bold mb-3">Choose a Distant Horizons settings profile</h2>
       <p className="text-text-muted leading-relaxed mb-7">
         These are editorial starting profiles, without an independent in-game benchmark. The useful test is whether Minecraft stays responsive while Distant Horizons is creating new LOD terrain—not whether a benchmark remains smooth in an already-generated area.
@@ -40,6 +40,24 @@ export default function BestSettingsGuide() {
           </section>
         ))}
       </div>
+
+      <section className="mt-8" aria-labelledby="settings-tradeoffs">
+        <h2 id="settings-tradeoffs" className="text-xl font-bold mb-4">Which setting should you change first?</h2>
+        <div className="overflow-x-auto border border-border rounded-xl" role="region" aria-label="Settings troubleshooting table" tabIndex={0}>
+          <table className="w-full min-w-[540px] text-sm text-left">
+            <thead className="bg-surface"><tr>{['What you see', 'First change to try', 'Compare before changing more'].map(label => <th scope="col" className="p-4" key={label}>{label}</th>)}</tr></thead>
+            <tbody>{[
+              ['Stutter while entering new terrain', 'Lower DH CPU / builder load', 'Repeat the route after generation settles.'],
+              ['Low FPS even while standing still', 'Disable shaders, then lower LOD quality', 'Keep resolution and viewpoint identical.'],
+              ['Memory pressure or allocation errors', 'Reduce LOD distance and quality', 'Check actual heap use; do not allocate all system RAM.'],
+              ['Laptop slows down after several minutes', 'Use the performance profile with shaders off', 'Check power mode and sustained temperatures.'],
+              ['Distant terrain is missing on a server', 'Check the source of LOD data', 'More distance or RAM cannot supply terrain the client never received.'],
+            ].map(([symptom, action, check]) => <tr key={symptom} className="border-t border-border"><th scope="row" className="p-4 align-top">{symptom}</th><td className="p-4 align-top text-text-muted">{action}</td><td className="p-4 align-top text-text-muted">{check}</td></tr>)}</tbody>
+          </table>
+        </div>
+        <p className="mt-4 text-sm text-text-muted">Setting names vary by DH build. These starting values are editorial guidance, not official hardware requirements. Keep a copy of your existing profile and change one control at a time.</p>
+        <Link className="btn-primary mt-5" href="/calculator">Generate a profile for your hardware <ArrowRight className="w-4 h-4" /></Link>
+      </section>
 
       <div className="grid gap-6 mt-10 sm:grid-cols-2">
         <section>

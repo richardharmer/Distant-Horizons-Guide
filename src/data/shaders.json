@@ -92,7 +92,7 @@
     "performance": "Not benchmarked",
     "mcVersions": [],
     "loaders": [],
-    "reviewedAt": "2026-10-18",
+    "reviewedAt": "2026-10-28",
     "sourceUrl": "https://modrinth.com/shader/photon-shader",
     "sourceTitle": "Photon compatibility section",
     "sourceNote": "The author lists Distant Horizons under mod compatibility, recommends Iris, and lists Apple GPUs (Metal) as unsupported. This is a general author statement, without an exact DH/shader build pair.",

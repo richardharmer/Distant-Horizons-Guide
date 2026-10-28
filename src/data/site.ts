@@ -12,14 +12,7 @@ export const siteConfig = {
   officialDiscordUrl: 'https://discord.com/invite/distanthorizons',
 };
 
-export const analyticsEvent = (name: string, params: Record<string, string | number | boolean> = {}) => {
-  const consent = typeof window !== 'undefined'
-    ? window.localStorage.getItem('dhguide_analytics_consent')
-    : null;
-  if (consent === 'accepted' && typeof window.gtag === 'function') {
-    window.gtag('event', name, params);
-  }
-};
+export { analyticsEvent } from '@/lib/analytics';
 
 declare global {
   interface Window {

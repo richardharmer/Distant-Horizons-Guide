@@ -183,7 +183,7 @@ export default function Home() {
             </p>
             <p>
               Whether you&apos;re playing on <strong>Fabric</strong> or <strong>NeoForge</strong>, Distant Horizons
-              works as a client-side mod, meaning you can install it and join any server. Shader support requires a pack that explicitly implements DH integration; the exact Minecraft, DH, renderer and shader builds must be checked together.
+              works as a client-side mod, with exploration-based terrain collection on multiplayer servers. See the <Link href="/guides/distant-horizons-client-or-server-side" className="text-primary underline">client and server installation guide</Link> for server-provided LOD requirements. Shader support requires a pack that explicitly implements DH integration; the exact Minecraft, DH, renderer and shader builds must be checked together.
             </p>
             <p>
               This guide provides everything you need: a comprehensive{' '}
