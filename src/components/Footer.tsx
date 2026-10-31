@@ -97,6 +97,9 @@ export default function Footer() {
                             <li><a href="https://tbctalentcalculator.net/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-sm text-text-muted hover:text-primary transition-colors"><ExternalLink className="w-3 h-3" /> TBC Talent Calculator</a></li>
                             <li><a href="https://normalmapgenerator.io/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-sm text-text-muted hover:text-primary transition-colors"><ExternalLink className="w-3 h-3" /> Normal Map Generator</a></li>
                             <li><a href="https://malfoid.com/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-sm text-text-muted hover:text-primary transition-colors"><ExternalLink className="w-3 h-3" /> Malfoid</a></li>
+                            <li><a href="https://gettripcost.com/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-sm text-text-muted hover:text-primary transition-colors"><ExternalLink className="w-3 h-3" /> Get Trip Cost</a></li>
+                            <li><a href="https://funeralslideshow.org/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-sm text-text-muted hover:text-primary transition-colors"><ExternalLink className="w-3 h-3" /> Funeral Slide Show</a></li>
+                            <li><a href="https://pkgextractor.com/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-sm text-text-muted hover:text-primary transition-colors"><ExternalLink className="w-3 h-3" /> Pkg Extractor</a></li>
                         </ul>
                     </div>
                 </div>
